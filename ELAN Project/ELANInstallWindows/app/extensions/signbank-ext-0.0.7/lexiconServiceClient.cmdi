@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.clarin.eu/cmd/components/avatech/avatech-lexiconserviceclient.xsd">
+    <Header></Header>
+    <Resources>
+        <ResourceProxyList></ResourceProxyList>
+        <JournalFileProxyList></JournalFileProxyList>
+        <ResourceRelationList></ResourceRelationList>
+    </Resources>
+    <Components>
+        <LEXICONSERVICECLIENT>
+        	<!-- 
+                Note: this metadata description is very preliminary and will likely change considerably.
+                LexiconServiceClient API extensions. 
+                The "info" element contains a verbose description of the service client. 
+                The content of the lexiconserviceclient element is the name of the lexicon service as shown in the user interface.
+        	-->
+            <lexiconserviceclient type="direct" spiClass="nl.ru.signbank.SignbankWebServiceClientFactory"
+                info="Signbank (https://github.com/Signbank/)">Signbank</lexiconserviceclient>
+           
+           <param type="defaultUrl"></param>
+           <param type="searchConstraint">is</param>
+           <param type="searchConstraint">contains</param>
+           <param type="searchConstraint">beginswith</param>
+           <param type="searchConstraint">endswith</param>
+        </LEXICONSERVICECLIENT>
+    </Components>
+</CMD>

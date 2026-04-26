@@ -1,0 +1,80 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<title>Hecate shot boundary detection help</title>
+    	<style type="text/css">
+
+		table, th, td {
+		  border: 1px solid black;
+		}
+		table {
+		  border-collapse: collapse;
+		}
+		</style>
+    </head>
+	<body style="margin: 10px 10px 10px 10px;">
+		<h4>Recognizer: Hecate shot boundary detection<br />Produced By: Yahoo Research, New
+			York<br />ELAN extension: TLA, Max Planck Institute for Psycholinguistics, Nijmegen</h4>
+		
+		<h3>How to use <code>Hecate</code> and start shot boundary detection from within ELAN (locally)</h3>
+		<p><i>Version 1.3, May 2024</i></p>
+		<p>Hecate (https://github.com/yahoo/hecate) is a video processing library which, in the
+			ELAN context, detects camera shot boundaries. This extension implements ELAN's
+			Recognizer API and allows to call a <i>local</i> installation of Hecate to produce shot
+			information which is converted by this extension to annotation segments. The input is
+			one of the video files linked in the current document.</p>
+		<p>Prerequisite is that Hecate (and everything it depends on (OpenCV, FFmpeg)) is properly
+			installed and is working correctly when invoked from the command line. If that is the
+			case, the Hectae extension in ELAN's user interface allows to configure a few parameters
+			and to start the detection process.</p>
+		<p>Extensions based on the Recognizer API are installed in a sub-folder of ELAN's
+			extensions folder. The <code>hecate</code> folder contains:</p>
+		<ul>
+			<li>this <code>readme.html</code> file</li>
+			<li>a <code>.jar</code> file with the actual implementation</li>
+			<li>a <code>recognizer.cmdi</code> file identifying the extension and its parameters to
+				ELAN</li>
+		</ul>
+		<p>The main parameters and their categories are:</p>
+		<table><thead>
+			<tr><th>Parameter&nbsp;type</th><th>Parameter id</th><th>Description</th></tr>
+		</thead>
+			<tbody>
+				<tr>
+					<td><code>&lt;input&gt;</code></td>
+					<td><b>--in_video</b></td>
+					<td>ELAN automatically preselects the first video file of your current
+						annotation session, but you can change that to other supported files
+						of the session.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textparam&gt;</code></td>
+					<td><b>run-command</b></td>
+					<td>by default the command line command is set to <code>hecate</code>. Depending on the
+						platform and on how Hecate is installed and configured
+						this might not work and e.g. the full path to the executable might need to
+						be entered.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textparam&gt;</code></td>
+					<td><b>fps</b></td>
+					<td>the frames-per-second value of the selected video. Hecate produces video
+						frame indices for the shot ranges and since this recognizer has no
+						direct access to e.g. the video player and has no way to extract the
+						frames-per-second property itself, this information has to be provided by
+						the user, so that this extension can convert the shot boundary information to
+						milliseconds.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;numparam&gt;</code></td>
+					<td><b>--step</b></td>
+					<td>the frame subsampling step size. The default value is <code>1</code>,
+						meaning all frames are considered in the detection process. A higher value
+						determines how many frames are skipped between frames that are processed. </td>
+				</tr>
+			</tbody></table>
+		<p> The recognizer produces the shot ranges at the very end of processing and doesn't
+			show progress messages while processing.</p>
+
+	</body>
+</html>

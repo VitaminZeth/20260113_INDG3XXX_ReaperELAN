@@ -1,0 +1,49 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>WebMAUS help</title>
+    </head>
+    <body style="margin: 10px 10px 10px 10px;">
+    
+            <h4>Service: WebMAUS<br/>
+                Produced By: <a href="https://clarin.phonetik.uni-muenchen.de/BASWebServices">BAS (Bavarian Archive for Speech Signals)</a> (https://clarin.phonetik.uni-muenchen.de/BASWebServices)<br/>
+                Note: this recognizer runs on a web server, the audio and the text will be uploaded using HTTP.<br/>
+                Privacy policy: <a href="https://clarin.phonetik.uni-muenchen.de/BASWebServices/contact">Information about the BAS privacy policy</a> (https://clarin.phonetik.uni-muenchen.de/BASWebServices/contact)</h4>
+        
+        <h3>How to use WebMAUS from within ELAN</h3>
+        <b>Calling WebMAUS only works:</b>
+        <ul>
+            <li><b>when you're online</b></li>
+            <li><b>with mono .wav files of roughly 200 Mb or less</b></li>
+        </ul>
+        WebMAUS performs forced alignment of text to speech; audio and text are uploaded by ELAN, the processing is thereupon performed on the server and the results are send back to ELAN as new tiers. The alignment is performed on the phone-level.<br/> 
+        <br/>
+        The user interface contains the following elements:
+        <ul>
+            <li>Settings panel
+                <ul>
+                    <li>Language of the input: select the language of the speech and the orthographic transcription</li>
+                    <li>Service name: the default and recommended service is called "runMAUSBasic". If the wave file and/or the transcription are too big to be handled by the MAUSBasic service (&#x00b1;200 Mb and &#x00b1;2800 tokens respectively), the "runPipeline" service can be tried.</li>
+                    <li>Text parameter name: a read-only value determined by the web service</li>
+                    <li>Signal parameter name: a read-only value determined by the web service</li>
+                </ul>
+            </li>
+            <li>Input panel
+                <ul>
+                    <li>Input audio file: here the audio file can be selected that will be uploaded. The list contains all wav
+                        files that are linked to the transcription. The WebMAUS processor only accepts <b>mono</b> wave files.
+                        It can take up to an hour to process a file of around 200 Mb.
+                    </li>
+                    <li>Orthographic tier (text): there are two valid ways of selecting the orthographic transcription:
+                        <ul>
+                            <li>tier: select one of the tiers in the dropdown list</li>
+                            <li>file: select a plain text file containing the transcription from the file system</li>
+                        </ul>
+                    </li>
+                    <li>Orthographic tier (text): this is the same as the <i>file</i> option in the previous Orthographic tier item. 
+                    These two Orthographic tier options are mutually exclusive, use only one of them.</li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD CMDVersion="1.1" xmlns="http://www.clarin.eu/cmd/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1430905751617/xsd">
+    <!-- See http://catalog.clarin.eu/ds/ComponentRegistry?registrySpace=published&itemId=clarin.eu:cr1:p_1430905751617 -->
+    <Header></Header>
+    <Resources>
+        <ResourceProxyList></ResourceProxyList>
+        <JournalFileProxyList></JournalFileProxyList>
+        <ResourceRelationList></ResourceRelationList>
+    </Resources>
+    <Components>
+        <RECOGNIZER>
+            <recognizer recognizerType="direct"
+                runLinux="nl.mpi.recognizer.local.whisper.WhisperRecognizer"
+		        runWin="nl.mpi.recognizer.local.whisper.WhisperRecognizer"
+		        runMac="nl.mpi.recognizer.local.whisper.WhisperRecognizer"
+                info="Whisper transcribe/translate">Whisper</recognizer>
+
+	       <documentation icon16="openai_16.png">readme.html</documentation>
+
+            <input type="audio" optional="false" mimetypes="audio/x-wav audio/* video/*"
+                info="Mono or stereo audio or video file">audio</input>
+            
+            <numparam min="0.0" max="1.0" default="0.0" level="advanced" type="float"
+                info="Temperature to use for sampling">--temperature</numparam>
+            <numparam min="0" max="10" default="5" level="advanced" type="int"
+                info="Number of candidates when sampling with non-zero temperature">--best_of</numparam>
+            <numparam min="0.1" max="0.4" default="0.2" level="advanced" type="float"
+                info="Temperature to increase when falling back when the decoding fails">--temperature_increment_on_fallback</numparam>
+            <numparam min="1.0" max="5.0" default="2.4" level="advanced" type="float"
+                info="Threshold for the gzip compression ratio to indicate a decoding failure (&gt;)">--compression_ratio_threshold</numparam>           
+            <numparam min="-10.0" max="-0.1" default="-1.0" level="advanced" type="float"
+                info="Threshold for the average log probability to indicate decoding failure (&lt;)">--logprob_threshold</numparam>
+            <numparam min="0.1" max="1.0" default="0.6" level="advanced" type="float"
+                info="Threshold for the probability of the '|nospeech|' token">--no_speech_threshold</numparam>
+            <numparam min="1" max="10" default="5" level="advanced" type="int" 
+                info="Number of beams in beams search">--beam_size</numparam>
+            <numparam min="0.1" max="2.0" default="1.0" level="advanced" type="float" 
+                info="Patience factor in beam decoding">--patience</numparam>
+            <numparam min="0.0" max="1.0" default="0.5" level="advanced" type="float" 
+                info="Token length penalty coefficient (alpha)">--length_penalty</numparam>
+            
+            <!-- the default run-command can be changed here, once and for all -->
+            <textparam default="whisper" info="Command line command to start Whisper">run-command</textparam>
+
+            <!-- NOTE: If convoc is empty, any text can be entered -->
+            <textparam convoc="transcribe translate" default="transcribe"
+                info="Task to perform">--task</textparam>
+                
+            <textparam convoc="tiny.en tiny base.en base small.en small medium.en medium large-v1 large-v2 large" default="base"
+                info="Model to use">--model</textparam>
+            
+            <textparam convoc="-- af am ar as az ba be bg bn bo br bs ca cs cy da de el en es et eu fa fi fo fr gl gu ha haw he hi hr ht hu hy id is it ja jw ka kk km kn ko la lb ln lo lt lv mg mi mk ml mn mr ms mt my ne nl nn no oc pa pl ps pt ro ru sa sd si sk sl sn so sq sr su sv sw ta te tg th tk tl tr tt uk ur uz vi yi yo zh Afrikaans Albanian Amharic Arabic Armenian Assamese Azerbaijani Bashkir Basque Belarusian Bengali Bosnian Breton Bulgarian Burmese Castilian Catalan Chinese Croatian Czech Danish Dutch English Estonian Faroese Finnish Flemish French Galician Georgian German Greek Gujarati Haitian Haitian Creole Hausa Hawaiian Hebrew Hindi Hungarian Icelandic Indonesian Italian Japanese Javanese Kannada Kazakh Khmer Korean Lao Latin Latvian Letzeburgesch Lingala Lithuanian Luxembourgish Macedonian Malagasy Malay Malayalam Maltese Maori Marathi Moldavian Moldovan Mongolian Myanmar Nepali Norwegian Nynorsk Occitan Panjabi Pashto Persian Polish Portuguese Punjabi Pushto Romanian Russian Sanskrit Serbian Shona Sindhi Sinhala Sinhalese Slovak Slovenian Somali Spanish Sundanese Swahili Swedish Tagalog Tajik Tamil Tatar Telugu Thai Tibetan Turkish Turkmen Ukrainian Urdu Uzbek Valencian Vietnamese Welsh Yiddish Yoruba" 
+                default="--" info="Language spoken in the audio">--language</textparam>
+            <textparam convoc="True False" default="False" 
+                info="Extract word-level timestamps and refine the results based on them">--word_timestamps</textparam>
+            <textparam convoc="True False" default="True" level="advanced" info="Perform inference in FP16">--fp16</textparam>
+            <textparam default="-1" level="advanced" 
+                info="Token ids to suppress during sampling (comma-separated list)">--suppress_tokens</textparam>
+            
+            <!-- the output will always consist of 3 files in the output directory -->
+            <output type="auxiliary" optional="true"
+                info="Folder for transcript output files (.srt, .txt, .vtt etc.)">--output_dir</output>
+
+        </RECOGNIZER>
+    </Components>
+</CMD>

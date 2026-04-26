@@ -1,0 +1,146 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    	<title>Whisper speech recognizer help</title>
+    	<style type="text/css">
+
+		table, th, td {
+		  border: 1px solid black;
+		}
+		table {
+		  border-collapse: collapse;
+		}
+		</style>
+    </head>
+	<body style="margin: 10px 10px 10px 10px;">
+		<h4>Recognizer: Whisper transcribe/translate<br />Produced By: Whisper: OpenAI, ELAN extension: TLA, Max Planck Institute for Psycholinguistics, Nijmegen</h4>
+
+		<h3>How to use <code>Whisper transcribe</code> and <code>translate</code> from within ELAN (locally)</h3>
+		<p><i>Version 1.2, May 2024</i></p>
+		<p>
+			<img src="openai_16.png" alt="OpenAI" /> &nbsp; Whisper by OpenAI
+			(https://openai.com/blog/whisper/) is an automatic speech recognition (ASR) system
+			trained on many hours of data collected from the web. This extension implements ELAN's
+			Recognizer API and allows to call a <i>local</i> installation of Whisper to transcribe or
+			translate a media file linked in the current document.</p>
+		<p> Prerequisite is that Whisper (and everything it depends on) is properly installed and is
+			working correctly when invoked from the command line. If that is the case, the Whisper
+			extension in ELAN's user interface allows to configure the parameters and to start the
+			recognition process.</p>
+		<p> Extensions based on the Recognizer API are installed in a sub-folder of ELAN's
+			extensions folder. The <code>whisper</code> folder contains:</p>
+		<ul>
+			<li>this <code>readme.html</code> file</li>
+			<li>an icon image <code>.png</code> file</li>
+			<li>a <code>.jar</code> file with the actual implementation</li>
+			<li>a <code>recognizer.cmdi</code> file identifying the extension and its parameters to
+				ELAN</li>
+		</ul>
+		<p>The main parameters and parameter categories are:</p>
+		<table><thead>
+			<tr><th>Parameter&nbsp;type</th><th>Parameter id</th><th>Description</th></tr>
+		</thead>
+			<tbody>
+				<tr>
+					<td><code>&lt;input&gt;</code></td>
+					<td><b>audio</b></td>
+					<td>ELAN automatically preselects the first suitable media file of your current
+						annotation session, but you can change that to other supported files
+						belonging to the session. WAVE audio files are preferred but since the media
+						file is processed by <code>FFmpeg</code> other audio or video files probably
+						work as well.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textparam&gt;</code></td>
+					<td><b>run-command</b></td>
+					<td>by default the command line command is set to <code>whisper</code>. Depending on the
+						platform and on how Python and Whisper etc. are installed and configured
+						this might not work and e.g. the full path to the executable might need to
+						be entered. See the "known issues" below.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textparam&gt;</code></td>
+					<td><b>--task</b></td>
+					<td>by default the task to perform is set to <code>transcribe</code>. This can
+						be changed to <code>translate</code>.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textparam&gt;</code></td>
+					<td><b>--model</b></td>
+					<td>by default the model to use is set to <code>base</code>. This can be changed
+						to one of the other generic or English language models listed.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textparam&gt;</code></td>
+					<td><b>--language</b></td>
+					<td>by default the language is set to <code>None</code>, which triggers Whisper
+						to auto-detect the language. This can be changed to one of the languages
+						listed.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;textparam&gt;</code></td>
+					<td><b>--word_timestamps</b></td>
+					<td>by default this is set to <code>False</code>. When set to <code>True</code> Whisper
+						(version 03-2023) extracts word-level timestamps and refines the results based on
+						those timestamps (experimetal). See the "known issues" below.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;numparam&gt;</code></td>
+					<td><b>--***</b></td>
+					<td>several numerical parameters, please refer to the Whisper documentation for
+						descriptions.</td>
+				</tr>
+				<tr>
+					<td><code>&lt;output&gt;</code></td>
+					<td><b>--output_dir</b></td>
+					<td>a folder where Whisper should store resulting output files
+							(<code>.srt</code>, <code>.txt</code>, <code>.vtt</code>). If not
+						specified, the files will be stored in whatever the "current directory" is.
+						If the folder does not exist, Whisper will try to create it. Depending on
+						the platform it might be necessary to specify a path with a trailing slash,
+						e.g. <code>C:\Temp\</code>.</td>
+				</tr>
+			</tbody></table>
+		<p>In case a parameter you would like to use (i.e. would like to change the default value
+			of) is not in the list in <code>recognizer .cmdi</code>, you can add it there and it will become an
+			option in the user interface.</p>
+		<p> There are a few known issues, some depending on the platform: </p>
+		<ul>
+			<li>If Python, Whisper and other components are installed using Anaconda, the command to
+				run whisper might look like this (Windows example): <br />
+				<code>C:\anaconda3\python.exe C:\anaconda3\Scripts\conda-script.py run
+					--no-capture-output whisper</code>
+				<br /> The <code>--no-capture-output</code> option is to ensure that output is not
+				captured by Anaconda. Without this option the results will only become available at
+				the very end of the processing. <br />If the output is not captured at a lower
+				level, the Report window will be updated regularly with the results for every next
+				30 seconds of the audio. After clicking the Cancel button to stop the process, the
+				results up to that moment are then still available for adding to the ELAN
+				document.</li>
+			<li>If Python, Whisper and/or other components have been installed with Homebrew on
+				macOS (or Linux) and <code>whisper</code> can be run from the Terminal, it probably
+				still is necesary to provide the full path as the run-command, e.g.<br />
+				<code>/opt/homebrew/bin/whisper</code><br />The reason for this is that the
+				environment variables in the Java environment are usually a subset of the variables
+				in the Terminal. This mismatch can also be the cause of the process to fail if
+					<code>whisper</code> subsequently cannot find <code>ffmpeg</code>.</li>
+			<li>If a clear error occurs the process will stop and a message will be shown. But some
+				failures do not trigger the end of the process and the Report window has to be
+				opened to see that something went wrong (and the Cancel button has to be pressed to
+				stop the processing in ELAN). </li>
+			<li>It's best to first run a test with the model you wish to use (base, medium, large
+				etc.), on the command line at least once, for the first-time download of the model.
+				It will probably work from within ELAN as well, but the download process will fill
+				the report with hundreds of progress update messages.</li>
+			<li>When setting <code>--word_timestamps</code> to <code>True</code> and the installed
+				version of Whisper supports it (version 03-2023 or higher), the word level
+				segmentation will only be available in some of the exported output files. ELAN
+				currently uses the <code>.srt</code> file to extract the word level segmentation and
+				add it as a second tier to the results. Therefore word level segmentation will not
+				be available in partial results, after canceling the recognition process. Also, the
+					<code>.srt</code> import function (via the <code>File-&gt;Import</code> submenu)
+				does not support the Whisper-specific encoding of words in <code>.srt</code>
+				yet.</li>
+		</ul>
+	</body>
+</html>

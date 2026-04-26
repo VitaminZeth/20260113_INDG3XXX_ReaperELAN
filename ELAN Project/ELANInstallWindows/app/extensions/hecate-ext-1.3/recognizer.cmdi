@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CMD CMDVersion="1.1" xmlns="http://www.clarin.eu/cmd/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.clarin.eu/cmd/ http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1430905751617/xsd">
+    <!-- See http://catalog.clarin.eu/ds/ComponentRegistry?registrySpace=published&itemId=clarin.eu:cr1:p_1430905751617 -->
+    <Header></Header>
+    <Resources>
+        <ResourceProxyList></ResourceProxyList>
+        <JournalFileProxyList></JournalFileProxyList>
+        <ResourceRelationList></ResourceRelationList>
+    </Resources>
+    <Components>
+        <RECOGNIZER>
+            <recognizer recognizerType="direct"
+                runLinux="nl.mpi.recognizer.local.hecate.HecateRecognizer"
+                runWin="nl.mpi.recognizer.local.hecate.HecateRecognizer"
+                runMac="nl.mpi.recognizer.local.hecate.HecateRecognizer"
+                info="Hecate shot boundary detection">Hecate</recognizer>
+
+	       <documentation>readme.html</documentation>
+
+            <input type="video" optional="false" mimetypes="video/*"
+                info="Input video file">--in_video</input>
+            
+            <numparam min="1" max="10" default="1" type="int"
+                info="Step size for frame subsampling">--step</numparam>
+            
+            <!-- the default run-command can be changed here, once and for all -->
+            <textparam default="hecate" info="Command line command to start Hecate">run-command</textparam>
+            
+            <!-- the frames per second value, for the calculation of the frame duration -->
+            <textparam default="25.0" info="Frames-per-second of the video (for calculation of the frame duration)">fps</textparam>
+            
+            <!-- the optional output directory, relevant if image or summary movie is supported and possibly 
+                for shot ranges and keyframe indices -->
+            <!--  
+            <output type="auxiliary" optional="true"
+                info="Optional folder for output files (.txt)">++out_dir</output>
+                -->
+
+        </RECOGNIZER>
+    </Components>
+</CMD>
