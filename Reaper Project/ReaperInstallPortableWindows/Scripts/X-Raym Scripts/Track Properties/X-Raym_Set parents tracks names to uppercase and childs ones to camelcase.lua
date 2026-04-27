@@ -1,7 +1,7 @@
 --[[
  * ReaScript Name: Set parents tracks names to uppercase and childs ones to camelcase
  * About: A way to reveal Parents and Childs tracks by their name
- * Screenshot: http://i.giphy.com/l41lMgnQVFZp2qfjW.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/l41lMgnQVFZp2qfjW.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -10,10 +10,7 @@
  * Forum Thread: Scripts: Tracks Names (various)
  * Forum Thread URI: http://forum.cockos.com/showthread.php?p=1581214
  * REAPER: 5.0
- * Version: 2.0.1
- * Provides:
- *   [nomain] ../Functions/utf8.lua
- *   [nomain] ../Functions/utf8data.lua
+ * Version: 2.0.2
 ]]
 
 

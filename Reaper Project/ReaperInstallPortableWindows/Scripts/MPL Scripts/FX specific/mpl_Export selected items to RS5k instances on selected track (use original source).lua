@@ -1,9 +1,9 @@
 -- @description Export selected items to RS5k instances on selected track (use original source)
--- @version 1.05
+-- @version 1.07
 -- @author MPL
 -- @website https://forum.cockos.com/showthread.php?t=188335
 -- @changelog
---    # VF independent
+--    # fix empty files when using section
 
   for key in pairs(reaper) do _G[key]=reaper[key]  end 
   ---------------------------------------------------
@@ -72,7 +72,13 @@
         local take = reaper.GetActiveTake(item)
         if not take or reaper.TakeIsMIDI(take) then goto skip_to_next_item end
         local tk_src =  GetMediaItemTake_Source( take )
-        local s_offs = GetMediaItemTakeInfo_Value( take, 'D_STARTOFFS' )
+        local retval, len, rev
+        local offs = 0
+        if GetMediaSourceParent( tk_src ) ~= nil then  
+          retval, offs, len, rev = reaper.PCM_Source_GetSectionInfo( tk_src )
+          tk_src = GetMediaSourceParent( tk_src ) 
+        end 
+        local s_offs = GetMediaItemTakeInfo_Value( take, 'D_STARTOFFS' ) + offs
         local src_len =GetMediaSourceLength( tk_src )
         local filepath = reaper.GetMediaSourceFileName( tk_src, '' )
         --msg(s_offs/src_len)
@@ -86,6 +92,31 @@
       reaper.Undo_EndBlock2( 0, 'Export selected items to RS5k instances', -1 )     
     
   end 
+  -------------------------------------------------------------------------------    
+  function ExportSelItemsToRs5k_AddMIDI(track, MIDI, base_pitch, do_not_increment)    
+    if not MIDI then return end
+      local new_it = reaper.CreateNewMIDIItemInProj( track, MIDI.it_pos, MIDI.it_end_pos )
+      local new_tk = reaper.GetActiveTake( new_it )
+      for i = 1, #MIDI do
+        local startppqpos =  reaper.MIDI_GetPPQPosFromProjTime( new_tk, MIDI[i].pos )
+        local endppqpos =  reaper.MIDI_GetPPQPosFromProjTime( new_tk, MIDI[i].end_pos )
+        local pitch = base_pitch+i-1
+        if do_not_increment then pitch = base_pitch end
+        local ret = reaper.MIDI_InsertNote( new_tk, 
+            false, --selected, 
+            false, --muted, 
+            startppqpos, 
+            endppqpos, 
+            0, 
+            pitch, 
+            100, 
+            true)--noSortInOptional )
+          --if ret then reaper.ShowConsoleMsg('done') end
+      end
+      reaper.MIDI_Sort( new_tk )
+      reaper.GetSetMediaItemTakeInfo_String( new_tk, 'P_NAME', 'sliced loop', 1 )
+      reaper.UpdateArrange()    
+  end
   ----------------------------------------------------------------------- 
   function ExportItemToRS5K(note,filepath, start_offs, end_offs, track)
     local rs5k_pos = TrackFX_AddByName( track, 'ReaSamplomatic5000', false, -1 )

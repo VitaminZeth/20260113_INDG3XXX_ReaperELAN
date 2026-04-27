@@ -251,7 +251,11 @@ local function listenToEvents()
     pitch = (pitch >= 0) and (pitch) or (0)
     local ed = reaper.MIDIEditor_GetActive()
     if ed then
-      reaper.MIDIEditor_SetSetting_int(ed, "active_note_row", pitch)
+      local cpitch = reaper.MIDIEditor_GetSetting_int(ed, "active_note_row")
+      if cpitch ~= pitch then
+        -- Beware, this call is greedy, so don't call it if not needed
+        reaper.MIDIEditor_SetSetting_int(ed, "active_note_row", pitch)
+      end
     end
   end
 
@@ -267,7 +271,7 @@ local function listenToEvents()
   -- Update manager with new info from the helper JSFX
   manager:updateActivity(track, oss_state);
 
-  local spmod = MOD.IsStepBackModifierKeyPressed();
+  local spmod = MOD.IsStepBackModifierKeyPressed() or helper_lib.isModifierPedalDown(oss_state, S.getSetting("StepBackModifierPedal"))
   local pedal = manager:pullPedalTriggerForTrack(track);
 
   manager:tryAdvancedCommitForTrack(track,

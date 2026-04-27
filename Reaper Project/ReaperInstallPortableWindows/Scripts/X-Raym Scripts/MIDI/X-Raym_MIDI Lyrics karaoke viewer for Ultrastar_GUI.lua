@@ -1,7 +1,7 @@
 --[[
  * ReaScript Name: MIDI Lyrics karaoke viewer for Ultrastar_GUI
  * About: Add a clock based on Lyrics tracks MIDI Lyrics events. It use Markers to determine Lines of the karaoke.
- * Screenshot: https://i.imgur.com/VnImxoP.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/VnImxoP.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -10,11 +10,13 @@
  * Forum Thread: Scripts: Creating Karaoke Songs for UltraStar and Vocaluxe
  * Forum Thread URI: https://forum.cockos.com/showthread.php?t=202430
  * REAPER: 5.0
- * Version: 1.0.4
+ * Version: 1.1.0
 --]]
 
 --[[
  * Changelog:
+ * v1.1.0 (2025-12-29)
+  + Display next line setting via right click
  * v1.0.4 (2023-02-27)
   + Ignore out of items boundaries events
  * v1.0.3 (2023-02-21)
@@ -54,10 +56,11 @@ vars.hlen = 270
 vars.docked = 0
 vars.xpos = 100
 vars.ypos = 100
+vars.draw_next_line = "y"
 
 ext_name = "XR_MidiLyricsKaraokeViewer"
 
-colors = {
+local colors = {
   white = "#FFFFFF",
   silver = "#C0C0C0",
   gray = "#808080",
@@ -212,7 +215,7 @@ end
 -- DRAW --
 -----------------------------------------------------------
 
-function PrintAndBreak(string, col)
+function PrintAndBreak(string, col, y_offset)
   CenterAndResizeText(string)
   if col then
     color( col )
@@ -223,19 +226,22 @@ function PrintAndBreak(string, col)
   gfx.y = gfx.y + font_size
 end
 
-function CenterAndResizeText(string)
+function CenterAndResizeText(string, y_offset)
+  y_offset = y_offset or 0
   gfx.setfont(1, font_name, 100)
+
+  local hbox = vars.draw_next_line == "y" and gfx.h / 2 or gfx.h
 
   local str_w, str_h = gfx.measurestr(string)
   local fontsizefit=(gfx.w/(str_w+50))*100 -- new font size needed to fit.
-  local fontsizefith=((gfx.h-gfx.y)/(str_h+50))*100 -- new font size needed to fit in vertical.
+  local fontsizefith=((hbox-gfx.y)/(str_h+50))*100 -- new font size needed to fit in vertical.
 
   local font_size =  math.min(fontsizefit,fontsizefith)
   gfx.setfont(1, font_name, font_size)
 
   local str_w, str_h = gfx.measurestr(string)
   gfx.x = gfx.w/2-str_w/2
-  gfx.y = gfx.h/2-str_h/2
+  gfx.y = hbox/2-str_h/2 + y_offset
   return str_w, str_h, font_size
 end
 
@@ -244,31 +250,31 @@ function DrawBackground()
   gfx.rect( 0, 0, gfx.w, gfx.h )
 end
 
-function DrawLine( line, index )
-
+function DrawLine( line, index, y_offset )
+  y_offset = y_offset or 0
   -- Concat Line
   str = {}
   for i, syllab in ipairs( line ) do
     table.insert( str, syllab.msg )
   end
   str = table.concat( str )
-  
+
   gfx.x = 0; gfx.y = 0;
-  
+
   color( color_highlight )
-  
+
   -- Mesure Line
   -- + set font so it fit the screen
   -- + get the XY positions
-  local w_text, h_text, font_size = CenterAndResizeText(str) -- x and Y are in gfx variable
+  local w_text, h_text, font_size = CenterAndResizeText(str, y_offset) -- x and Y are in gfx variable
   local text_x = gfx.x
   local text_y = gfx.y
-  
+
   if font_size < 10 then
     PrintAndBreak("Too Many Words", "RED")
     return
   end
-  
+
   --gfx.printf( str )
   -- Draw Line Syllabls per Syllabls
   -- to keep track of each syllabs position
@@ -288,12 +294,12 @@ function DrawLine( line, index )
     else
       color( "White" )
     end
-    
+
     if IsInTime( play_pos, syllab.pos_start, syllab.pos_end ) then
       syllab_w, syllab_h = gfx.measurestr( syllab.msg )
       --syllabs_w = syllabs_w + syllab_w
       current_syllab = syllab
-      
+
       color( color_highlight )
       rectangle_w = MapLinear(play_pos, syllab.pos_start, syllab.pos_end, 0, syllab_w)
       --gfx.rect( gfx.x, gfx.h - 20, rectangle_w, 20 )
@@ -305,14 +311,15 @@ function DrawLine( line, index )
       previous_x = gfx.x
     end
   end
-  
-  -- Draw the rectangle 
+
+  -- Draw the rectangle
   color( color_highlight )
+  local hbox = vars.draw_next_line == "y" and gfx.h / 2 or gfx.h
   local rectangle_w_2 = previous_x - text_x + (rectangle_w or 0)
   local h = 10
-  gfx.rect(  text_x, gfx.h - h, rectangle_w_2, h )
+  gfx.rect(  text_x, hbox - h, rectangle_w_2, h )
   gfx.a = 0.05
-  gfx.rect(  text_x, 0, rectangle_w_2, gfx.h )
+  gfx.rect(  text_x, 0, rectangle_w_2, hbox )
   gfx.a = 1
   gfx.rect(  text_x, 0, rectangle_w_2, h )
 end
@@ -336,7 +343,7 @@ function ProcessMarkers()
       i = i+1
     end
   end
-  
+
   -- Allow to not notes before first marker
   if #markers > 0 and markers[1].pos > 0 then
     table.insert( markers, 1, {pos = 0} )
@@ -349,11 +356,11 @@ function ProcessTakeMIDI( take, item )
 
   local retval, count_notes, count_ccs, count_textsyx = reaper.MIDI_CountEvts( take )
   if count_notes == 0 or count_textsys == 0 then return end
-  
+
   local item_pos = reaper.GetMediaItemInfo_Value( item, "D_POSITION" )
   local item_len = reaper.GetMediaItemInfo_Value( item, "D_LENGTH" )
   local item_end = item_pos + item_len
-  
+
   local notes_end_by_pos = {}
   for i = 0, count_notes - 1 do
     local retval, selected, muted, startppqpos, endppqpos, chan, pitch, vel = reaper.MIDI_GetNote( take, i )
@@ -412,7 +419,7 @@ function Process( markers, lyrics )
       end
     end
   end
-  
+
   return lines
 end
 
@@ -438,10 +445,10 @@ function Run()
   -- PLAY STATE
   play_state = reaper.GetPlayState()
   if play_state == 0 then play_pos = reaper.GetCursorPosition() else play_pos = reaper.GetPlayPosition() end
-  
+
   -- GET MARKERS
   markers = ProcessMarkers()
-  
+
   local lyrics = {}
   track = (track and reaper.ValidatePtr( track, 'MediaTrack*' ) and track) or GetLyricsTrack()
   if track then
@@ -453,7 +460,7 @@ function Run()
         lyrics = TableMergeNew( lyrics, ProcessTakeMIDI( take, item ) )
       end
     end
-    
+
     if #markers > 0 and #lyrics > 0 then
       lines = Process( markers, lyrics )
       if #lines > 0 then
@@ -461,6 +468,9 @@ function Run()
         line_to_draw, line_to_draw_index, err = GetLineFromPos( lines, play_pos )
         if line_to_draw then
           DrawLine( line_to_draw, line_to_draw_index )
+        end
+        if vars.draw_next_line == "y" and tonumber( line_to_draw_index ) and lines[ line_to_draw_index + 1 ] then
+           DrawLine( lines[line_to_draw_index + 1], line_to_draw_index + 1, gfx.h/2 )
         end
         if err then
           PrintAndBreak( err, "RED" )
@@ -478,14 +488,19 @@ function Run()
       end
     end
   end
-  
+
   if gfx.mouse_cap == 2 and (not is_region or gfx.mouse_y < rect_h) then
     local dock = gfx.dock(-1) == 0 and "Dock" or "Undock"
     gfx.x = gfx.mouse_x
     gfx.y = gfx.mouse_y
-    if gfx.showmenu( dock ) == 1 then
+    local show_next = (vars.draw_next_line == "y" and "!" or "") .. "Show Next Line"
+    local retval = gfx.showmenu( dock .. "|" .. show_next )
+    if retval == 1 then
       if gfx.dock(-1) == 0 then gfx.dock(1) else gfx.dock(0) end
+    elseif retval == 2 then
+      vars.draw_next_line = vars.draw_next_line == "y" and "n" or "y"
     end
+    SaveState()
   end
 
   if gfx.mouse_cap == 0 then mouse_state = 0 end

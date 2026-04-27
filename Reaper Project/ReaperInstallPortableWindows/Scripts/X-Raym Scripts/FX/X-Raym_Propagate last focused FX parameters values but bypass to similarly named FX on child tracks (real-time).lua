@@ -1,10 +1,9 @@
 --[[
  * ReaScript Name: Propagate last focused FX parameters values but bypass to similarly named FX on child tracks (real-time)
  * About: A way to propagate FX param value from last touched FX to others childs of its parent track in real-time. The propagate values algorithm overcome spk77 scripts which works on last touch parameter, cause some GUI controllers modify several parameters at the same time but the last touch parameter as returned by ReaScript functions is only one value.
- * Screenshot:
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
- * Repository: GitHub > X-Raym > Scripts for Cockos REAPER
+ * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-Scripts
  * Licence: GPL v3
  * Forum Thread: Scripts: FX Param Values (various)

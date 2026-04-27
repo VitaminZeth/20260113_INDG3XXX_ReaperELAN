@@ -1,7 +1,7 @@
 --[[
  * ReaScript Name: Save project and keep only X backups
  * About: This action can replace your regular save action. Set CTRL+S as keyboard shortcode fr eg. Use REAPER config to save new backup at each save with timestamp and next to project
- * Screenshot: https://i.imgur.com/URmnLmt.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/URmnLmt.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -34,8 +34,9 @@
 --]]
 
 -- USER CONFIG AREA ------------------
--- Use Preset Script file for moding in update compatible way
--- https://gist.github.com/X-Raym/f7f6328b82fe37e5ecbb3b81aff0b744
+
+-- Use Preset Script for safe moding or to create a new action with your own values
+-- https://github.com/X-Raym/REAPER-ReaScripts/tree/master/Templates/Script%20Preset
 
 limit = 5
 console = false

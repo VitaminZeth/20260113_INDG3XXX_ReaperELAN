@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Offset selected items pitch envelope
- * Screenshot: https://i.imgur.com/C7AqMt5.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/C7AqMt5.mp4
  * Author: X-Raym
- * Author URI: https://extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3

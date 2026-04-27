@@ -1,10 +1,10 @@
 --[[
  * ReaScript Name: Reset stretch marker under mouse position
  * Instructions: Put this on a keyboard shortcut. Run.
- * Screenshot: http://i.imgur.com/vbEHtuz.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/vbEHtuz.mp4
  * Notes : Only work if take rate is 1. SWS issue.
  * Author: X-Raym
- * Author URI: http://www.extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3

@@ -12,6 +12,8 @@ local TrackSettingDefs = {
 local SettingDefs = {
   StepBackModifierKey                                       = { type = "int",     default = D.IsMacOs and 16 or 16 },
 
+  StepBackModifierPedal                                     = { type = "int",     default = -1 },
+
   WriteModifierKeyCombination                               = { type = "string",  default = "none" },
   InsertModifierKeyCombination                              = { type = "string",  default = D.IsMacos and "17" or "17" },
   NavigateModifierKeyCombination                            = { type = "string",  default = D.IsMacos and "18" or "18" },
@@ -61,6 +63,9 @@ local SettingDefs = {
   SnapItemBounds                                            = { type = "bool",    default = true },
 
   AutoScrollArrangeView                                     = { type = "bool",    default = true },
+  AlwaysFocusMEOnLaunch                                     = { type = "bool",    default = false},
+
+  AutoNoteLengthModeTargetsMidiEditorWhen                   = { type = "string",  default = D.AutoNoteLengthModeTargetsMidiEditorWhen.Focused, inclusion = { D.AutoNoteLengthModeTargetsMidiEditorWhen.Focused, D.AutoNoteLengthModeTargetsMidiEditorWhen.Open } },
 
   AllowKeyEventNavigation                                   = { type = "bool",    default = false },
 
@@ -68,6 +73,7 @@ local SettingDefs = {
   NoteHiglightingDuringPlay                                 = { type = "bool",    default = false },
 
   UseDebugger                                               = { type = "bool",    default = false },
+  UseProfiler                                               = { type = "bool",    default = false },
 
   VelocityLimiterEnabled                                    = { type = "bool",    default = false },
   VelocityLimiterMin                                        = { type = "int",     default = 0,    min = 0, max = 127 },

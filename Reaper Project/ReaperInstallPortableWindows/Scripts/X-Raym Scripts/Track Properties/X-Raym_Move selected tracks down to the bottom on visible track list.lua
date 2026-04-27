@@ -2,10 +2,10 @@
  * ReaScript Name: Move selected tracks down to the bottom on visible track list
  * About: See title. NOTE: don't select children of parent track if you move the parent track. NOTE: working with child tracks isn't very predictible for now.
  * Instructions: Select tracks. Run.
- * Screenshot: http://i.imgur.com/GfN9y50.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/GfN9y50.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
- * Repository: GitHub > X-Raym > REAPER Scripts
+ * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3
  * Forum Thread: http://forum.cockos.com/showthread.php?p=1704698&posted=1#post1704698

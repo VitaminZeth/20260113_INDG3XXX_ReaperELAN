@@ -1,11 +1,12 @@
 -- @description QuantizeTool
--- @version 4.0
+-- @version 4.05
 -- @author MPL
 -- @website http://forum.cockos.com/showthread.php?t=165672
 -- @about Script for manipulating REAPER objects time and values
 -- @changelog
---    + Ported to ReaImGui
---    # prevent using NF_AnalyzeMediaItemPeakAndRMS if not available
+--    # minor fixes
+--    # add tooltip to amount slider
+--    # Settings/Action: ignore "update at param change option"
 
 
 
@@ -18,7 +19,7 @@
   
   if not reaper.ImGui_GetBuiltinPath then return reaper.MB('This script require ReaImGui extension','',0) end
   package.path =   reaper.ImGui_GetBuiltinPath() .. '/?.lua'
-  ImGui = require 'imgui' '0.9.3.1'
+  ImGui = require 'imgui' '0.9.3.2'
   
   
 -------------------------------------------------------------------------------- init external defaults 
@@ -470,8 +471,11 @@ function UI.SameLine(ctx) ImGui.SameLine(ctx) end
 function UI.MAIN()
   
   EXT:load() 
+  if EXT.CONF_act_initcatchref&1==1 then DATA:GetAnchorPoints() end
+  if EXT.CONF_act_initcatchsrc&1==1 then DATA:GetTargets() end
   -- imgUI init
   ctx = ImGui.CreateContext(DATA.UI_name) 
+  
   -- fonts
   DATA.font1 = ImGui.CreateFont(UI.font, UI.font1sz) ImGui.Attach(ctx, DATA.font1)
   DATA.font2 = ImGui.CreateFont(UI.font, UI.font2sz) ImGui.Attach(ctx, DATA.font2)
@@ -480,8 +484,6 @@ function UI.MAIN()
   ImGui.SetConfigVar(ctx, ImGui.ConfigVar_HoverDelayNormal, UI.hoverdelay)
   ImGui.SetConfigVar(ctx, ImGui.ConfigVar_HoverDelayShort, UI.hoverdelayshort)
   
-  if EXT.CONF_act_initcatchref&1==1 then DATA:GetAnchorPoints() end
-  if EXT.CONF_act_initcatchsrc&1==1 then DATA:GetTargets() end
   
   -- run loop
   defer(UI.MAINloop)
@@ -640,7 +642,10 @@ end
 --------------------------------------------------------------------- 
 function DATA.PRESET_GetExtStatePresets()
   DATA.presets.factory = DATA.presets_factory
-  DATA.presets.user = table.load( EXT.preset_base64_user ) or {}
+  
+  local preset_base64_user = EXT.preset_base64_user
+  if preset_base64_user:match('{')== nil and preset_base64_user~= '' then preset_base64_user = DATA.PRESET_decBase64(preset_base64_user) end
+  DATA.presets.user = table.load(preset_base64_user) or {}
   
   -- ported from old version
   if EXT.update_presets == 1 then
@@ -738,7 +743,7 @@ function UI.draw_knob(t)
   local radiusshift_y = (radius_draw- radius)
   ImGui.DrawList_PathArcTo(draw_list, center_x, center_y - radiusshift_y, radius_draw, math.rad(ang_min),math.rad(ang_max))
   ImGui.DrawList_PathStroke(draw_list, 0xF0F0F02F,  ImGui.DrawFlags_None, 2)
-  ImGui.DrawList_PathArcTo(draw_list, center_x, center_y - radiusshift_y, radius_draw, math.rad(ang_min),math.rad(ang_val+1))
+  ImGui.DrawList_PathArcTo(draw_list, center_x, center_y - radiusshift_y, radius_draw, math.rad(ang_min),math.rad(ang_val))
   ImGui.DrawList_PathStroke(draw_list, UI.knob_handle<<8|0xFF,  ImGui.DrawFlags_None, 2)
   
   local radius_draw2 = radius_draw-1
@@ -761,14 +766,14 @@ function UI.MAIN_shortcuts()
   if  ImGui.IsKeyPressed( ctx, ImGui.Key_Space,false )  then  reaper.Main_OnCommand(40044,0) end
 end
 --------------------------------------------------------------------------------  
-function UI.draw()  
+function UI.draw() 
   UI.draw_preset() 
   
   ImGui.SameLine(ctx)
   if ImGui.Button(ctx, 'Params',-1,0) then EXT.UI_compactmode = EXT.UI_compactmode~1 EXT:save() end
   
   -- get anchor points
-  ImGui.Button(ctx, 'Get anchor\n    points', UI.calc_mainbut, UI.calc_itemH*2)
+  ImGui.Button(ctx, 'Get anchor\n    points', UI.calc_mainbut, UI.calc_itemH*2) ImGui.SetItemTooltip( ctx, 'Right click to show anchor points' )
   if ImGui.IsItemClicked( ctx, ImGui.MouseButton_Left ) then DATA:GetAnchorPoints() end
   if ImGui.IsItemClicked( ctx, ImGui.MouseButton_Right ) then
     if EXT.CONF_ref_grid>0 then DATA:MarkerPoints_Show(DATA.ref_pat, UI.default_data_col_adv, true) else DATA:MarkerPoints_Show(DATA.ref, UI.default_data_col_adv, false) end
@@ -778,7 +783,7 @@ function UI.draw()
   ImGui.SameLine(ctx)
   
   -- get targets
-  ImGui.Button(ctx, 'Get targets', UI.calc_mainbut, UI.calc_itemH*2)
+  ImGui.Button(ctx, 'Get targets', UI.calc_mainbut, UI.calc_itemH*2)ImGui.SetItemTooltip( ctx, 'Right click to show targets' )
   if ImGui.IsItemClicked( ctx, ImGui.MouseButton_Left ) then DATA:GetTargets() end
   if ImGui.IsItemClicked( ctx, ImGui.MouseButton_Right ) then
     DATA:MarkerPoints_Show(DATA.src, UI.default_data_col_adv2)
@@ -822,7 +827,7 @@ function UI.draw()
       if EXT.CONF_act_appbuttoexecute == 0 then DATA:Execute() Undo_OnStateChange2( 0, 'QuantizeTool' ) end 
     end,
   })
-  
+  UI.HelpMarker('Amount')
   --[[
       onmousereleaseR  = function() 
         if not DATA.val1 then DATA.val1 = 0 end
@@ -892,7 +897,15 @@ function UI.draw()
   end
   
 end
-
+  -------------------------------------------------------------------------------- 
+  function UI.HelpMarker(desc)
+    if ImGui.BeginItemTooltip(ctx) then
+      ImGui.PushTextWrapPos(ctx, ImGui.GetFontSize(ctx) * 35.0)
+      ImGui.Text(ctx, desc)
+      ImGui.PopTextWrapPos(ctx)
+      ImGui.EndTooltip(ctx)
+    end
+  end
 --------------------------------------------------------------------------------  
 function UI.draw_tab_general()
   if ImGui.BeginTabItem(ctx, 'General') then 
@@ -902,7 +915,7 @@ function UI.draw_tab_general()
     if ImGui.Checkbox(ctx, 'Detect targets on initialization',EXT.CONF_act_initcatchsrc&1==1) then EXT.CONF_act_initcatchsrc = EXT.CONF_act_initcatchsrc~1 EXT:save() end
     if ImGui.Checkbox(ctx, 'Obey time selection for targets',EXT.CONF_act_catchsrctimesel&1==1) then EXT.CONF_act_catchsrctimesel = EXT.CONF_act_catchsrctimesel~1 EXT:save() end
     if ImGui.Checkbox(ctx, 'Knob to set value, Apply to execute',EXT.CONF_act_appbuttoexecute&1==1) then EXT.CONF_act_appbuttoexecute = EXT.CONF_act_appbuttoexecute~1 EXT:save() end
-    if ImGui.Checkbox(ctx, 'Update at parameters change',EXT.UI_appatchange&1==1) then EXT.UI_appatchange = EXT.UI_appatchange~1 EXT:save() end
+    if ImGui.Checkbox(ctx, 'Update at anchor / target change',EXT.UI_appatchange&1==1) then EXT.UI_appatchange = EXT.UI_appatchange~1 EXT:save() end
     
     ImGui.EndTabItem(ctx)
   end
@@ -1177,7 +1190,7 @@ function UI.draw_tab_action()
   if ImGui.BeginTabItem(ctx, 'Action') then 
     UI.activetab = 2 
     
-    trig_action = trig_action or UI.draw_flow_COMBO({['key']='Action type',                       ['extstr'] = 'CONF_act_action',['values'] = {[1]='Position-based alignment', [2]='Ordered alignment'}})
+    UI.draw_flow_COMBO({['key']='Action type',                       ['extstr'] = 'CONF_act_action',['values'] = {[1]='Position-based alignment', [2]='Ordered alignment'}})
     --[[trig_action = trig_action or UI.draw_flow_CHECK({['key']='Envelope points',                   ['extstr'] = 'CONF_src_envpoints',           ['confkeybyte'] = 0})
     if EXT.CONF_src_envpoints&1==1 then
       ImGui.Indent(ctx,UI.indent)
@@ -1186,19 +1199,19 @@ function UI.draw_tab_action()
     end]]
     
     
-    trig_action = trig_action or UI.draw_flow_SLIDER({['key']='Align second value, velocity/gain', ['extstr'] = 'CONF_act_valuealign',   ['min']=0,  ['max']=1, tooltip='Increase to reduce glitches'})
-    trig_action = trig_action or UI.draw_flow_SLIDER({['key']='Offset',                           ['extstr'] = 'CONF_offset_ms',   ['min']=0,  ['max']=0.5})
+    UI.draw_flow_SLIDER({['key']='Align second value, velocity/gain', ['extstr'] = 'CONF_act_valuealign',   ['min']=0,  ['max']=1, tooltip='Increase to reduce glitches'})
+    UI.draw_flow_SLIDER({['key']='Offset',                           ['extstr'] = 'CONF_offset_ms',   ['min']=0,  ['max']=0.5})
     if EXT.CONF_act_action&1==1 then
-      trig_action = trig_action or UI.draw_flow_COMBO({['key']='Direction',                       ['extstr'] = 'CONF_act_aligndir',['values'] = {[0]='Always previous point',[1]='Closest point',[2]='Always next point'}})
-      trig_action = trig_action or UI.draw_flow_SLIDER({['key']='Maximum distance, s',            ['extstr'] = 'CONF_maxquantize_ms',   ['min']=0,  ['max']=0.5})
-      trig_action = trig_action or UI.draw_flow_SLIDER({['key']='Minimum distance, s',            ['extstr'] = 'CONF_minquantize_ms',   ['min']=0,  ['max']=0.5})
+      UI.draw_flow_COMBO({['key']='Direction',                       ['extstr'] = 'CONF_act_aligndir',['values'] = {[0]='Always previous point',[1]='Closest point',[2]='Always next point'}})
+      UI.draw_flow_SLIDER({['key']='Maximum distance, s',            ['extstr'] = 'CONF_maxquantize_ms',   ['min']=0,  ['max']=0.5})
+      UI.draw_flow_SLIDER({['key']='Minimum distance, s',            ['extstr'] = 'CONF_minquantize_ms',   ['min']=0,  ['max']=0.5})
       
-      trig_action = trig_action or UI.draw_flow_CHECK({['key']='Group mode',                      ['extstr'] = 'CONF_act_groupmode',           ['confkeybyte'] = 0})
+      UI.draw_flow_CHECK({['key']='Group mode',                      ['extstr'] = 'CONF_act_groupmode',           ['confkeybyte'] = 0})
       if EXT.CONF_act_groupmode&1==1 then 
         ImGui.Indent(ctx,UI.indent)
-        trig_action = trig_action or UI.draw_flow_COMBO({['key']='Grouping threshold, beats',     ['extstr'] = 'CONF_act_groupmode_valbeats',['values'] = {[1/128]='1/128',[1/64]='1/64',[1/32]='1/32',[1/16]='1/16',[1/8]='1/8',[1/4]='1/4',[1/2]='1/2'}})
-        trig_action = trig_action or UI.draw_flow_CHECK({['key']='Obey same pitch for MIDI notes',['extstr'] = 'CONF_act_groupmode_obeypitch',           ['confkeybyte'] = 0})
-        trig_action = trig_action or UI.draw_flow_COMBO({['key']='Priority',                      ['extstr'] = 'CONF_act_groupmode_direction',['values'] = {[0]='First event',[1]='Between first and last events',[2]='Last event'}})
+        UI.draw_flow_COMBO({['key']='Grouping threshold, beats',     ['extstr'] = 'CONF_act_groupmode_valbeats',['values'] = {[1/128]='1/128',[1/64]='1/64',[1/32]='1/32',[1/16]='1/16',[1/8]='1/8',[1/4]='1/4',[1/2]='1/2'}})
+        UI.draw_flow_CHECK({['key']='Obey same pitch for MIDI notes',['extstr'] = 'CONF_act_groupmode_obeypitch',           ['confkeybyte'] = 0})
+        UI.draw_flow_COMBO({['key']='Priority',                      ['extstr'] = 'CONF_act_groupmode_direction',['values'] = {[0]='First event',[1]='Between first and last events',[2]='Last event'}})
         ImGui.Unindent(ctx,UI.indent)
       end
     end
@@ -1206,10 +1219,10 @@ function UI.draw_tab_action()
     ImGui.EndTabItem(ctx)
   end
   
-  if EXT.UI_appatchange&1==1 and trig_action == true then 
+  --[[if EXT.UI_appatchange&1==1 and trig_action == true then 
     DATA:Execute()  
     trig_action = nil
-  end
+  end]]
 end
 --------------------------------------------------------------------------------  
 function UI.draw_setbuttoncolor(col) 
@@ -1339,7 +1352,7 @@ function UI.draw_preset()
       local newID = DATA.preset_name--os.date()
       EXT.CONF_name = newID
       DATA.presets.user[newID] = DATA.PRESET_GetCurrentPresetData() 
-      EXT.preset_base64_user = table.save(DATA.presets.user)
+      EXT.preset_base64_user =   DATA.PRESET_encBase64(table.save(DATA.presets.user))
       EXT:save() 
     end
     
@@ -1364,7 +1377,7 @@ function UI.draw_preset()
       ImGui.SameLine(ctx)
       if ImGui.Button(ctx, 'Remove##remove'..id,0,select_hsz) then 
         DATA.presets.user[preset] = nil
-        EXT.preset_base64_user = table.save(DATA.presets.user)
+        EXT.preset_base64_user =   DATA.PRESET_encBase64(table.save(DATA.presets.user))
         EXT:save() 
       end
     end 
@@ -2073,6 +2086,9 @@ end
       
     end
   end
+  ------------------------------------------------------------------------------------------------------
+  function WDL_DB2VAL(x) return math.exp((x)*0.11512925464970228420089957273422) end  --https://github.com/majek/wdl/blob/master/WDL/db2val.h
+  
   ---------------------------------------------------------------------- 
   function DATA:GetAnchorPoints_TempoMarkers()
     local  cnt = CountTempoTimeSigMarkers( 0 )
@@ -2887,14 +2903,14 @@ end
   function DATA:Execute_Align_MIDI_sub(take_t, take) 
     local val1 = DATA.val1 or 0
     local val2 = DATA.val2 or 0
-    if not take then return end
+    if not take and reaper.TakeIsMIDI(take) then return end
     local str_per_msg  = ''
     local ppq_cur = 0
     for i = 1, #take_t do
       local t = take_t[i]
       
       local ppq_posOUT = t.ppq_pos
-      
+      if not ppq_posOUT then goto skipnexttake end
       if t.pos_secOUT then
         local pos_secOUT_sec = t.pos_sec + (t.pos_secOUT - t.pos_sec)*val1
         ppq_posOUT = MIDI_GetPPQPosFromProjTime( take, pos_secOUT_sec )
@@ -2908,7 +2924,7 @@ end
       local out_offs = math.floor(ppq_posOUT-ppq_cur)
       
       if t.isNoteOn and EXT.CONF_src_midi_msgflag&1==1 then 
-        local out_vel = math.max(1,math.floor(lim(out_val,0,1)*127))
+        local out_vel = math.max(1,math.floor(VF_lim(out_val,0,1)*127))
         str_per_msg = str_per_msg.. string.pack("i4Bi4BBB", out_offs, t.flags, 3,  0x90| (t.chan-1), t.pitch, out_vel )
         
         if EXT.CONF_src_midi_msgflag&4==4 
@@ -2931,10 +2947,12 @@ end
         end   
         
        else
-        str_per_msg = str_per_msg.. string.pack("i4Bs4", out_offs,  t.flags , t.msg1)
-        ppq_cur = ppq_cur+ out_offs
+        if t and t.flags and t.msg1 then
+          str_per_msg = str_per_msg.. string.pack("i4Bs4", out_offs,  t.flags , t.msg1)
+          ppq_cur = ppq_cur+ out_offs
+        end
       end
-      
+      ::skipnexttake::
     end
     MIDI_SetAllEvts( take, str_per_msg )
     MIDI_Sort(take)
@@ -2948,8 +2966,10 @@ end
     local takes_t = {}
     for i = 1 , #DATA.src do
       local t = DATA.src[i]
-      if not takes_t [t.GUID] then takes_t [t.GUID] = {} end
-      takes_t [t.GUID] [#takes_t [t.GUID] + 1 ]  = VF_CopyTable(t)
+      if t.GUID then
+        if not takes_t [t.GUID] then takes_t [t.GUID] = {} end
+        takes_t [t.GUID] [#takes_t [t.GUID] + 1 ]  = VF_CopyTable(t)
+      end
     end  
     -- loop takes
     for GUID in pairs(takes_t) do
@@ -3003,8 +3023,11 @@ end
       local takes_t = {}
       for i = 1 , #DATA.src do
         local t = DATA.src[i]
-        if not takes_t [t.GUID] then takes_t [t.GUID] = {it_group_master = t.it_group_master, smpoints = {}} end
-        takes_t [t.GUID].smpoints[#takes_t [t.GUID].smpoints + 1 ]  = CopyTable(t)
+        local GUID = t.GUID
+        if GUID then 
+          if not takes_t [GUID] then takes_t [GUID] = {it_group_master = t.it_group_master, smpoints = {}} end
+          takes_t [GUID].smpoints[#takes_t [t.GUID].smpoints + 1 ]  = CopyTable(t)
+        end
       end 
     
     -- align group masters

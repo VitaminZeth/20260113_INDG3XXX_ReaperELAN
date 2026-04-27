@@ -2,20 +2,23 @@
  * ReaScript Name: Replace similar MIDI Takes by pools
  * About: Check selected items active takes MIDI content, and see if there is similar content. If yes, then replace by a pool instance. Very handy when you import and split guitar tabs or any instrument score, and you already split your midi items by riffs-patterns.
  * Instructions: Select MIDI items. Run.
- * Screenshot: http://i.imgur.com/N2fcs9k.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/N2fcs9k.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
- * Repository: GitHub > X-Raym > ReaScripts for Cockos REAPER
+ * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3
  * Forum Thread: Scripts: MIDI ( Various )
  * Forum Thread URI: http://forum.cockos.com/showthread.php?t=187555
  * REAPER: 5.32
- * Version: 1.0
+ * Version: 1.1
 --]]
 
 --[[
  * Changelog:
+ * v1.1 ( 2025-01-05 )
+  # Save cursor pos
+  # Replace Msg by Tooltip
  * v1.0 ( 2017-02-07 )
   + Initial Release
 --]]
@@ -35,6 +38,8 @@ console = true -- true/false: display debug messages in the console
 -- Performance
 local reaper = reaper
 local string = string
+
+log = {}
 
 -- Save item selection, and get midi infos right away
 function SaveSelectedMIDITakes ( array )
@@ -69,6 +74,11 @@ function Msg( value )
   if console then
     reaper.ShowConsoleMsg( tostring( value ) .. "\n" )
   end
+end
+
+function DisplayTooltip(message)
+  local x, y = reaper.GetMousePosition()
+  reaper.TrackCtl_SetToolTip( message, x+17, y+17, false )
 end
 
 function is_in_array( tab, val )
@@ -177,9 +187,10 @@ function Main()
     reaper.Main_OnCommand( 40698 , 0 ) -- Copy
 
     -- For the other items in the similarity groups
+    out = {}
     for w, double in ipairs( index ) do
       items_count = items_count + 1
-      out = out .. double .. ","
+      table.insert( out, double )
       dest_take = midi_takes[double].take
       dest_item = midi_takes[double].item
 
@@ -199,12 +210,14 @@ function Main()
     end
 
     table.insert( sel_items, source_item )
-    Msg( "Takes " .. z ..', ' .. out .." had similar MIDI.\n" )
+    table.insert( log, "Similar MIDI = Takes " .. z ..', ' .. table.concat(out, ", ") )
     pools_count = pools_count + 1
 
   end
 
-  Msg( pools_count .. ' MIDI pools were created from ' .. items_count .. ' media items.')
+  table.insert( log, pools_count .. ' MIDI pools were created from ' .. items_count .. ' media items.')
+
+  DisplayTooltip( table.concat( log, "\n" ) )
 
 end
 
@@ -254,6 +267,8 @@ if count_sel_items > 0 then
   init_sel_tracks = {}
   SaveSelectedTracks ( init_sel_tracks )
 
+  init_cur_pos = reaper.GetCursorPosition()
+
   midi_takes = {}
   SaveSelectedMIDITakes( midi_takes )
 
@@ -262,6 +277,8 @@ if count_sel_items > 0 then
   RestoreSelectedTracks( init_sel_tracks )
 
   RestoreSelectedItems( sel_items )
+
+  reaper.SetEditCurPos( init_cur_pos, false, false )
 
   RestoreView()
 

@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Color current region or regions in time selection randomly
- * Screenshot: https://i.imgur.com/DBqWE6Y.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/DBqWE6Y.mp4
  * Author: X-Raym
- * Author URI: htt://www.extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Forum Thread: Scripts: Regions and Markers (various)

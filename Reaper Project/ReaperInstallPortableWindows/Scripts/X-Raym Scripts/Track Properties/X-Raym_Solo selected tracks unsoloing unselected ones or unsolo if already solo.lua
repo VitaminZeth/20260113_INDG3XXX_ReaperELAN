@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Solo selected tracks unsoloing unselected ones or unsolo if already solo
- * Screenshot: https://i.imgur.com/I0EQB9U.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/I0EQB9U.mp4
  * Author: X-Raym
- * Author URI: http://www.extremraym.com/
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3

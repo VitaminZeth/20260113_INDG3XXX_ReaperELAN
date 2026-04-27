@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Export markers as YouTube timecode for video description
- * Screenshot: http://i.imgur.com/KFoTA3a.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/KFoTA3a.mp4
  * Author: X-Raym
- * Author URI: http://www.extremraym.com/
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3

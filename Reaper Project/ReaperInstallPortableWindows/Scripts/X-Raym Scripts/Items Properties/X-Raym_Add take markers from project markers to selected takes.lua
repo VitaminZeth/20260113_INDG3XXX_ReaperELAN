@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Add take markers from project markers to selected takes
- * Screenshot: https://i.imgur.com/aaRSHRs.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/aaRSHRs.mp4
  * Author: X-Raym
- * Author URI: https://extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3

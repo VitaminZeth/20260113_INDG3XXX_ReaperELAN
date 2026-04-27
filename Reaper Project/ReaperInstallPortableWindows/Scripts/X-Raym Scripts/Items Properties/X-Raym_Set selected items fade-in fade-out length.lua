@@ -32,7 +32,8 @@
 
 -- >-----> USER AREA >=====>
 
--- Preset file: https://gist.github.com/X-Raym/f7f6328b82fe37e5ecbb3b81aff0b744
+-- Use Preset Script for safe moding or to create a new action with your own values
+-- https://github.com/X-Raym/REAPER-ReaScripts/tree/master/Templates/Script%20Preset
 
   prompt = true -- false -> No prompt, true -> prompt window
 
@@ -130,35 +131,35 @@ end
 
 function Init()
   selected_items_count = reaper.CountSelectedMediaItems(0)
-  
+
   if selected_items_count > 0 then
-  
+
     reaper.PreventUIRefresh(1) -- Prevent UI refreshing. Uncomment it only if the script works.
-  
+
     if prompt == true then
-  
+
       retval, retvals_csv = reaper.GetUserInputs("Set fades length in "..units, 4, "Fade-in (no change = /initial),Fade-out (+ for relative),Priority (i = in, o = out),Create new fades only? (y/n)", answer1..","..answer2..","..answer3..","..answer4)
-  
+
       if retval == true then
-  
+
         -- PARSE THE STRING
         answer1, answer2, answer3, answer4 = retvals_csv:match("([^,]+),([^,]+),([^,]+),([^,]+)")
-  
+
         main(answer1, answer2, answer3, answer4) -- Execute your main function
-  
+
         reaper.UpdateArrange() -- Update the arrangement (often needed)
-  
+
       end
-  
+
     else -- no prompt
-  
+
       main(answer1, answer2, answer3, answer4)
-  
+
     end
     reaper.PreventUIRefresh(-1) -- Restore UI Refresh. Uncomment it only if the script works.
-  
+
     reaper.UpdateArrange() -- Update the arrangement (often needed)
-  
+
   end
 end
 

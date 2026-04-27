@@ -1,12 +1,10 @@
 -- @description Send control
--- @version 1.24
+-- @version 1.31
 -- @author MPL
 -- @about Controlling selected track sends
--- @website http://forum.cockos.com/showthread.php?t=165672 
+-- @website http://forum.cockos.com/showthread.php?t=188335
 -- @changelog
---    + Right click on slider enter edit destination track name
---    + Support #fx wildcard in track name edit field
---    + Support #preset wildcard in track name edit field
+--    # fix link
 
 
 
@@ -22,7 +20,7 @@
   
   if not reaper.ImGui_GetBuiltinPath then return reaper.MB('This script require ReaImGui extension','',0) end
   package.path =   reaper.ImGui_GetBuiltinPath() .. '/?.lua'
-  ImGui = require 'imgui' '0.9'
+  ImGui = require 'imgui' '0.10'
   
   
   
@@ -30,7 +28,11 @@
 EXT = {
         viewport_posX = 0,
         viewport_posY = 0,
+        
+        UI_slidergrab = '',
+        UI_showpan = 0,
       }
+      
 -------------------------------------------------------------------------------- INIT data
 DATA = {
         ES_key = 'MPL_SendControl',
@@ -46,6 +48,7 @@ DATA = {
         
         find_plugin = {enabled=false},
         lastfilter = '',
+        
         }
         
 -------------------------------------------------------------------------------- INIT UI locals
@@ -72,7 +75,7 @@ UI = {}
   UI.textcol = 0xFFFFFF
   UI.but_hovered = 0x878787
   UI.windowBg = 0x303030
-  UI.sliderbackcol = 0x4F6C97
+  UI.sliderbackcol_postfxmode = 0x4F6C97
 -- alpha
   UI.textcol_a_enabled = 1
   UI.textcol_a_disabled = 0.5
@@ -82,8 +85,7 @@ UI = {}
   UI.windowBg_plugin = 0x505050
   UI.butBg_green = 0x00B300
   UI.butBg_red = 0xB31F0F
-
-
+  UI.pan_w_ratio = 0.3
 
 
 
@@ -120,7 +122,7 @@ function UI.MAIN_draw(open)
     --window_flags = window_flags | ImGui.WindowFlags_NoTitleBar()
     --window_flags = window_flags | ImGui.WindowFlags_NoScrollbar()
     --window_flags = window_flags | ImGui.WindowFlags_MenuBar()
-    --window_flags = window_flags | ImGui.WindowFlags_NoMove()
+    --window_flags = window_flags | ImGui.WindowFlags_NoMove
     --window_flags = window_flags | ImGui.WindowFlags_NoReSize
     window_flags = window_flags | ImGui.WindowFlags_NoCollapse
     --window_flags = window_flags | ImGui.WindowFlags_NoNav()
@@ -211,8 +213,12 @@ function UI.MAIN_draw(open)
     --Constant: Col_SeparatorHovered
     --Constant: Col_SliderGrab
     --Constant: Col_SliderGrabActive
+    local col = EXT.UI_slidergrab
+    if col~='' then
+      UI.MAIN_PushStyle(ImGui.Col_SliderGrab,col, 0.5, true) 
+      UI.MAIN_PushStyle(ImGui.Col_SliderGrabActive,col, 0.8, true) 
+    end
     UI.MAIN_PushStyle(ImGui.Col_Tab,UI.main_col, 0.37, true) 
-    UI.MAIN_PushStyle(ImGui.Col_TabActive,UI.main_col, 1, true) 
     UI.MAIN_PushStyle(ImGui.Col_TabHovered,UI.main_col, 0.8, true) 
     --Constant: Col_TabUnfocused
     --ImGui.Col_TabUnfocusedActive
@@ -238,7 +244,7 @@ function UI.MAIN_draw(open)
     
     
   -- init UI 
-    ImGui.PushFont(ctx, DATA.font1) 
+    ImGui.PushFont(ctx, DATA.font1, UI.font1sz) 
     local rv,open = ImGui.Begin(ctx, DATA.UI_name, open, window_flags) 
     if rv then
       local Viewport = ImGui.GetWindowViewport(ctx)
@@ -252,7 +258,8 @@ function UI.MAIN_draw(open)
       local framew,frameh = ImGui.GetStyleVar(ctx, ImGui.StyleVar_FramePadding)
       local calcitemw, calcitemh = ImGui.CalcTextSize(ctx, 'test', nil, nil, false, -1.0)
       UI.calc_itemH = calcitemh + frameh * 2
-      UI.calc_itemH_small = math.floor(UI.calc_itemH*0.8)
+      UI.calc_ctrlw = (DATA.display_w-UI.calc_xoffset*7)/7
+      UI.calc_ctrlh = calcitemh + UI.spacingY*2
       
     -- draw stuff
       UI.draw()
@@ -366,7 +373,7 @@ end
 ---------------------------------------------------
 function VF_ReduceFXname(s) 
   for man in s:gmatch('%(.-%)') do
-    if man:len() > 1 and not (man:match('64') or man:match('86')) then
+    if man:len() > 1 and not (man:match('64') or man:match('86') or man:match('mono')) then
       s=s:gsub('%('..man..'%)', '')
     end
   end
@@ -389,9 +396,9 @@ function UI.MAIN()
   -- imgUI init
   ctx = ImGui.CreateContext(DATA.UI_name) 
   -- fonts
-  DATA.font1 = ImGui.CreateFont(UI.font, UI.font1sz) ImGui.Attach(ctx, DATA.font1)
-  DATA.font2 = ImGui.CreateFont(UI.font, UI.font2sz) ImGui.Attach(ctx, DATA.font2)
-  DATA.font3 = ImGui.CreateFont(UI.font, UI.font3sz) ImGui.Attach(ctx, DATA.font3)  
+  DATA.font1 = ImGui.CreateFont(UI.font) ImGui.Attach(ctx, DATA.font1)
+  DATA.font2 = ImGui.CreateFont(UI.font) ImGui.Attach(ctx, DATA.font2)
+  DATA.font3 = ImGui.CreateFont(UI.font) ImGui.Attach(ctx, DATA.font3)  
   -- config
   ImGui.SetConfigVar(ctx, ImGui.ConfigVar_HoverDelayNormal, UI.hoverdelay)
   ImGui.SetConfigVar(ctx, ImGui.ConfigVar_HoverDelayShort, UI.hoverdelayshort)
@@ -525,6 +532,7 @@ function DATA:CollectData()
     
     
     local D_VOL = GetTrackSendInfo_Value( tr, 0, sendidx-1, 'D_VOL' )
+    local D_PAN = GetTrackSendInfo_Value( tr, 0, sendidx-1, 'D_PAN' )
     local D_VOLdb = WDL_VAL2DB(D_VOL)
     local D_VOLdb_format = string.format("%.03f dB",D_VOLdb)
     local D_VOL_scaled = DATA.Convert_Val2Fader(D_VOL)
@@ -532,6 +540,7 @@ function DATA:CollectData()
     DATA.tr_data.sends[sendidx] = {
       sendidx = sendidx,
       D_VOL = D_VOL,
+      D_PAN = D_PAN,
       D_VOLdb = D_VOLdb,
       D_VOLdb_format = D_VOLdb_format,
       D_VOL_scaled=D_VOL_scaled,
@@ -590,6 +599,16 @@ function DATA.Send_params_set(send_t, param)
   -- mode
   if param.mode~= nil then SetTrackSendInfo_Value( DATA.tr_data.ptr, 0, send_t.sendidx-1, 'I_SENDMODE', param.mode) end
   
+  -- pan
+  if param.out_pan~= nil then 
+    if automode_follow then
+      CSurf_OnSendPanChange( DATA.tr_data.ptr,  send_t.sendidx-1, param.out_pan, false )
+     else
+      SetTrackSendInfo_Value( DATA.tr_data.ptr, 0, send_t.sendidx-1, 'D_PAN', param.out_pan) 
+      SetTrackSendUIPan( DATA.tr_data.ptr, send_t.sendidx-1, param.out_pan, immode)
+    end
+  end
+  
   DATA.upd = true
 end
   ------------------------------------------------------------------------------------------------------
@@ -644,6 +663,171 @@ end
   end
 --------------------------------------------------------------------------------  
 function UI.draw_send_touchworkaround(send_t)
+  
+end
+--------------------------------------------------------------------------------  
+function UI.draw_send_mode(send_t, id)   
+  if send_t.I_SENDMODE==0 then 
+    UI.draw_setbuttoncolor(UI.main_col) 
+   else 
+    UI.draw_setbuttoncolor(UI.butBg_green) 
+  end  
+  local txt = 'PostFX'
+  local set = 0
+  if send_t.I_SENDMODE==0 then txt = 'PostFader' set = 3 else set = 0 end  
+  local ret = ImGui.Button( ctx, txt..'##sm1'..send_t.sendidx, UI.calc_ctrlw*2, UI.calc_ctrlh ) 
+  UI.draw_unsetbuttoncolor()  
+  if ret then DATA.Send_params_set(send_t,{mode= set}) end
+  
+  --[[if send_t.I_SENDMODE==1 then UI.draw_setbuttoncolor(UI.butBg_green) else UI.draw_setbuttoncolor(UI.main_col) end  
+  local ret = ImGui.Button( ctx, 'PreFX##sm2'..send_t.sendidx, butw*2, but_h ) UI.draw_unsetbuttoncolor() UI.SameLine(ctx)
+  if ret then DATA.Send_params_set(send_t,{mode= 1}) end
+  if send_t.I_SENDMODE==3 then UI.draw_setbuttoncolor(UI.butBg_green) else UI.draw_setbuttoncolor(UI.main_col) end  
+  local ret = ImGui.Button( ctx, 'PostFX##sm3'..send_t.sendidx, butw*2, but_h ) UI.draw_unsetbuttoncolor()
+  if ret then DATA.Send_params_set(send_t,{mode= 3}) end ]]   
+end
+--------------------------------------------------------------------------------  
+function UI.draw_send_FX(send_t, id)  
+  local ret = ImGui.Button( ctx, 'FX##sm1fx'..send_t.sendidx, UI.calc_ctrlw, UI.calc_ctrlh ) 
+  UI.draw_unsetbuttoncolor() 
+  if ret then 
+    local destGUID = send_t.destGUID
+    local tr = VF_GetTrackByGUID(destGUID)
+    if ValidatePtr(tr, 'MediaTrack*') then 
+      if TrackFX_GetOpen( tr, 0 ) ~= true then 
+        TrackFX_Show( tr, 0, 1 )
+       else
+        TrackFX_Show( tr, 0, 0 )
+      end
+    end 
+  end
+end
+--------------------------------------------------------------------------------  
+function UI.draw_send_mute(send_t, id)  
+  -- on / mute
+  local online = 'M' 
+  if send_t.B_MUTE&1~=1 then 
+    UI.draw_setbuttoncolor(UI.main_col) 
+   else 
+    UI.draw_setbuttoncolor(UI.butBg_red) 
+  end 
+  local ret = ImGui.Button( ctx, 'M##off'..send_t.sendidx, UI.calc_ctrlw, UI.calc_ctrlh ) 
+  UI.draw_unsetbuttoncolor() 
+  if ret then DATA.Send_params_set(send_t,{mute= send_t.B_MUTE~1}) end
+end
+--------------------------------------------------------------------------------  
+function UI.draw_send_gainreadout(send_t, id)  
+    ImGui.SetNextItemWidth( ctx, UI.calc_ctrlw*3+UI.calc_xoffset*2 )
+    local step, step2 = 0.5, 0.2
+    local retval, v = ImGui.InputDouble( ctx, '##slidervol2'..send_t.sendidx, send_t.D_VOLdb, step, step2, "%.01f", ImGui.InputTextFlags_CharsDecimal)-- dB 
+    if reaper.ImGui_IsItemDeactivatedAfterEdit(ctx) or reaper.ImGui_IsItemClicked(ctx) then 
+      v = VF_lim(v, -150,12)
+      DATA.Send_params_set(send_t, {vol_dB=v}) 
+    end 
+end
+--------------------------------------------------------------------------------  
+function DATA:Action_RenameDestTrack(send_t, buf) 
+  local tr = VF_GetTrackByGUID(send_t.destGUID)
+  if tr then 
+    if buf:lower():match('#fx') then
+      local retfx, fxname0 = reaper.TrackFX_GetFXName( tr, 0 )
+      if retfx then
+        local fxname = VF_ReduceFXname(fxname0)
+        if fxname: match('[%a%d]+%:%s(.*)') then fxname = fxname: match('[%a%d]+%:%s(.*)') end
+        buf = buf:gsub('#fx', fxname)
+      end
+    end
+    
+    if buf:lower():match('#preset') then
+      local retpres, presetname = reaper.TrackFX_GetPreset( tr, 0 )
+      if retpres then
+        buf = buf:gsub('#preset', presetname)
+      end
+    end
+    
+    GetSetMediaTrackInfo_String( tr, 'P_NAME', buf, true ) 
+  end
+  send_t.rename_input_mode = nil
+  DATA.rename_input_mode = nil
+  DATA.upd = true
+
+end
+
+--------------------------------------------------------------------------------  
+
+function UI.draw_send(send_t, id)  
+  local ChildBg_a = 0.0
+  if id%2==0 then ChildBg_a = 0.1 end
+  --UI.MAIN_PushStyle(ImGui.Col_Border,0xFFFFFF, 0.1, true)
+  --UI.MAIN_PushStyle(ImGui.Col_ChildBg,0xFFFFFF, ChildBg_a, true)
+  --UI.MAIN_PushStyle(ImGui.Col_ChildBg(),plugdata.tr_col, 0.2, true)
+  UI.MAIN_PushStyle(ImGui.Col_FrameBgHovered,UI.main_col, 0.2, true)
+  local but_h = 20
+  local ctrlw = 120
+  
+  local butw = (DATA.display_w-UI.calc_xoffset*7)/7
+  if ImGui.BeginChild( ctx, send_t.sendidx..'##'..send_t.sendidx, 0, 0,  ImGui.ChildFlags_AutoResizeY|ImGui.ChildFlags_Borders, 0 ) then
+    
+    -- top ctrls
+    ImGui.PushFont(ctx, DATA.font3, UI.font3sz) 
+    UI.draw_send_mute(send_t, id)  
+    UI.SameLine(ctx) 
+    UI.draw_send_mode(send_t, id)  
+    UI.SameLine(ctx)
+    UI.draw_send_FX(send_t, id)  
+    UI.SameLine(ctx)
+    UI.draw_send_gainreadout(send_t, id)  
+    ImGui.PopFont(ctx) 
+    
+    
+    local curposX, curposY = ImGui.GetCursorPos(ctx)
+    if send_t.I_SENDMODE~=0 then  
+      UI.MAIN_PushStyle(ImGui.Col_FrameBg,UI.sliderbackcol_postfxmode, 0.7, true)
+      UI.MAIN_PushStyle(ImGui.Col_FrameBgHovered,UI.sliderbackcol_postfxmode,0.8, true)
+      UI.MAIN_PushStyle(ImGui.Col_FrameBgActive,UI.sliderbackcol_postfxmode,1, true)
+     else
+      UI.MAIN_PushStyle(ImGui.Col_FrameBg,UI.main_col, 0.2, true)
+      UI.MAIN_PushStyle(ImGui.Col_FrameBgHovered,UI.main_col, 0.5, true)
+      UI.MAIN_PushStyle(ImGui.Col_FrameBgActive,UI.main_col, 0.7, true)
+    end 
+    
+    local slider_w0 = DATA.display_w-UI.calc_xoffset*2
+    local slider_w = slider_w0
+    local pan_w = 0 
+    if EXT.UI_showpan == 1 then
+      slider_w = slider_w * (1-UI.pan_w_ratio) - UI.calc_xoffset
+      pan_w = slider_w0 * UI.pan_w_ratio
+    end
+    
+    
+    UI.draw_send_slider(send_t, slider_w)  
+    UI.SameLine(ctx) 
+    ImGui.SetNextItemWidth( ctx, pan_w )
+    local format = 'Center'
+    if math.abs(send_t.D_PAN) >0.01 then 
+      if send_t.D_PAN > 0 then format = math.floor(send_t.D_PAN*100)..'%%R' else format = math.abs(math.floor(send_t.D_PAN*100))..'%%L' end
+    end
+    local retval, v = ImGui.SliderDouble(ctx, '##sliderpan'..send_t.sendidx, send_t.D_PAN, -1, 1, format, ImGui.SliderFlags_None| ImGui.SliderFlags_NoInput)
+    if retval then DATA.Send_params_set(send_t, {out_pan=v}) end
+    if reaper.ImGui_IsItemClicked( ctx, ImGui.MouseButton_Right ) then DATA.Send_params_set(send_t, {out_pan=0})  end
+    
+    UI.draw_send_sendname(send_t, id, curposX, curposY)  
+    ImGui.EndChild( ctx )
+  end
+end
+--------------------------------------------------------------------------------  
+function UI.draw_send_slider(send_t, slider_w)  
+  ImGui.SetNextItemWidth( ctx, slider_w )
+  local retval, v
+  if not send_t.rename_input_mode then 
+    retval, v = ImGui.SliderDouble(ctx, '##slidervol'..send_t.sendidx, send_t.D_VOL_scaled, 0, 1, '', ImGui.SliderFlags_None| ImGui.SliderFlags_NoInput)
+   else
+    reaper.ImGui_SetKeyboardFocusHere( ctx, 0 )
+    local retval, buf = reaper.ImGui_InputText( ctx, '##renametrdest'..send_t.sendidx, send_t.desttrname, ImGui.InputTextFlags_EnterReturnsTrue|ImGui.InputTextFlags_AutoSelectAll )
+    if retval then DATA:Action_RenameDestTrack(send_t, buf)   end
+  end
+  
+  -- touch woraround
   if send_t.automode == 2 and DATA.touchstate ~= true and ImGui.IsItemActivated( ctx ) then 
     --SetTrackAutomationMode( DATA.tr_data.ptr, 3 )
     DATA.touchstate = true
@@ -654,147 +838,38 @@ function UI.draw_send_touchworkaround(send_t)
     SetTrackAutomationMode( DATA.tr_data.ptr, 2 )
     DATA.touchstate = false
     DATA.upd = true
+  end 
+  
+  if ImGui_IsItemHovered( ctx ) then
+    local ctrl = ( 
+      ImGui.IsKeyPressed( ctx, ImGui.Mod_Ctrl, 1 )or
+      ImGui.IsKeyPressed( ctx, ImGui.Key_LeftCtrl, 1 )or
+      ImGui.IsKeyPressed( ctx, ImGui.Key_RightCtrl,1 )
+      ) 
+      
+    local vertical, horizontal = ImGui_GetMouseWheel( ctx )
+    if vertical ~=0  then
+      local dir = -1
+      if vertical>0 then dir = 1 end
+      local step= 0.1
+      DATA.Send_params_set(send_t, {vol_dB=send_t.D_VOLdb+dir*step})
+    end
   end
   
-end
---------------------------------------------------------------------------------  
-function UI.draw_send(send_t, id)  
-  local ChildBg_a = 0.0
-  if id%2==0 then ChildBg_a = 0.1 end
-  --UI.MAIN_PushStyle(ImGui.Col_Border,0xFFFFFF, 0.1, true)
-  --UI.MAIN_PushStyle(ImGui.Col_ChildBg,0xFFFFFF, ChildBg_a, true)
-  --UI.MAIN_PushStyle(ImGui.Col_ChildBg(),plugdata.tr_col, 0.2, true)
-  UI.MAIN_PushStyle(ImGui.Col_FrameBgHovered,UI.main_col, 0.2, true)
-  local but_h = 20
-  local ctrlw = 120
-  local slider_w = DATA.display_w-UI.calc_xoffset*2
-  local butw = (DATA.display_w-UI.calc_xoffset*7)/7
-  if ImGui.BeginChild( ctx, send_t.sendidx..'##'..send_t.sendidx, 0, 0,  ImGui.ChildFlags_AutoResizeY|ImGui.ChildFlags_Border, 0 ) then
-    
-    ImGui.PushFont(ctx, DATA.font3) 
-    
-    -- on / mute
-    local online = 'M' 
-    if send_t.B_MUTE&1~=1 then UI.draw_setbuttoncolor(UI.main_col) else UI.draw_setbuttoncolor(UI.butBg_red) end 
-    local ret = ImGui.Button( ctx, 'M##off'..send_t.sendidx, butw, but_h ) UI.draw_unsetbuttoncolor() --UI.SameLine(ctx)
-    if ret then DATA.Send_params_set(send_t,{mute= send_t.B_MUTE~1}) end
-    
-    UI.SameLine(ctx) 
-    if send_t.I_SENDMODE==0 then UI.draw_setbuttoncolor(UI.main_col) else UI.draw_setbuttoncolor(UI.butBg_green) end  
-    local txt = 'PostFX'
-    local set = 0
-    if send_t.I_SENDMODE==0 then txt = 'PostFader' set = 3 else set = 0 end  
-    
-    
-    local ret = ImGui.Button( ctx, txt..'##sm1'..send_t.sendidx, butw*2, but_h ) 
-    UI.draw_unsetbuttoncolor() 
-    UI.SameLine(ctx)
-    if ret then DATA.Send_params_set(send_t,{mode= set}) end
-    --[[if send_t.I_SENDMODE==1 then UI.draw_setbuttoncolor(UI.butBg_green) else UI.draw_setbuttoncolor(UI.main_col) end  
-    local ret = ImGui.Button( ctx, 'PreFX##sm2'..send_t.sendidx, butw*2, but_h ) UI.draw_unsetbuttoncolor() UI.SameLine(ctx)
-    if ret then DATA.Send_params_set(send_t,{mode= 1}) end
-    if send_t.I_SENDMODE==3 then UI.draw_setbuttoncolor(UI.butBg_green) else UI.draw_setbuttoncolor(UI.main_col) end  
-    local ret = ImGui.Button( ctx, 'PostFX##sm3'..send_t.sendidx, butw*2, but_h ) UI.draw_unsetbuttoncolor()
-    if ret then DATA.Send_params_set(send_t,{mode= 3}) end ]]   
-    local ret = ImGui.Button( ctx, 'FX##sm1fx'..send_t.sendidx, butw, but_h ) UI.draw_unsetbuttoncolor() UI.SameLine(ctx)
-    if ret then 
-      local destGUID = send_t.destGUID
-      local tr = VF_GetTrackByGUID(destGUID)
-      if ValidatePtr(tr, 'MediaTrack*') then  TrackFX_Show( tr, 0, 1 ) end
-        
-    end
-    
-    if send_t.I_SENDMODE~=0 then  
-      UI.MAIN_PushStyle(ImGui.Col_FrameBg,UI.sliderbackcol, 0.7, true)
-      UI.MAIN_PushStyle(ImGui.Col_FrameBgHovered,UI.sliderbackcol,0.8, true)
-      UI.MAIN_PushStyle(ImGui.Col_FrameBgActive,UI.sliderbackcol,1, true)
-     else
-      UI.MAIN_PushStyle(ImGui.Col_FrameBg,UI.main_col, 0.2, true)
-      UI.MAIN_PushStyle(ImGui.Col_FrameBgHovered,UI.main_col, 0.5, true)
-      UI.MAIN_PushStyle(ImGui.Col_FrameBgActive,UI.main_col, 0.7, true)
-    end
-    
-    ImGui.SetNextItemWidth( ctx, butw*3+UI.calc_xoffset*2 )
-    local step, step2 = 0.5, 0.2
-    local retval, v = ImGui.InputDouble( ctx, '##slidervol2'..send_t.sendidx, send_t.D_VOLdb, step, step2, "%.01f", ImGui.InputTextFlags_CharsDecimal|ImGui.InputTextFlags_EnterReturnsTrue )-- dB 
-    if retval then 
-      v = VF_lim(v, -150,12)
-      DATA.Send_params_set(send_t, {vol_dB=v}) 
-    end 
-    ImGui.PopFont(ctx) 
-    local curposX, curposY = ImGui.GetCursorPos(ctx)
-    ImGui.SetNextItemWidth( ctx, slider_w )
-    local retval, v
-    if not send_t.rename_input_mode then 
-      retval, v = ImGui.SliderDouble(ctx, '##slidervol'..send_t.sendidx, send_t.D_VOL_scaled, 0, 1, '', ImGui.SliderFlags_None| ImGui.SliderFlags_NoInput)
-     else
-      reaper.ImGui_SetKeyboardFocusHere( ctx, 0 )
-      local retval, buf = reaper.ImGui_InputText( ctx, '##renametrdest'..send_t.sendidx, send_t.desttrname, ImGui.InputTextFlags_EnterReturnsTrue|ImGui.InputTextFlags_AutoSelectAll )
-      if retval then
-        local tr = VF_GetTrackByGUID(send_t.destGUID)
-        if tr then
-        
-          if buf:lower():match('#fx') then
-            local retfx, fxname0 = reaper.TrackFX_GetFXName( tr, 0 )
-            if retfx then
-              local fxname = VF_ReduceFXname(fxname0)
-              if fxname: match('[%a%d]+%:%s(.*)') then fxname = fxname: match('[%a%d]+%:%s(.*)') end
-              buf = buf:gsub('#fx', fxname)
-            end
-          end
-          
-          if buf:lower():match('#preset') then
-            local retpres, presetname = reaper.TrackFX_GetPreset( tr, 0 )
-            if retpres then
-              buf = buf:gsub('#preset', presetname)
-            end
-          end
-          
-          
-          
-          GetSetMediaTrackInfo_String( tr, 'P_NAME', buf, true ) 
-        end
-        send_t.rename_input_mode = nil
-        DATA.upd = true
-      end
-    end
-    -- touch woraround
-    UI.draw_send_touchworkaround(send_t)
-    if ImGui_IsItemHovered( ctx ) then
-      local ctrl = ( 
-        ImGui.IsKeyPressed( ctx, ImGui.Mod_Ctrl, 1 )or
-        ImGui.IsKeyPressed( ctx, ImGui.Key_LeftCtrl, 1 )or
-        ImGui.IsKeyPressed( ctx, ImGui.Key_RightCtrl,1 )
-        ) 
-        
-      local vertical, horizontal = ImGui_GetMouseWheel( ctx )
-      if vertical ~=0  then
-        local dir = -1
-        if vertical>0 then dir = 1 end
-        local step= 0.1
-        DATA.Send_params_set(send_t, {vol_dB=send_t.D_VOLdb+dir*step})
-      end
-    end
-    if ImGui_IsItemClicked( ctx, ImGui.MouseButton_Right )then
-      send_t.rename_input_mode = true
-    end
-    
-    
-    if retval then 
-      DATA.Send_params_set(send_t, {vol_lin=v}) 
-    end 
-    UI.SameLine(ctx)
-    
-    
-    DATA.activetouch = ImGui.IsItemActive( ctx )
-    ImGui.SetCursorPos(ctx, curposX, curposY)
-    ImGui.Indent(ctx) 
-    if not send_t.rename_input_mode then 
-      ImGui.Text(ctx, send_t.desttrname) 
-    end
-    ImGui.EndChild( ctx )
+  if ImGui_IsItemClicked( ctx, ImGui.MouseButton_Right )then
+    send_t.rename_input_mode = true
+    DATA.rename_input_mode = true
   end
-  --ImGui.PopStyleColor(ctx, 1) UI.pushcnt2=UI.pushcnt2-1
+  
+  if retval then DATA.Send_params_set(send_t, {vol_lin=v}) end 
+  DATA.activetouch = ImGui.IsItemActive( ctx )
+end
+----------------------------------------------------------
+function UI.draw_send_sendname(send_t, id, curposX, curposY)  
+  UI.SameLine(ctx)
+  ImGui.SetCursorPos(ctx, curposX, curposY)
+  ImGui.Indent(ctx) 
+  if not send_t.rename_input_mode then ImGui.Text(ctx, send_t.desttrname)  end
 end
 --------------------------------------------------------------------------------  
 function UI.draw_setbuttoncolor(col) 
@@ -927,7 +1002,7 @@ function UI.draw()
   
   if not (DATA.available_sends and #DATA.available_sends>0) then return end
   
-  if  ImGui.IsMouseClicked( ctx,  ImGui.MouseButton_Right, false ) then ImGui.OpenPopup(ctx, 'sendspopup') end
+  if  ImGui.IsMouseClicked( ctx,  ImGui.MouseButton_Right, false ) and DATA.rename_input_mode~= true then ImGui.OpenPopup(ctx, 'sendspopup') end
   
   ImGui.SameLine(ctx)
   --ImGui.Text(ctx, '<None>')

@@ -1,10 +1,10 @@
 --[[
  * ReaScript Name: Move selected tracks up to the top of the visible track list
  * Instructions: Select tracks. Run.
- * Screenshot: http://i.imgur.com/SPfJoQp.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/SPfJoQp.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
- * Repository: GitHub > X-Raym > REAPER Scripts
+ * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3
  * Forum Thread: http://forum.cockos.com/showthread.php?t=179122

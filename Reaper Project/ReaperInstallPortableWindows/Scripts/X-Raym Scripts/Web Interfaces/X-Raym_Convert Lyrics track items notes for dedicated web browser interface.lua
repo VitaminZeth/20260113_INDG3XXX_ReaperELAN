@@ -1,7 +1,7 @@
 --[[
  * ReaScript Name: Convert Lyrics track items notes for the dedicated web browser interface
  * About: Have a track named lyrics and text items on it. Run the web interface.
- * Screenshot: https://monosnap.com/file/kmpXyGbYgvYwUbrDe4ZsbbeNmSUR13
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/Desktop+2019-04-19+12.32.50.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -128,12 +128,12 @@ function Main()
   cur_pos = reaper.GetPlayState() > 0 and reaper.GetPlayPosition() or reaper.GetCursorPosition()
 
   if reaper.ValidatePtr(lyrics_track, 'MediaTrack*') then
-  
+
     item = GetTrackItemAtPos( lyrics_track, cur_pos )
     notes = ProcessItemNotes( item, "text", notes )
 
     if next then
-    
+
       next_item = GetNextTrackItem( lyrics_track, cur_pos, item )
       next_notes = ProcessItemNotes( next_item, "next", next_notes )
 

@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Search and replace in selected active takes names
- * Screenshot: http://i.giphy.com/3oEdv3tKb0CpB7VCtq.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/3oEdv3tKb0CpB7VCtq.mp4
  * Author: X-Raym
- * Author URI: https://extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3
@@ -37,7 +37,8 @@
 -- USER CONFIG AREA --
 -----------------------------------------------------------
 
--- Preset file: https://gist.github.com/X-Raym/f7f6328b82fe37e5ecbb3b81aff0b744#file-preset-lua
+-- Use Preset Script for safe moding or to create a new action with your own values
+-- https://github.com/X-Raym/REAPER-ReaScripts/tree/master/Templates/Script%20Preset
 
 console = true
 popup = true -- User input dialog box

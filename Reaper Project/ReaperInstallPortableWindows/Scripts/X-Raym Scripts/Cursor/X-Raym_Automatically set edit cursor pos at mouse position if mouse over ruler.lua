@@ -1,6 +1,6 @@
 --[[
  * ReaScript Name: Automatically set edit cursor pos at mouse position if mouse over ruler
- * Screenshot: https://i.imgur.com/UUECQNl.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/UUECQNl.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -9,14 +9,18 @@
  * Forum Thread: Scripts: Transport (various)
  * Forum Thread URI: http://forum.cockos.com/showthread.php?p=1601342
  * REAPER: 5.0
- * Version: 1.0
+ * Version: 1.0.1
 --]]
 
 --[[
  * Changelog:
+ * v1.0.1 (2025-08-25)
+  # Snap to grid
  * v1.0 (2019-12-12)
   + Initial Release
 --]]
+
+do_snap = true
 
  -- Set ToolBar Button State
 function SetButtonState( set )
@@ -35,7 +39,10 @@ function main()
 
   if segment == 'timeline' then
     local pos = reaper.BR_PositionAtMouseCursor( true )
-    reaper.SetEditCurPos( pos, false, false )
+    pos = do_snap and reaper.SnapToGrid(0, pos) or pos
+    if pos ~= reaper.GetCursorPosition() then
+      reaper.SetEditCurPos( pos, false, false )
+    end
   end
 
   reaper.defer( main )

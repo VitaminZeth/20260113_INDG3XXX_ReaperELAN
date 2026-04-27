@@ -1,10 +1,10 @@
 -- @description Align Takes
--- @version 3.08
+-- @version 3.11
 -- @author MPL
 -- @about Script for matching takes audio and stretch them using stretch markers
 -- @website http://forum.cockos.com/showthread.php?t=188335
 -- @changelog
---    # fix ReaImGui API version requirement
+--    # skip muted takes
 
 
 
@@ -20,7 +20,7 @@
   
     
 --NOT reaper NOT gfx
-local vrs = 3.08
+local vrs = 3.11
 
 --------------------------------------------------------------------------------  init globals
   for key in pairs(reaper) do _G[key]=reaper[key] end
@@ -28,10 +28,10 @@ local vrs = 3.08
   if app_vrs < 7 then return reaper.MB('This script require REAPER 7.0+','',0) end
   local ImGui
   
-  if not reaper.ImGui_GetBuiltinPath then return reaper.MB('This script require ReaImGui extension','',0) end
+  if not reaper.ImGui_GetBuiltinPath then return reaper.MB('This script require ReaimGui extension','',0) end
   package.path =   reaper.ImGui_GetBuiltinPath() .. '/?.lua'
   ImGui = require 'imgui' '0.9.3'
-  
+  local ctx
   
   
 -------------------------------------------------------------------------------- init external defaults 
@@ -46,9 +46,11 @@ EXT = {
         FPRESET1 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gUGlja2VkIGd1aXRhcgpDT05GX2FwcGF0Y2hhbmdlPTEKQ09ORl9hdWRpb19ic19hMT0wCkNPTkZfYXVkaW9fYnNfYTI9MQpDT05GX2F1ZGlvX2JzX2EzPTAKQ09ORl9hdWRpb19ic19hND0xCkNPTkZfYXVkaW9fYnNfZjE9MjAwCkNPTkZfYXVkaW9fYnNfZjI9MjAwMApDT05GX2F1ZGlvX2JzX2YzPTUwMDAKQ09ORl9hdWRpb19saW09MQpDT05GX2F1ZGlvZG9zcXVhcmVyb290PTEuMApDT05GX2NsZWFubWFya2R1Yj0xCkNPTkZfY29tcGVuc2F0ZW92ZXJsYXA9MQpDT05GX2VuYWJsZXNob3J0Y3V0cz0wCkNPTkZfaW5pdGF0bW91c2Vwb3M9MApDT05GX2luaXRmbGFncz0zCkNPTkZfbWFya2dlbl9STVNwb2ludHM9NQpDT05GX21hcmtnZW5fZW52ZWxvcGVyaXNlZmFsbD0yCkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHM9MTEKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDg3NQpDT05GX21hcmtnZW5fdGhyZXNob2xkPTEKQ09ORl9tYXRjaF9ibG9ja2FyZWE9MwpDT05GX21hdGNoX2lnbm9yZXplcm9zPTAKQ09ORl9tYXRjaF9zdHJldGNoZHViYXJyYXk9MQpDT05GX29idGltZXNlbD0wCkNPTkZfcG9zdF9wb3MwbWFyaz0xCkNPTkZfcG9zdF9wc2hpZnQ9LTEKQ09ORl9wb3N0X3BzaGlmdHN1Yj0wCkNPTkZfcG9zdF9zbW1vZGU9MgpDT05GX3Bvc3Rfc3RybWFya2Zkc2l6ZT0wLjAxMTEKQ09ORl9zbW9vdGg9MApDT05GX3dpbmRvdz0wLjAxNwpDT05GX3dpbmRvd19vdmVybGFwPTE=',
         FPRESET2 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gRGlzdG9ydGVkIGd1aXRhcgpDT05GX2FwcGF0Y2hhbmdlPTEKQ09ORl9hdWRpb19ic19hMT0wCkNPTkZfYXVkaW9fYnNfYTI9MQpDT05GX2F1ZGlvX2JzX2EzPTAKQ09ORl9hdWRpb19ic19hND0wCkNPTkZfYXVkaW9fYnNfZjE9ODMKQ09ORl9hdWRpb19ic19mMj0xMjUwCkNPTkZfYXVkaW9fYnNfZjM9NTAwMApDT05GX2F1ZGlvX2xpbT0xCkNPTkZfYXVkaW9kb3NxdWFyZXJvb3Q9MS4wCkNPTkZfY2xlYW5tYXJrZHViPTEKQ09ORl9jb21wZW5zYXRlb3ZlcmxhcD0xCkNPTkZfZW5hYmxlc2hvcnRjdXRzPTAKQ09ORl9pbml0YXRtb3VzZXBvcz0wCkNPTkZfaW5pdGZsYWdzPTMKQ09ORl9tYXJrZ2VuX1JNU3BvaW50cz01CkNPTkZfbWFya2dlbl9lbnZlbG9wZXJpc2VmYWxsPTEKQ09ORl9tYXJrZ2VuX2ZpbHRlcnBvaW50cz0xMQpDT05GX21hcmtnZW5fbWluaW1hbGFyZWFSTVM9MC4wODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQ9MQpDT05GX21hdGNoX2Jsb2NrYXJlYT0xCkNPTkZfbWF0Y2hfaWdub3JlemVyb3M9MApDT05GX21hdGNoX3N0cmV0Y2hkdWJhcnJheT0xCkNPTkZfb2J0aW1lc2VsPTAKQ09ORl9wb3N0X3BvczBtYXJrPTEKQ09ORl9wb3N0X3BzaGlmdD0tMQpDT05GX3Bvc3RfcHNoaWZ0c3ViPTAKQ09ORl9wb3N0X3NtbW9kZT0yCkNPTkZfcG9zdF9zdHJtYXJrZmRzaXplPTAuMDExMQpDT05GX3Ntb290aD0wCkNPTkZfd2luZG93PTAuMDE3CkNPTkZfd2luZG93X292ZXJsYXA9MQ==',
         FPRESET3 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gVm9jYWxzCkNPTkZfYXBwYXRjaGFuZ2U9MQpDT05GX2F1ZGlvX2JzX2ExPTAuMzMxMjUKQ09ORl9hdWRpb19ic19hMj0xCkNPTkZfYXVkaW9fYnNfYTM9MC4zMzEyNQpDT05GX2F1ZGlvX2JzX2E0PTAuNgpDT05GX2F1ZGlvX2JzX2YxPTIwMApDT05GX2F1ZGlvX2JzX2YyPTIwMDAKQ09ORl9hdWRpb19ic19mMz01MDAwCkNPTkZfYXVkaW9fbGltPTEKQ09ORl9hdWRpb2Rvc3F1YXJlcm9vdD0xLjAKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTEKQ09ORl9lbmFibGVzaG9ydGN1dHM9MApDT05GX2luaXRhdG1vdXNlcG9zPTAKQ09ORl9pbml0ZmxhZ3M9MwpDT05GX21hcmtnZW5fUk1TcG9pbnRzPTUKQ09ORl9tYXJrZ2VuX2VudmVsb3BlcmlzZWZhbGw9MQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTEzCkNPTkZfbWFya2dlbl9taW5pbWFsYXJlYVJNUz0wLjAzMTI1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQ9MQpDT05GX21hdGNoX2Jsb2NrYXJlYT0yNgpDT05GX21hdGNoX2lnbm9yZXplcm9zPTAKQ09ORl9tYXRjaF9tYXhibG9ja3NzdGFydG9mZnM9NgpDT05GX21hdGNoX21pbmJsb2Nrc3N0YXJ0b2Zmcz00CkNPTkZfbWF0Y2hfc2VhcmNoZnVydGhlcm9ubHk9MApDT05GX21hdGNoX3N0cmV0Y2hkdWJhcnJheT0xCkNPTkZfb2J0aW1lc2VsPTAKQ09ORl9wb3N0X3BvczBtYXJrPTEKQ09ORl9wb3N0X3BzaGlmdD0tMQpDT05GX3Bvc3RfcHNoaWZ0c3ViPTAKQ09ORl9wb3N0X3NtbW9kZT0yCkNPTkZfcG9zdF9zdHJtYXJrZmRzaXplPTAuMDExMQpDT05GX3Ntb290aD0wCkNPTkZfd2luZG93PTAuMDE0CkNPTkZfd2luZG93X292ZXJsYXA9MQ==',
-        FPRESET4 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gVm9jYWxzIC0gdGlueSBhbGlnbiBtb3N0bHkgYnkgaGlnaHMKQ09ORl9hbGlnbml0ZW10YWtlcz0wCkNPTkZfYXBwYXRjaGFuZ2U9MQpDT05GX2F1ZGlvX2JzX2ExPTAKQ09ORl9hdWRpb19ic19hMj0wLjIxODc1CkNPTkZfYXVkaW9fYnNfYTM9MQpDT05GX2F1ZGlvX2JzX2E0PTEKQ09ORl9hdWRpb19ic19mMT04OApDT05GX2F1ZGlvX2JzX2YyPTIwMDAKQ09ORl9hdWRpb19ic19mMz01MDAwCkNPTkZfYXVkaW9fZ2F0ZT0wCkNPTkZfYXVkaW9fbGltPTEKQ09ORl9hdWRpb2Rvc3F1YXJlcm9vdD0wLjQKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTEKQ09ORl9pbml0ZmxhZ3M9MwpDT05GX21hcmtnZW5fUk1TcG9pbnRzPTEwCkNPTkZfbWFya2dlbl9hbGdvPTEKQ09ORl9tYXJrZ2VuX2VudmVsb3BlcmlzZWZhbGw9MQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTE2CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMyPTIxCkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMzPTg0CkNPTkZfbWFya2dlbl9tYW51YWxlZGl0PTEKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDE4NzUKQ09ORl9tYXJrZ2VuX3RocmVzaG9sZD0wLjcxODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQyPTAuMzkzNzUKQ09ORl9tYXRjaF9ibG9ja2FyZWE9MTUKQ09ORl9tYXRjaF9maXJzdHNyZ21vbmx5PTAKQ09ORl9tYXRjaF9pZ25vcmV6ZXJvcz0wCkNPTkZfbWF0Y2hfbWF4YmxvY2tzc3RhcnRvZmZzPTEKQ09ORl9tYXRjaF9taW5ibG9ja3NzdGFydG9mZnM9MgpDT05GX21hdGNoX3NlYXJjaGZ1cnRoZXJvbmx5PTAKQ09ORl9tYXRjaF9zdHJldGNoZHViYXJyYXk9MQpDT05GX29idGltZXNlbD0wCkNPTkZfcG9zdF9wb3MwbWFyaz0xCkNPTkZfcG9zdF9wc2hpZnQ9LTEKQ09ORl9wb3N0X3BzaGlmdHN1Yj0wCkNPTkZfcG9zdF9zbW1vZGU9MgpDT05GX3Bvc3Rfc3RybWFya2Zkc2l6ZT0wLjAxMTEKQ09ORl9zbW9vdGg9MApDT05GX3dpbmRvdz0wLjAxCkNPTkZfd2luZG93X292ZXJsYXA9MQ==',
-        FPRESET5 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gR3Jvd2xpbmcgdm9jYWxzLCB0aW1lIHNlbGVjdGlvbgpDT05GX2FsaWduaXRlbXRha2VzPTAKQ09ORl9hdWRpb19ic19hMT0wLjE0NDQ0NDQ0NDQ0NDQ0CkNPTkZfYXVkaW9fYnNfYTI9MC45MTY2NjY2NjY2NjY2NwpDT05GX2F1ZGlvX2JzX2EzPTEKQ09ORl9hdWRpb19ic19hND0xLjAKQ09ORl9hdWRpb19ic19mMT0xOTIuNQpDT05GX2F1ZGlvX2JzX2YyPTIwMDAKQ09ORl9hdWRpb19ic19mMz04MjY2LjY2NjY2NjY2NjcKQ09ORl9hdWRpb19nYXRlPTAKQ09ORl9hdWRpb19saW09MQpDT05GX2F1ZGlvZG9zcXVhcmVyb290PTAuNTMwMjc3Nzc3Nzc3NzgKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTEKQ09ORl9pZ25vcmVlbXB0eXRha2VzPTEKQ09ORl9pbml0ZmxhZ3M9MwpDT05GX21hcmtnZW5fUk1TcG9pbnRzPTEwCkNPTkZfbWFya2dlbl9hbGdvPTEKQ09ORl9tYXJrZ2VuX2VudmVsb3BlcmlzZWZhbGw9MQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTE2CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMyPTE4CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMzPTQwCkNPTkZfbWFya2dlbl9tYW51YWxlZGl0PTEKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDE4NzUKQ09ORl9tYXJrZ2VuX3RocmVzaG9sZD0wLjcxODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQyPTAuNzAyMDgzMzMzMzMzMzMKQ09ORl9tYXRjaF9ibG9ja2FyZWE9MTUKQ09ORl9tYXRjaF9maXJzdHNyZ21vbmx5PTAKQ09ORl9tYXRjaF9pZ25vcmV6ZXJvcz0xCkNPTkZfbWF0Y2hfbWF4YmxvY2tzc3RhcnRvZmZzPTEKQ09ORl9tYXRjaF9taW5ibG9ja3NzdGFydG9mZnM9MgpDT05GX21hdGNoX3NlYXJjaGZ1cnRoZXJvbmx5PTAKQ09ORl9tYXRjaF9zdHJldGNoZHViYXJyYXk9MQpDT05GX29idGltZXNlbD0xCkNPTkZfcG9zdF9wb3MwbWFyaz0xCkNPTkZfcG9zdF9wc2hpZnQ9LTEKQ09ORl9wb3N0X3BzaGlmdHN1Yj0wCkNPTkZfcG9zdF9zbW1vZGU9MgpDT05GX3Bvc3Rfc3RybWFya2Zkc2l6ZT0wLjAxMTEKQ09ORl9zbW9vdGg9MApDT05GX3dpbmRvdz0wLjAxCkNPTkZfd2luZG93X292ZXJsYXA9MQ==',
-        FPRESET6 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gR3Jvd2xpbmcgdm9jYWxzMiBmaW5pc2ggMC4xc2hpZnQKQ09ORl9hbGlnbml0ZW10YWtlcz0wCkNPTkZfYXVkaW9fYnNfYTE9MApDT05GX2F1ZGlvX2JzX2EyPTAuMjE5NDQ0NDQ0NDQ0NDQKQ09ORl9hdWRpb19ic19hMz0wLjQKQ09ORl9hdWRpb19ic19hND0wLjUyNQpDT05GX2F1ZGlvX2JzX2YxPTE5Mi41CkNPTkZfYXVkaW9fYnNfZjI9MTY2My41NzYzODg4ODg5CkNPTkZfYXVkaW9fYnNfZjM9ODI2Ni42NjY2NjY2NjY3CkNPTkZfYXVkaW9fZ2F0ZT0wCkNPTkZfYXVkaW9fbGltPTEKQ09ORl9hdWRpb2Rvc3F1YXJlcm9vdD0wLjUzMDI3Nzc3Nzc3Nzc4CkNPTkZfYnVpbGRyZWZhc21heGltdW1zPTEKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTEKQ09ORl9pZ25vcmVlbXB0eXRha2VzPTEKQ09ORl9pbml0ZmxhZ3M9MwpDT05GX21hcmtnZW5fUk1TcG9pbnRzPTEwCkNPTkZfbWFya2dlbl9hbGdvPTEKQ09ORl9tYXJrZ2VuX2VudmVsb3BlcmlzZWZhbGw9MQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTE2CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMyPTI5CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMzPTIwCkNPTkZfbWFya2dlbl9tYW51YWxlZGl0PTEKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDE4NzUKQ09ORl9tYXJrZ2VuX3RocmVzaG9sZD0wLjcxODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQyPTAuNzAyMDgzMzMzMzMzMzMKQ09ORl9tYXRjaF9ibG9ja2FyZWE9MTUKQ09ORl9tYXRjaF9maXJzdHNyZ21vbmx5PTAKQ09ORl9tYXRjaF9pZ25vcmV6ZXJvcz0xCkNPTkZfbWF0Y2hfbWF4YmxvY2tzc3RhcnRvZmZzPTEKQ09ORl9tYXRjaF9taW5ibG9ja3NzdGFydG9mZnM9MgpDT05GX21hdGNoX3NlYXJjaGZ1cnRoZXJvbmx5PTAKQ09ORl9tYXRjaF9zdHJldGNoZHViYXJyYXk9MQpDT05GX29idGltZXNlbD0xCkNPTkZfcG9zdF9wb3MwbWFyaz0xCkNPTkZfcG9zdF9wc2hpZnQ9LTEKQ09ORl9wb3N0X3BzaGlmdHN1Yj0wCkNPTkZfcG9zdF9zbW1vZGU9MgpDT05GX3Bvc3Rfc3RybWFya2Zkc2l6ZT0wLjAxMTEKQ09ORl9zbW9vdGg9MQpDT05GX3dpbmRvdz0wLjAwNQpDT05GX3dpbmRvd19vdmVybGFwPTE=',
+        FPRESET4 = 'CkNPTkZfTkFNRT1Wb2NhbHMyCkNPTkZfYWxpZ25pdGVtdGFrZXM9MApDT05GX2FwcGF0Y2hhbmdlPTEKQ09ORl9hdWRpb19ic19hMT0wCkNPTkZfYXVkaW9fYnNfYTI9MC4yNQpDT05GX2F1ZGlvX2JzX2EzPTEKQ09ORl9hdWRpb19ic19hND0wLjM5NQpDT05GX2F1ZGlvX2JzX2YxPTM3NC42CkNPTkZfYXVkaW9fYnNfZjI9MTY5NS43CkNPTkZfYXVkaW9fYnNfZjM9NDM0NC40CkNPTkZfYXVkaW9fZ2F0ZT0wCkNPTkZfYXVkaW9fbGltPTEKQ09ORl9hdWRpb19ub2lzZXRocmVzaG9sZD0wLjAwMDEKQ09ORl9hdWRpb2RhdGFfbWV0aG9kPTAKQ09ORl9hdWRpb2Rvc3F1YXJlcm9vdD0wLjkKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTAKQ09ORl9lbmFibGVzaG9ydGN1dHM9MApDT05GX2lnbm9yZWVtcHR5dGFrZXM9MQpDT05GX2lnbm9yZWVtcHR5dGFrZXNfdGhyZXNob2xkPTAuMDUKQ09ORl9pbml0YXRtb3VzZXBvcz0wCkNPTkZfaW5pdGZsYWdzPTMKQ09ORl9tYXJrZ2VuX1JNU3BvaW50cz0xMApDT05GX21hcmtnZW5fYWxnbz0wCkNPTkZfbWFya2dlbl9lbnZlbG9wZXJpc2VmYWxsPTEKQ09ORl9tYXJrZ2VuX2V4dHJlbXVtYXJlYV9STVNyZWxhdGlvbj0xLjA4MQpDT05GX21hcmtnZW5fZXh0cmVtdW1hcmVhX2V4Y2x1ZGV0aHJlc2g9MC4wCkNPTkZfbWFya2dlbl9leHRyZW11bWFyZWFfcmlzZT0xNQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTE2CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMyPTIwCkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMzPTUwCkNPTkZfbWFya2dlbl9tYW51YWxlZGl0PTAKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDE4NzUKQ09ORl9tYXJrZ2VuX3RocmVzaG9sZD0wLjcxODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQyPTAuNApDT05GX21hdGNoX2Jsb2NrYXJlYT03CkNPTkZfbWF0Y2hfZmlyc3Rzcmdtb25seT0wCkNPTkZfbWF0Y2hfaWdub3JlemVyb3M9MApDT05GX21hdGNoX21heGJsb2Nrc3N0YXJ0b2Zmcz0xCkNPTkZfbWF0Y2hfbWluYmxvY2tzc3RhcnRvZmZzPTIKQ09ORl9tYXRjaF9zZWFyY2hmdXJ0aGVyb25seT0wCkNPTkZfbWF0Y2hfc3RyZXRjaGR1YmFycmF5PTEKQ09ORl9vYnRpbWVzZWw9MApDT05GX3Bvc3RfcG9zMG1hcms9MQpDT05GX3Bvc3RfcHNoaWZ0PS0xCkNPTkZfcG9zdF9wc2hpZnRzdWI9MApDT05GX3Bvc3Rfc21tb2RlPTIKQ09ORl9wb3N0X3N0cm1hcmtmZHNpemU9MC4wMTExCkNPTkZfcG9zdF96ZXJvY3Jvc3M9MApDT05GX3Ntb290aD0xNgpDT05GX3Ntb290aF9tZWRpYW5fTD0wLjIKQ09ORl9zbW9vdGhfbWVkaWFuX2E9MQpDT05GX3Ntb290aF9tZWRpYW5fbT0yCkNPTkZfc21vb3RoX21lZGlhbl93PTAuMQpDT05GX3dhcm5pbmdfYW5hbHl6ZV90aW1lX2R1Yj0yNDAKQ09ORl93YXJuaW5nX2FuYWx5emVfdGltZV9yZWY9MzAKQ09ORl93aW5kb3c9MC4wMDkKQ09ORl93aW5kb3dfb3ZlcmxhcD0x',
+        
+        FPRESET5 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gVm9jYWxzIC0gdGlueSBhbGlnbiBtb3N0bHkgYnkgaGlnaHMKQ09ORl9hbGlnbml0ZW10YWtlcz0wCkNPTkZfYXBwYXRjaGFuZ2U9MQpDT05GX2F1ZGlvX2JzX2ExPTAKQ09ORl9hdWRpb19ic19hMj0wLjIxODc1CkNPTkZfYXVkaW9fYnNfYTM9MQpDT05GX2F1ZGlvX2JzX2E0PTEKQ09ORl9hdWRpb19ic19mMT04OApDT05GX2F1ZGlvX2JzX2YyPTIwMDAKQ09ORl9hdWRpb19ic19mMz01MDAwCkNPTkZfYXVkaW9fZ2F0ZT0wCkNPTkZfYXVkaW9fbGltPTEKQ09ORl9hdWRpb2Rvc3F1YXJlcm9vdD0wLjQKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTEKQ09ORl9pbml0ZmxhZ3M9MwpDT05GX21hcmtnZW5fUk1TcG9pbnRzPTEwCkNPTkZfbWFya2dlbl9hbGdvPTEKQ09ORl9tYXJrZ2VuX2VudmVsb3BlcmlzZWZhbGw9MQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTE2CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMyPTIxCkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMzPTg0CkNPTkZfbWFya2dlbl9tYW51YWxlZGl0PTEKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDE4NzUKQ09ORl9tYXJrZ2VuX3RocmVzaG9sZD0wLjcxODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQyPTAuMzkzNzUKQ09ORl9tYXRjaF9ibG9ja2FyZWE9MTUKQ09ORl9tYXRjaF9maXJzdHNyZ21vbmx5PTAKQ09ORl9tYXRjaF9pZ25vcmV6ZXJvcz0wCkNPTkZfbWF0Y2hfbWF4YmxvY2tzc3RhcnRvZmZzPTEKQ09ORl9tYXRjaF9taW5ibG9ja3NzdGFydG9mZnM9MgpDT05GX21hdGNoX3NlYXJjaGZ1cnRoZXJvbmx5PTAKQ09ORl9tYXRjaF9zdHJldGNoZHViYXJyYXk9MQpDT05GX29idGltZXNlbD0wCkNPTkZfcG9zdF9wb3MwbWFyaz0xCkNPTkZfcG9zdF9wc2hpZnQ9LTEKQ09ORl9wb3N0X3BzaGlmdHN1Yj0wCkNPTkZfcG9zdF9zbW1vZGU9MgpDT05GX3Bvc3Rfc3RybWFya2Zkc2l6ZT0wLjAxMTEKQ09ORl9zbW9vdGg9MApDT05GX3dpbmRvdz0wLjAxCkNPTkZfd2luZG93X292ZXJsYXA9MQ==',
+        FPRESET6 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gR3Jvd2xpbmcgdm9jYWxzLCB0aW1lIHNlbGVjdGlvbgpDT05GX2FsaWduaXRlbXRha2VzPTAKQ09ORl9hdWRpb19ic19hMT0wLjE0NDQ0NDQ0NDQ0NDQ0CkNPTkZfYXVkaW9fYnNfYTI9MC45MTY2NjY2NjY2NjY2NwpDT05GX2F1ZGlvX2JzX2EzPTEKQ09ORl9hdWRpb19ic19hND0xLjAKQ09ORl9hdWRpb19ic19mMT0xOTIuNQpDT05GX2F1ZGlvX2JzX2YyPTIwMDAKQ09ORl9hdWRpb19ic19mMz04MjY2LjY2NjY2NjY2NjcKQ09ORl9hdWRpb19nYXRlPTAKQ09ORl9hdWRpb19saW09MQpDT05GX2F1ZGlvZG9zcXVhcmVyb290PTAuNTMwMjc3Nzc3Nzc3NzgKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTEKQ09ORl9pZ25vcmVlbXB0eXRha2VzPTEKQ09ORl9pbml0ZmxhZ3M9MwpDT05GX21hcmtnZW5fUk1TcG9pbnRzPTEwCkNPTkZfbWFya2dlbl9hbGdvPTEKQ09ORl9tYXJrZ2VuX2VudmVsb3BlcmlzZWZhbGw9MQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTE2CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMyPTE4CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMzPTQwCkNPTkZfbWFya2dlbl9tYW51YWxlZGl0PTEKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDE4NzUKQ09ORl9tYXJrZ2VuX3RocmVzaG9sZD0wLjcxODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQyPTAuNzAyMDgzMzMzMzMzMzMKQ09ORl9tYXRjaF9ibG9ja2FyZWE9MTUKQ09ORl9tYXRjaF9maXJzdHNyZ21vbmx5PTAKQ09ORl9tYXRjaF9pZ25vcmV6ZXJvcz0xCkNPTkZfbWF0Y2hfbWF4YmxvY2tzc3RhcnRvZmZzPTEKQ09ORl9tYXRjaF9taW5ibG9ja3NzdGFydG9mZnM9MgpDT05GX21hdGNoX3NlYXJjaGZ1cnRoZXJvbmx5PTAKQ09ORl9tYXRjaF9zdHJldGNoZHViYXJyYXk9MQpDT05GX29idGltZXNlbD0xCkNPTkZfcG9zdF9wb3MwbWFyaz0xCkNPTkZfcG9zdF9wc2hpZnQ9LTEKQ09ORl9wb3N0X3BzaGlmdHN1Yj0wCkNPTkZfcG9zdF9zbW1vZGU9MgpDT05GX3Bvc3Rfc3RybWFya2Zkc2l6ZT0wLjAxMTEKQ09ORl9zbW9vdGg9MApDT05GX3dpbmRvdz0wLjAxCkNPTkZfd2luZG93X292ZXJsYXA9MQ==',
+        FPRESET7 = 'CkNPTkZfTkFNRT1bZmFjdG9yeV0gR3Jvd2xpbmcgdm9jYWxzMiBmaW5pc2ggMC4xc2hpZnQKQ09ORl9hbGlnbml0ZW10YWtlcz0wCkNPTkZfYXVkaW9fYnNfYTE9MApDT05GX2F1ZGlvX2JzX2EyPTAuMjE5NDQ0NDQ0NDQ0NDQKQ09ORl9hdWRpb19ic19hMz0wLjQKQ09ORl9hdWRpb19ic19hND0wLjUyNQpDT05GX2F1ZGlvX2JzX2YxPTE5Mi41CkNPTkZfYXVkaW9fYnNfZjI9MTY2My41NzYzODg4ODg5CkNPTkZfYXVkaW9fYnNfZjM9ODI2Ni42NjY2NjY2NjY3CkNPTkZfYXVkaW9fZ2F0ZT0wCkNPTkZfYXVkaW9fbGltPTEKQ09ORl9hdWRpb2Rvc3F1YXJlcm9vdD0wLjUzMDI3Nzc3Nzc3Nzc4CkNPTkZfYnVpbGRyZWZhc21heGltdW1zPTEKQ09ORl9jbGVhbm1hcmtkdWI9MQpDT05GX2NvbXBlbnNhdGVvdmVybGFwPTEKQ09ORl9pZ25vcmVlbXB0eXRha2VzPTEKQ09ORl9pbml0ZmxhZ3M9MwpDT05GX21hcmtnZW5fUk1TcG9pbnRzPTEwCkNPTkZfbWFya2dlbl9hbGdvPTEKQ09ORl9tYXJrZ2VuX2VudmVsb3BlcmlzZWZhbGw9MQpDT05GX21hcmtnZW5fZmlsdGVycG9pbnRzPTE2CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMyPTI5CkNPTkZfbWFya2dlbl9maWx0ZXJwb2ludHMzPTIwCkNPTkZfbWFya2dlbl9tYW51YWxlZGl0PTEKQ09ORl9tYXJrZ2VuX21pbmltYWxhcmVhUk1TPTAuMDE4NzUKQ09ORl9tYXJrZ2VuX3RocmVzaG9sZD0wLjcxODc1CkNPTkZfbWFya2dlbl90aHJlc2hvbGQyPTAuNzAyMDgzMzMzMzMzMzMKQ09ORl9tYXRjaF9ibG9ja2FyZWE9MTUKQ09ORl9tYXRjaF9maXJzdHNyZ21vbmx5PTAKQ09ORl9tYXRjaF9pZ25vcmV6ZXJvcz0xCkNPTkZfbWF0Y2hfbWF4YmxvY2tzc3RhcnRvZmZzPTEKQ09ORl9tYXRjaF9taW5ibG9ja3NzdGFydG9mZnM9MgpDT05GX21hdGNoX3NlYXJjaGZ1cnRoZXJvbmx5PTAKQ09ORl9tYXRjaF9zdHJldGNoZHViYXJyYXk9MQpDT05GX29idGltZXNlbD0xCkNPTkZfcG9zdF9wb3MwbWFyaz0xCkNPTkZfcG9zdF9wc2hpZnQ9LTEKQ09ORl9wb3N0X3BzaGlmdHN1Yj0wCkNPTkZfcG9zdF9zbW1vZGU9MgpDT05GX3Bvc3Rfc3RybWFya2Zkc2l6ZT0wLjAxMTEKQ09ORl9zbW9vdGg9MQpDT05GX3dpbmRvdz0wLjAwNQpDT05GX3dpbmRvd19vdmVybGFwPTE=',
         CONF_NAME = 'default',
         
         
@@ -200,20 +202,7 @@ for key in pairs(reaper) do _G[key]=reaper[key] end
 function msg(s)  if not s then return end  if type(s) == 'boolean' then if s then s = 'true' else  s = 'false' end end ShowConsoleMsg(s..'\n') end 
 
 -------------------------------------------------------------------------------- 
-function UI.MAIN_PushStyle(key, value, value2)  
-  if not ctx then return end
-  local iscol = key:match('Col_')~=nil
-  local keyid = ImGui[key]
-  if not iscol then 
-    ImGui.PushStyleVar(ctx, keyid, value, value2)
-    UI.pushcnt = UI.pushcnt + 1
-  else 
-    ImGui.PushStyleColor(ctx, keyid, math.floor(value2*255)|(value<<8) )
-    UI.pushcnt2 = UI.pushcnt2 + 1
-  end 
-end
--------------------------------------------------------------------------------- 
-function UI.MAIN_draw(open) 
+function UI.MAIN_styledefinition(open)  
   local w_min = UI.main_butw + UI.spacingX*2
   local h_min = UI.flowchildH 
   if EXT.flowvisible == 1 then 
@@ -237,107 +226,68 @@ function UI.MAIN_draw(open)
     --open = false -- disable the close button
   
   
-    -- set style
-      UI.pushcnt = 0
-      UI.pushcnt2 = 0
     -- rounding
-      UI.MAIN_PushStyle('StyleVar_FrameRounding',5)  
-      UI.MAIN_PushStyle('StyleVar_GrabRounding',3)  
-      UI.MAIN_PushStyle('StyleVar_WindowRounding',10)  
-      UI.MAIN_PushStyle('StyleVar_ChildRounding',5)  
-      UI.MAIN_PushStyle('StyleVar_PopupRounding',0)  
-      UI.MAIN_PushStyle('StyleVar_ScrollbarRounding',9)  
-      UI.MAIN_PushStyle('StyleVar_TabRounding',4)   
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_FrameRounding,5)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_GrabRounding,3)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_WindowRounding,10)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_ChildRounding,5)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_PopupRounding,0)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_ScrollbarRounding,9)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_TabRounding,4)   
     -- Borders
-      UI.MAIN_PushStyle('StyleVar_WindowBorderSize',0)  
-      UI.MAIN_PushStyle('StyleVar_FrameBorderSize',0) 
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_WindowBorderSize,0)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_FrameBorderSize,0) 
     -- spacing
-      UI.MAIN_PushStyle('StyleVar_WindowPadding',UI.spacingX,UI.spacingY)  
-      UI.MAIN_PushStyle('StyleVar_FramePadding',10,UI.spacingY) 
-      UI.MAIN_PushStyle('StyleVar_CellPadding',UI.spacingX, UI.spacingY) 
-      UI.MAIN_PushStyle('StyleVar_ItemSpacing',UI.spacingX, UI.spacingY)
-      UI.MAIN_PushStyle('StyleVar_ItemInnerSpacing',4,0)
-      UI.MAIN_PushStyle('StyleVar_IndentSpacing',20)
-      UI.MAIN_PushStyle('StyleVar_ScrollbarSize',10)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_WindowPadding,UI.spacingX,UI.spacingY)  
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_FramePadding,10,UI.spacingY) 
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_CellPadding,UI.spacingX, UI.spacingY) 
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_ItemSpacing,UI.spacingX, UI.spacingY)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_ItemInnerSpacing,4,0)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_IndentSpacing,20)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_ScrollbarSize,10)
     -- size
-      UI.MAIN_PushStyle('StyleVar_GrabMinSize',20)
-      UI.MAIN_PushStyle('StyleVar_WindowMinSize',w_min,h_min)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_GrabMinSize,20)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_WindowMinSize,w_min,h_min)
     -- align
-      UI.MAIN_PushStyle('StyleVar_WindowTitleAlign',0.5,0.5)
-      UI.MAIN_PushStyle('StyleVar_ButtonTextAlign',0.5,0.5)
-      --UI.MAIN_PushStyle('StyleVar_SelectableTextAlign,0,0 )
-      --UI.MAIN_PushStyle('StyleVar_SeparatorTextAlign,0,0.5 )
-      --UI.MAIN_PushStyle('StyleVar_SeparatorTextPadding,20,3 )
-      --UI.MAIN_PushStyle('StyleVar_SeparatorTextBorderSize,3 )
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_WindowTitleAlign,0.5,0.5)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_ButtonTextAlign,0.5,0.5) 
     -- alpha
-      UI.MAIN_PushStyle('StyleVar_Alpha',0.98)
-      --UI.MAIN_PushStyle('StyleVar_DisabledAlpha,0.6 ) 
-      UI.MAIN_PushStyle('Col_Border',UI.main_col, 0.3)
+      ImGui.PushStyleVar(ctx, ImGui.StyleVar_Alpha,0.98)
+      
+      
+      
     -- colors
-      --UI.MAIN_PushStyle('Col_BorderShadow(),0xFFFFFF, 1)
-      UI.MAIN_PushStyle('Col_Button',UI.main_col, 0.2) --0.3
-      UI.MAIN_PushStyle('Col_ButtonActive',UI.main_col, 1) 
-      UI.MAIN_PushStyle('Col_ButtonHovered',UI.but_hovered, 0.8)
-      --UI.MAIN_PushStyle('Col_CheckMark(),UI.main_col, 0, true)
-      --UI.MAIN_PushStyle('Col_ChildBg(),UI.main_col, 0, true)
-      --UI.MAIN_PushStyle('Col_ChildBg(),UI.main_col, 0, true) 
+       ImGui.PushStyleColor(ctx, ImGui.Col_Border, UI.main_col<<8|0x0F)
+       ImGui.PushStyleColor(ctx, ImGui.Col_Button, UI.main_col<<8|0x3F)
+       ImGui.PushStyleColor(ctx, ImGui.Col_ButtonActive, UI.main_col<<8|0x9F)
+       ImGui.PushStyleColor(ctx, ImGui.Col_ButtonHovered, UI.main_col<<8|0x5F)
+       ImGui.PushStyleColor(ctx, ImGui.Col_FrameBg, 0x1F1F1F5F)
+       
+       
+      ImGui.PushStyleColor(ctx, ImGui.Col_ResizeGrip,UI.main_col<<8|0xFF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_ResizeGripHovered,UI.main_col<<8|0xFF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_SliderGrab,UI.butBg_green<<8|0x7F)
+      ImGui.PushStyleColor(ctx, ImGui.Col_Tab,UI.main_col<<8|0x7F)
+      ImGui.PushStyleColor(ctx, ImGui.Col_TabHovered,UI.main_col<<8|0xBF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_Text,UI.textcol<<8|0xFF)
+      
+      ImGui.PushStyleColor(ctx, ImGui.Col_TitleBg,UI.main_col<<8|0xAF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_TitleBgActive,UI.main_col<<8|0xDF)
+      
+      ImGui.PushStyleColor(ctx, ImGui.Col_Header,UI.main_col<<8|0x9F)
+      ImGui.PushStyleColor(ctx, ImGui.Col_HeaderActive,UI.main_col<<8|0xFF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_HeaderHovered,UI.main_col<<8|0xDF)
+      
+      ImGui.PushStyleColor(ctx, ImGui.Col_FrameBg,UI.main_col<<8|0xAF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_FrameBgActive,UI.main_col<<8|0xBF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_FrameBgHovered,UI.main_col<<8|0xCF)
+      ImGui.PushStyleColor(ctx, ImGui.Col_WindowBg,UI.windowBg<<8|0xFF)
       
       
-      --Constant: Col_DockingEmptyBg
-      --Constant: Col_DockingPreview
-      --Constant: Col_DragDropTarget 
-      UI.MAIN_PushStyle('Col_DragDropTarget',0xFF1F5F, 0.6)
-      UI.MAIN_PushStyle('Col_FrameBg',0x1F1F1F, 0.7)
-      UI.MAIN_PushStyle('Col_FrameBgActive',UI.main_col, .6)
-      UI.MAIN_PushStyle('Col_FrameBgHovered',UI.main_col, 0.7)
-      UI.MAIN_PushStyle('Col_Header',UI.main_col, 0.5) 
-      UI.MAIN_PushStyle('Col_HeaderActive',UI.main_col, 1) 
-      UI.MAIN_PushStyle('Col_HeaderHovered',UI.main_col, 0.98) 
-      --Constant: Col_MenuBarBg
-      --Constant: Col_ModalWindowDimBg
-      --Constant: Col_NavHighlight
-      --Constant: Col_NavWindowingDimBg
-      --Constant: Col_NavWindowingHighlight
-      --Constant: Col_PlotHistogram
-      --Constant: Col_PlotHistogramHovered
-      --Constant: Col_PlotLines
-      --Constant: Col_PlotLinesHovered 
-      UI.MAIN_PushStyle('Col_PopupBg',0x303030, 0.9) 
-      UI.MAIN_PushStyle('Col_ResizeGrip',UI.main_col, 1) 
-      --Constant: Col_ResizeGripActive 
-      UI.MAIN_PushStyle('Col_ResizeGripHovered',UI.main_col, 1) 
-      --Constant: Col_ScrollbarBg
-      --Constant: Col_ScrollbarGrab
-      --Constant: Col_ScrollbarGrabActive
-      --Constant: Col_ScrollbarGrabHovered
-      --Constant: Col_Separator
-      --Constant: Col_SeparatorActive
-      --Constant: Col_SeparatorHovered
-      --Constant: Col_SliderGrabActive
-      UI.MAIN_PushStyle('Col_SliderGrab',UI.butBg_green, 0.4) 
-      UI.MAIN_PushStyle('Col_Tab',UI.main_col, 0.37) 
-      --UI.MAIN_PushStyle('Col_TabActive',UI.main_col, 1) 
-      UI.MAIN_PushStyle('Col_TabHovered',UI.main_col, 0.8) 
-      --Constant: Col_TabUnfocused
-      --'Col_TabUnfocusedActive
-      --UI.MAIN_PushStyle('Col_TabUnfocusedActive(),UI.main_col, 0.8, true)
-      --Constant: Col_TableBorderLight
-      --Constant: Col_TableBorderStrong
-      --Constant: Col_TableHeaderBg
-      --Constant: Col_TableRowBg
-      --Constant: Col_TableRowBgAlt
-      UI.MAIN_PushStyle('Col_Text',UI.textcol, UI.textcol_a_enabled) 
-      --Constant: Col_TextDisabled
-      --Constant: Col_TextSelectedBg
-      UI.MAIN_PushStyle('Col_TitleBg',UI.main_col, 0.7) 
-      UI.MAIN_PushStyle('Col_TitleBgActive',UI.main_col, 0.95) 
-      --Constant: Col_TitleBgCollapsed 
-      UI.MAIN_PushStyle('Col_WindowBg',UI.windowBg, 1)
-    
   -- We specify a default position/size in case there's no data in the .ini file.
     local main_viewport = ImGui.GetMainViewport(ctx)
     local x, y, w, h =EXT.viewport_posX,EXT.viewport_posY, EXT.viewport_posW,EXT.viewport_posH
-    ImGui.SetNextWindowPos(ctx, x, y, ImGui.Cond_Appearing )
+    --ImGui.SetNextWindowPos(ctx, x, y, ImGui.Cond_Appearing )
     --ImGui.SetNextWindowSize(ctx, w, h, ImGui.Cond_Appearing)
     ImGui.SetNextWindowSize(ctx, w_min, h_min, ImGui.Cond_Always)
     
@@ -345,7 +295,7 @@ function UI.MAIN_draw(open)
   -- init UI 
     ImGui.PushFont(ctx, DATA.font1) 
     
-    local rv,open = ImGui.Begin(ctx, DATA.UI_name, open, window_flags) 
+    local rv,open = ImGui.Begin(ctx, DATA.UI_name, open, window_flags) --..' '..vrs..'##'..DATA.UI_name
     if rv then
       local Viewport = ImGui.GetWindowViewport(ctx)
       DATA.display_x, DATA.display_y = ImGui.Viewport_GetPos(Viewport) 
@@ -362,31 +312,17 @@ function UI.MAIN_draw(open)
     -- draw stuff
       UI.draw()
       ImGui.Dummy(ctx,0,0) 
-      ImGui.PopStyleVar(ctx, UI.pushcnt)
-      ImGui.PopStyleColor(ctx, UI.pushcnt2) 
-      ImGui.End(ctx)
-     else
-      ImGui.PopStyleVar(ctx, UI.pushcnt)
-      ImGui.PopStyleColor(ctx, UI.pushcnt2) 
-      ImGui.End(ctx)
+      ImGui.End(ctx) 
     end 
     
+    
+    ImGui.PopStyleVar(ctx, 21)
+    ImGui.PopStyleColor(ctx, 20) 
     ImGui.PopFont( ctx ) 
     if  ImGui.IsKeyPressed( ctx, ImGui.Key_Escape,false )  then return end
   
     return open
 end
-  --------------------------------------------------------------------------------  
-  function UI.MAIN_PopStyle(ctx, cnt, cnt2)
-    if cnt then 
-      ImGui.PopStyleVar(ctx,cnt)
-      UI.pushcnt = UI.pushcnt -cnt
-    end
-    if cnt2 then
-      ImGui.PopStyleColor(ctx,cnt2)
-      UI.pushcnt2 = UI.pushcnt2 -cnt2
-    end
-  end
 -------------------------------------------------------------------------------- 
 function UI.MAINloop() 
   DATA.clock = os.clock() 
@@ -396,11 +332,12 @@ function UI.MAINloop()
   --if DATA.upd == true then  DATA:CollectData()  end 
   DATA.upd = false
   
-  -- draw UI
-  UI.open = UI.MAIN_draw(true) 
+  -- refresh at losing context
+  if not reaper.ImGui_ValidatePtr(ctx,'ImGui_Context*') then return end
   
-  -- handle xy
-  DATA:handleViewportXYWH()
+  -- draw UI
+  UI.open = UI.MAIN_styledefinition(true) 
+  
   
   if DATA.sched then
     if EXT.CONF_initflags&1==1 then DATA.f01_GetReferenceTake() end 
@@ -459,34 +396,6 @@ function EXT:load()
     end  
   end 
   DATA.upd = true
-end
--------------------------------------------------------------------------------- 
-function DATA:handleViewportXYWH()
-  if not (DATA.display_x and DATA.display_y) then return end 
-  if not DATA.display_x_last then DATA.display_x_last = DATA.display_x end
-  if not DATA.display_y_last then DATA.display_y_last = DATA.display_y end
-  if not DATA.display_w_last then DATA.display_w_last = DATA.display_w end
-  if not DATA.display_h_last then DATA.display_h_last = DATA.display_h end
-  
-  if  DATA.display_x_last~= DATA.display_x 
-    or DATA.display_y_last~= DATA.display_y 
-    or DATA.display_w_last~= DATA.display_w 
-    or DATA.display_h_last~= DATA.display_h 
-    then 
-    DATA.display_schedule_save = os.clock() 
-  end
-  if DATA.display_schedule_save and os.clock() - DATA.display_schedule_save > 0.3 then 
-    EXT.viewport_posX = DATA.display_x
-    EXT.viewport_posY = DATA.display_y
-    EXT.viewport_posW = DATA.display_w
-    EXT.viewport_posH = DATA.display_h
-    EXT:save() 
-    DATA.display_schedule_save = nil 
-  end
-  DATA.display_x_last = DATA.display_x
-  DATA.display_y_last = DATA.display_y
-  DATA.display_w_last = DATA.display_w
-  DATA.display_h_last = DATA.display_h
 end
 -------------------------------------------------------------------------------- 
 function DATA:handleProjUpdates()
@@ -658,23 +567,20 @@ end
   --------------------------------------------------------------------------------  
   function UI.draw_setbuttoncolor(col, release) 
     if not release then
-      UI.MAIN_PushStyle('Col_Button',col, 0.5, true) 
-      UI.MAIN_PushStyle('Col_ButtonActive',col, 1, true) 
-      UI.MAIN_PushStyle('Col_ButtonHovered',col, 0.8, true)
+      ImGui.PushStyleColor(ctx, ImGui.Col_Button, (col<<8)|         math.floor(0.5  *255)) 
+      ImGui.PushStyleColor(ctx, ImGui.Col_ButtonActive, (col<<8)|   math.floor(1    *255)) 
+      ImGui.PushStyleColor(ctx, ImGui.Col_ButtonHovered, (col<<8)|  math.floor(0.8  *255)) 
      else
       ImGui.PopStyleColor(ctx, 3)
-      UI.pushcnt2 = UI.pushcnt2 - 3
     end
   end
   --------------------------------------------------------------------------------  
     function UI.draw_flow_tempcolor(release) 
       if not release then
-        UI.MAIN_PushStyle('Col_Tab',UI.butBg_green, 0.37, true) 
-        --UI.MAIN_PushStyle('Col_TabActive',UI.butBg_green, 1, true) 
-        UI.MAIN_PushStyle('Col_TabHovered',UI.butBg_green, 0.8, true) 
+        ImGui.PushStyleColor(ctx, ImGui.Col_Tab,UI.butBg_green<<8|          math.floor(0.37  *255)) 
+        ImGui.PushStyleColor(ctx, ImGui.Col_TabHovered,UI.butBg_green<<8|   math.floor(0.8  *255)) 
        else
         ImGui.PopStyleColor(ctx, 2)
-        UI.pushcnt2 = UI.pushcnt2 - 2
       end
     end
     
@@ -1087,6 +993,10 @@ end
     local edge_start,edge_end = math.huge, 0
     for i = 1, CountSelectedMediaItems(0) do
       local item = GetSelectedMediaItem(0,i-1)
+      
+      local B_MUTE  =GetMediaItemInfo_Value( item, 'B_MUTE' )
+      if B_MUTE == 1 then goto skipnextref end 
+      
       local take = GetActiveTake(item)
       if not take or TakeIsMIDI(take) then goto skipnextref end 
       local track = GetMediaItem_Track( item ) 
@@ -1403,6 +1313,9 @@ function DATA.f02_GetDubTake(takefromsecondtake)
     if takefromsecondtake == true then st = 2 end
     for i = st, CountSelectedMediaItems( 0 ) do
       local item = GetSelectedMediaItem(0,i-1)
+      
+      local B_MUTE  =GetMediaItemInfo_Value( item, 'B_MUTE' )
+      if B_MUTE == 1 then goto skipnextdub end  
       local parent_track = GetMediaItem_Track( item ) 
       local take = GetActiveTake(item) 
       if not take or (take and TakeIsMIDI(take)) then  goto skipnextdub end  

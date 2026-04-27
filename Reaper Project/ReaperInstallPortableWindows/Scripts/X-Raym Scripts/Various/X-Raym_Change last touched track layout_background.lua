@@ -1,6 +1,6 @@
 --[[
  * ReaScript Name: Change last touched track layout
- * Screenshot: https://i.imgur.com/7ONmP3V.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/7ONmP3V.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -42,6 +42,10 @@
 -- NOTE: It doest allows to click and drag fade on non last touched track
 
 -- USER CONFIG AREA ---------------------
+
+-- Use Preset Script for safe moding or to create a new action with your own values
+-- https://github.com/X-Raym/REAPER-ReaScripts/tree/master/Templates/Script%20Preset
+
 mcp_layout = "1. Classic Default MCP - Blue Fader"
 tcp_layout = "1. Classic Default TCP (vertical meters) - Blue Fader"
 console = false
@@ -186,6 +190,6 @@ function Init()
   reaper.atexit( Exit )
 end
 
-if not preset_file_init then -- DOC: https://gist.github.com/X-Raym/f7f6328b82fe37e5ecbb3b81aff0b744
+if not preset_file_init then
   Init()
 end

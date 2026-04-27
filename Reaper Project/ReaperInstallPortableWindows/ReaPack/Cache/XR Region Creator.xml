@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<index version="1" commit="f4e4766716742a6ee352b050fa7ca93306980513" name="XR Region Creator">
+  <category name="Markers Regions">
+<reapack name="X-Raym_Named region creator_ReaImGui.lua" type="script" desc="Named region creator (ReaImGui)">
+      <metadata>
+        <description><![CDATA[{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \ql \f0 \sa180 \li0 \fi0 Create named and colored regions from SWS Auto-Color list, from time selection, or from last regions end to edit cursor position, or update region. Keyboard shortcuts are associated to region names first character, or one of non used alphanumerical characters available.\par}
+}
+]]></description>
+        <link rel="screenshot">https://cloud.extremraym.com/sharex/reaper_KIqZUdvei4.mp4</link>
+      </metadata>
+      <version name="1.0" author="X-Raym" time="2023-08-24T22:18:46Z">
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=1f916e880dac2befc31bec56245e780ef91d2896&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.1" author="X-Raym" time="2023-08-24T22:25:54Z">
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=b7ac09122ed5dd714dfcb32e5336b5f8280d1412&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.2" author="X-Raym" time="2023-08-25T12:05:50Z">
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=e71fbbc2abdb9565a3b5404c12e75ebfdbcb9b52&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.3" author="X-Raym" time="2023-08-26T09:11:29Z">
+        <changelog><![CDATA[# Regions with Spaces support
+# Regions without color support
+# Dark text for bright regions
+# Keyboard shorcut for all alphanumerical characters, so 36 shortcuts available]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=2c634a0e3c0ed73afd74ad9988a50c7fb0bcafd4&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.4" author="X-Raym" time="2023-08-26T16:13:41Z">
+        <changelog><![CDATA[+ Theme
+# Layout]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=967b5787477995f4cced5c76aac66bd049ccd528&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.5" author="X-Raym" time="2023-08-26T20:54:04Z">
+        <changelog><![CDATA[# Apply color directly
+# Polish UI]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=ca42f1af6487650f29aec1be86019b96af59ae5d&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.6" author="X-Raym" time="2023-08-27T14:22:53Z">
+        <changelog><![CDATA[# Fix keyboard shortcut insered in region name]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=1178a6d44846febedde2b09a1782c10d928fd660&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.7" author="X-Raym" time="2023-11-21T23:50:40Z">
+        <changelog><![CDATA[+ Various UI customization in User Config Area for Preset script]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=7b6d66490ce396c82564d03133f23af34ca3444b&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.8" author="X-Raym" time="2024-01-09T00:49:54Z">
+        <changelog><![CDATA[+ Added empty name region button]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=20f8af3a31df32805f9705358c83ecd40ea72a81&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.9" author="X-Raym" time="2024-03-05T14:19:51Z">
+        <changelog><![CDATA[+ Color inversion for SWS 2.14]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=0baac502dd3f15e4fcd45a0a5adee30261cc787c&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.10" author="X-Raym" time="2024-03-30T07:19:06Z">
+        <changelog><![CDATA[# real_name fix]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=eddef09d017757a67d2919113344061b0409e40a&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.11" author="X-Raym" time="2024-03-30T10:46:46Z">
+        <changelog><![CDATA[# fix too many  regions in keyboard shortcut association]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=b62a0e28853bfe12423c74c217e53e35497b0bec&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.12" author="X-Raym" time="2024-04-03T10:34:07Z">
+        <changelog><![CDATA[# Sort regions by SWS Auto-color ID (not just line in the file)]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=3c366040465ff17c9a1c315aeb2b195577b3024b&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.13" author="X-Raym" time="2024-04-03T12:20:22Z">
+        <changelog><![CDATA[+ User definable buttons with preset scripts
+# bug fix reload colors]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=13ce61ebabafc56c3d1d1b1c348d7e94b28981b5&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.0.14" author="X-Raym" time="2024-04-13T09:56:50Z">
+        <changelog><![CDATA[# Force reaimgui version]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=ef046aacacf118b1c95229f1e507bf5a792f104b&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.1.0" author="X-Raym" time="2025-01-03T17:54:26Z">
+        <changelog><![CDATA[+ Sort regions dropdown
+# ReaImGui v0.9 shim]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=506add7825a03c3983ae4e34cb4a1a07e810f7b4&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.1.1" author="X-Raym" time="2025-01-04T01:30:20Z">
+        <changelog><![CDATA[# Better isdark text]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=ec774518ea628fdabe07c19afa7b039aa96b108c&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.1.2" author="X-Raym" time="2025-01-07T19:22:25Z">
+        <changelog><![CDATA[# ReaImGui init update]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=a76eeae5b6d1497cd9394fbe421288bc199b729d&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.1.3" author="X-Raym" time="2025-01-09T20:04:31Z">
+        <changelog><![CDATA[# Exit via context menu]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=a02a66eea94e4b3c7729bcd236d0811e88e974f8&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.1.4" author="X-Raym" time="2025-01-25T14:50:36Z">
+        <changelog><![CDATA[# Fix color insertion]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=72ff6a6746efea3c1fb5e3e5bbecb249889b4cc4&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.1.5" author="X-Raym" time="2025-01-28T13:07:11Z">
+        <changelog><![CDATA[# Window resize border color
+# Moving window with click and drag titlebar only]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=ce6a3be8ace6184f4ad31fd99a7c0e6605bcf5f1&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.1.6" author="X-Raym" time="2025-02-06T21:42:21Z">
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=d21955e3ac2825d180be4ccfd7f017bf0d449d96&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+      <version name="1.2.0" author="X-Raym" time="2026-02-19T14:16:02Z">
+        <changelog><![CDATA[+ Current region name and color fields
+# Move SWS and sort buttons to title/right-click menu
+# Update region matching time selection instead of creating new one]]></changelog>
+        <source main="main">https://www.extremraym.com/cloud/reascripts-premium/get.php?c=9680ea6e619820c53eeaa0ecf426112e95d92bb5&amp;f=Markers%20Regions/X-Raym_Named%20region%20creator_ReaImGui.lua&amp;license=eeceb4687e873362c663366ad1ba38b6&amp;item=12191</source>
+      </version>
+    </reapack>
+  </category>
+</index>

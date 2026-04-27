@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Color selected items from regions
- * Screenshot: https://i.imgur.com/q9kBdMb.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/q9kBdMb.mp4
  * Author: X-Raym
- * Author URI: https://extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3

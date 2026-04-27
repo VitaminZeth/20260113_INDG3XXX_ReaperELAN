@@ -2,10 +2,10 @@
  * ReaScript Name: Rename selected track sends based on their source track name
  * Instructions: Select tracks. Run.
  * About: Sponored by Dan Stanley
- * Screenshot: https://i.imgur.com/RXSUmi6.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/RXSUmi6.mp4
  * Author: X-Raym
- * Author URI: https://extremraym.com
- * Repository: GitHub > X-Raym > Scripts for Cockos REAPER
+ * Author URI: https://www.extremraym.com
+ * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3
  * Forum Thread: Scripts: Track Properties (various)

@@ -2,7 +2,7 @@
  * ReaScript Name: Add envelope points at time selection edges from X to Y preserving edges on choosen envelopes
  * About: Insert points at time selection edges. You can deactivate the pop up window within the script.∑
  * Instructions: Make a selection area. Execute the script. Works on selected envelope or selected tracks envelope with armed visible envelope.
- * Screenshot: http://i.giphy.com/l0K7o2JPg4cpLr2Jq.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/l0K7o2JPg4cpLr2Jq.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -21,7 +21,6 @@
    # No name match if envelope selected
    # If no prompt, works only on selected envelope (with one insertion block)
    # Clear console
-
  * v1.6.3 (2020-04-10)
    # FaderScaling fixes
  * v1.6.2 (2018-04-10)

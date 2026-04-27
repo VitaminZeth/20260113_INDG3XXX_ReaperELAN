@@ -1,7 +1,7 @@
 --[[
  * ReaScript Name: Scroll vertically to track by name and select it
  * Author: X-Raym
- * Author URI: https://extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3
@@ -9,7 +9,7 @@
  * Forum Thread URI: http://forum.cockos.com/showthread.php?p=1569551
  * REAPER: 5.0
  * Version: 1.3
- * Screenshot: https://i.imgur.com/6qMLP2s.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/6qMLP2s.mp4
 --]]
 
 --[[
@@ -29,8 +29,8 @@
 
 -- USER CONFIG AREA -----------
 
--- To mod the script, better create preset file
--- https://gist.github.com/X-Raym/f7f6328b82fe37e5ecbb3b81aff0b744
+-- Use Preset Script for safe moding or to create a new action with your own values
+-- https://github.com/X-Raym/REAPER-ReaScripts/tree/master/Templates/Script%20Preset
 
 popup = true -- true/false
 
@@ -49,14 +49,14 @@ function ScrollTrackToTop( track )
   -- NOTE: No check for visibility, cause not needed for now
 
   reaper.PreventUIRefresh( 1 )
-  
+
   local track_tcpy = reaper.GetMediaTrackInfo_Value( track, "I_TCPY" )
-  
+
   local mainHWND = reaper.GetMainHwnd()
   local windowHWND = reaper.JS_Window_FindChildByID(mainHWND, 1000)
   local scroll_retval, scroll_position, scroll_pageSize, scroll_min, scroll_max, scroll_trackPos = reaper.JS_Window_GetScrollInfo( windowHWND, "v" )
   reaper.JS_Window_SetScrollPos( windowHWND, "v", track_tcpy + scroll_position )
-  
+
   reaper.PreventUIRefresh( -1 )
 
 end

@@ -1,7 +1,7 @@
 --[[
  * ReaScript Name: Search and replace in selected tracks names
  * About: Select tracks. Run.
- * Screenshot: http://i.giphy.com/3o85xuFcHQ27K06TdK.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/3o85xuFcHQ27K06TdK.mp4
  * Author: X-Raym
  * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
@@ -30,7 +30,8 @@
 -- USER CONFIG AREA --
 -----------------------------------------------------------
 
--- Preset file: https://gist.github.com/X-Raym/f7f6328b82fe37e5ecbb3b81aff0b744#file-preset-lua
+-- Use Preset Script for safe moding or to create a new action with your own values
+-- https://github.com/X-Raym/REAPER-ReaScripts/tree/master/Templates/Script%20Preset
 
 console = true
 popup = true -- User input dialog box

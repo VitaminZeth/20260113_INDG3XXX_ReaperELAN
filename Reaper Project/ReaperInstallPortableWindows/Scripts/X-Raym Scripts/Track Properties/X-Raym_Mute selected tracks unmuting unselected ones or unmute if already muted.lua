@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Mute selected tracks unmuting unselected ones or unmute if already muted
- * Screenshot: https://i.imgur.com/I0EQB9U.gif
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/I0EQB9U.mp4
  * Author: X-Raym
- * Author URI: http://www.extremraym.com/
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: hhttps://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3

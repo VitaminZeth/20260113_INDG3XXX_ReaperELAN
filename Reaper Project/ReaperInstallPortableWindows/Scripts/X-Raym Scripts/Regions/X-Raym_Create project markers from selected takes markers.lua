@@ -1,8 +1,8 @@
 --[[
  * ReaScript Name: Create project markers from selected takes markers
- * Screenshot: https://i.imgur.com/AAcThVd.gifv
+ * Screenshot: https://cloud.extremraym.com/sharex/reascripts/AAcThVd.mp4
  * Author: X-Raym
- * Author URI: https://extremraym.com
+ * Author URI: https://www.extremraym.com
  * Repository: GitHub > X-Raym > REAPER-ReaScripts
  * Repository URI: https://github.com/X-Raym/REAPER-ReaScripts
  * Licence: GPL v3
