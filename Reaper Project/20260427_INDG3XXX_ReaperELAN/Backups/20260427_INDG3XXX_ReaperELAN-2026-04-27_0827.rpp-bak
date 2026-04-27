@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "7.69/win64" 1777302087 0
+<REAPER_PROJECT 0.1 "7.69/win64" 1777300041 0
   <NOTES 0 2
   >
   RIPPLE 0 0
@@ -20,7 +20,7 @@
   VIDEO_CONFIG 0 0 164352
   PANMODE 5
   CURSOR 14.31063298631216
-  ZOOM 22.70457154021515 0 0
+  ZOOM 125.44041796542703 1542 0
   VZOOMEX 40 0
   USE_REC_CFG 0
   RECMODE 1
@@ -192,14 +192,14 @@
     BUSCOMP 0 0 0 0 0
     SHOWINMIX 1 0.6667 0.5 1 0.5 0 0 0 0
     FREEMODE 2
-    FIXEDLANES 8 0 1 0 0
+    FIXEDLANES 8 0 0 0 0
     LANESOLO 1 0 0 0 0 0 0 0
     LANEREC -1 -1 -1 1
     LANENAME 1 BACKUP "CUTS & FADES" "RX & NOISE REDUCTION" "GLUED & ELAN" "OGG ARCHIVAL"
     SEL 1
     REC 0 0 1 0 0 0 0 0
     VU 66
-    TRACKHEIGHT 756 0 0 0 0 0 0
+    TRACKHEIGHT 103 0 0 0 0 0 0
     INQ 0 0 0 0.5 100 0 0 100
     NCHAN 2
     FX 1
@@ -228,7 +228,7 @@
       CHANMODE 0
       GUID {BD3634EF-8A4F-492E-B570-392EA2FD77BD}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -254,7 +254,7 @@
       CHANMODE 0
       GUID {6D8E444F-7EAE-46F9-B286-2A8E6EBC5E57}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -281,7 +281,7 @@
       CHANMODE 0
       GUID {331E65EA-E2D3-4B48-BE28-A42479DECA40}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -307,7 +307,7 @@
       CHANMODE 0
       GUID {CF82074A-CCF8-4537-A38F-880C6E699512}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -334,7 +334,7 @@
       CHANMODE 0
       GUID {A00C5874-C741-43EE-9B56-698886B9659A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -360,7 +360,7 @@
       CHANMODE 0
       GUID {F3B00E75-4585-4B31-AF8A-89283AD03E1C}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -387,7 +387,7 @@
       CHANMODE 0
       GUID {17763494-E3B2-410C-8CE0-AB0690A8568F}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -413,7 +413,7 @@
       CHANMODE 0
       GUID {CFC093A0-8D75-44D9-92E6-C89FC91CB86D}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -440,7 +440,7 @@
       CHANMODE 0
       GUID {E087F7B7-E5A2-43BC-8894-2A30F18E9A80}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -466,7 +466,7 @@
       CHANMODE 0
       GUID {128F15E2-A2FA-4E5C-A96C-BA21585309FF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -493,7 +493,7 @@
       CHANMODE 0
       GUID {4A0705FC-B70D-4594-8859-08AE1EDF042F}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -519,7 +519,7 @@
       CHANMODE 0
       GUID {FE6CBE1A-9B90-4366-AE96-1D5D84AA66D2}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -545,7 +545,7 @@
       CHANMODE 0
       GUID {FCE4B9FC-E26F-435A-A230-F1D110FCC83C}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -571,7 +571,7 @@
       CHANMODE 0
       GUID {C437D011-9A17-44ED-B447-4369ECF73BE6}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -598,7 +598,7 @@
       CHANMODE 0
       GUID {0D451543-B4F5-48FF-B237-8C5902B4506C}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -624,7 +624,7 @@
       CHANMODE 0
       GUID {40940784-F7DF-4843-BF0C-F580BB846987}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -651,7 +651,7 @@
       CHANMODE 0
       GUID {E1673798-F909-444C-B993-A70B54F7C3EC}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -677,7 +677,7 @@
       CHANMODE 0
       GUID {E33913C8-4564-427C-B425-C6D11F1F1367}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -704,7 +704,7 @@
       CHANMODE 0
       GUID {B6149C0F-7145-4924-A57A-758BE09435E2}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -730,7 +730,7 @@
       CHANMODE 0
       GUID {9B2F95AD-1D56-4884-B6FE-9C4A2F278181}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -757,7 +757,7 @@
       CHANMODE 0
       GUID {EBF58837-C908-4DB7-B424-3C27AC64E7BD}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -783,7 +783,7 @@
       CHANMODE 0
       GUID {ABC23615-B1A4-4DE7-A49E-DAF85F36B712}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -810,7 +810,7 @@
       CHANMODE 0
       GUID {0AF4B160-9AC8-4F5E-9C02-22B3ECC68780}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -836,7 +836,7 @@
       CHANMODE 0
       GUID {8488A404-0C02-4B89-9C4C-48CDC096941A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -863,7 +863,7 @@
       CHANMODE 0
       GUID {6BD57D8C-85A0-4827-90D0-8A009E944DA0}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -889,7 +889,7 @@
       CHANMODE 0
       GUID {C3BE5F9E-597C-4B34-A998-85FCE24D7E7A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -915,7 +915,7 @@
       CHANMODE 0
       GUID {D5CC732D-AB49-48F4-AFAF-9BE3AE9C9AC6}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -941,7 +941,7 @@
       CHANMODE 0
       GUID {350BF269-AA74-4E95-83D2-C442A92140C1}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -968,7 +968,7 @@
       CHANMODE 0
       GUID {72231F42-0C93-4C49-8AE1-713F80BDBDEA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -994,7 +994,7 @@
       CHANMODE 0
       GUID {369989B0-41CD-4BFF-9DB8-E3BEE1BFB6B4}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1021,7 +1021,7 @@
       CHANMODE 0
       GUID {8A9F3666-6036-40D7-902B-A1C1C98E28DA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1047,7 +1047,7 @@
       CHANMODE 0
       GUID {3058C5F4-C89B-4C6D-9451-91FD1E5E460C}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1074,7 +1074,7 @@
       CHANMODE 0
       GUID {D11BEED2-516A-45EF-B897-2A1CE197B4A5}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1100,7 +1100,7 @@
       CHANMODE 0
       GUID {44FC9593-88C8-4D05-9CA4-D2A6D1F53723}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1127,7 +1127,7 @@
       CHANMODE 0
       GUID {EE8FFB10-20A3-4A26-8703-20C7E50EC9D8}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1153,7 +1153,7 @@
       CHANMODE 0
       GUID {8D931238-CBA5-4470-9B63-7DFDC6ADB781}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1180,7 +1180,7 @@
       CHANMODE 0
       GUID {2B55C94E-3386-4EEF-85AF-410DB2FE86F3}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1206,7 +1206,7 @@
       CHANMODE 0
       GUID {1A0CF487-5E0F-4679-B5CC-8616DF006F2E}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1233,7 +1233,7 @@
       CHANMODE 0
       GUID {A6D71DF3-CAA9-403D-B3FF-48A4D2BD57E3}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1259,7 +1259,7 @@
       CHANMODE 0
       GUID {E6E71495-8327-4776-A8A8-F627ECC0DEFD}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1286,7 +1286,7 @@
       CHANMODE 0
       GUID {1F004BF3-20D6-4C0A-97BB-0B93E2C8E04E}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1312,7 +1312,7 @@
       CHANMODE 0
       GUID {926B0721-731C-4DC3-AA37-D6E3524C0DD1}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1339,7 +1339,7 @@
       CHANMODE 0
       GUID {E85867B9-F304-43A5-B11B-55149EE9DBC1}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1365,7 +1365,7 @@
       CHANMODE 0
       GUID {21637FD4-5A2D-4907-BB90-F83601A6148D}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1392,7 +1392,7 @@
       CHANMODE 0
       GUID {C9D7F072-78A6-42F8-8114-B924421E41B0}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1418,7 +1418,7 @@
       CHANMODE 0
       GUID {CCD75B6B-DD85-4F5B-A447-438C765E891B}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1445,7 +1445,7 @@
       CHANMODE 0
       GUID {E5DD57E8-62E2-40DF-94F3-C55741D2BDB7}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1471,7 +1471,7 @@
       CHANMODE 0
       GUID {8E893DF3-03D6-40EE-AA37-26A50C9D87EE}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1498,7 +1498,7 @@
       CHANMODE 0
       GUID {473FBDE6-3864-405B-B470-697526251000}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1524,7 +1524,7 @@
       CHANMODE 0
       GUID {66D710D1-BABB-42F3-BA62-927351343F9F}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1551,7 +1551,7 @@
       CHANMODE 0
       GUID {BA676F09-0A0C-44DA-BA2B-3C66ECDB8FAE}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1577,7 +1577,7 @@
       CHANMODE 0
       GUID {9B7B171B-5E0A-4040-A143-FD36657C90B1}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1603,7 +1603,7 @@
       CHANMODE 0
       GUID {342D0743-B35E-4A86-8295-B1F42858A8CC}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1629,7 +1629,7 @@
       CHANMODE 0
       GUID {43E779DB-BE8B-4E58-AE58-7541FE6A4F26}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1655,7 +1655,7 @@
       CHANMODE 0
       GUID {73CDE2E2-C921-4796-BB4F-FEB709B1E936}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1681,7 +1681,7 @@
       CHANMODE 0
       GUID {6949320C-45B7-4685-AD94-A5A812336EE3}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1707,7 +1707,7 @@
       CHANMODE 0
       GUID {604C072B-BACC-4F84-BD55-7DFEE0F6CF4D}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1733,7 +1733,7 @@
       CHANMODE 0
       GUID {31B8F0A8-F625-4598-A279-623EDEBA7DC4}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1759,7 +1759,7 @@
       CHANMODE 0
       GUID {3DF2DA7E-BE6B-4406-B227-02A44F917987}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1785,7 +1785,7 @@
       CHANMODE 0
       GUID {95A9A86F-9652-4D1F-9C9F-3D50A87E3975}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1811,7 +1811,7 @@
       CHANMODE 0
       GUID {0BDC082C-8752-487D-8279-FE895C52381D}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1824,7 +1824,7 @@
       CHANMODE 0
       GUID {B46897C9-59CD-4B8F-B558-C85DF18F9685}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 001.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 001.wav"
       >
     >
     <ITEM
@@ -1847,7 +1847,7 @@
       CHANMODE 0
       GUID {8A8369A1-A89A-449D-88D6-1DA5DD90AEC0}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1860,7 +1860,7 @@
       CHANMODE 0
       GUID {B6B6F8E1-916F-479A-A65D-828DF98A28A2}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 001.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 001.wav"
       >
     >
     <ITEM
@@ -1883,7 +1883,7 @@
       CHANMODE 0
       GUID {724B1887-E1D3-4C86-966D-D9BEB143CB00}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1896,7 +1896,7 @@
       CHANMODE 0
       GUID {22A5D26C-A84C-4E4A-93A0-B1F2945E31AF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 002.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 002.wav"
       >
     >
     <ITEM
@@ -1919,7 +1919,7 @@
       CHANMODE 0
       GUID {A7A207D1-082B-4060-AC88-F710FA9687D0}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1932,7 +1932,7 @@
       CHANMODE 0
       GUID {3F750545-1A8D-47E6-AA73-20A05CC9E495}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 002.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 002.wav"
       >
     >
     <ITEM
@@ -1955,7 +1955,7 @@
       CHANMODE 0
       GUID {E43E8F7E-672B-46FF-972C-0D67D0503308}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -1968,7 +1968,7 @@
       CHANMODE 0
       GUID {F5C8487B-FBF9-4B20-B7BD-EF676F3B6D60}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 003.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 003.wav"
       >
     >
     <ITEM
@@ -1991,7 +1991,7 @@
       CHANMODE 0
       GUID {98B03ABC-34FF-4332-8134-C2C13E726214}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2004,7 +2004,7 @@
       CHANMODE 0
       GUID {AF652A35-4C80-4403-B937-7293FAE1CC5A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 003.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 003.wav"
       >
     >
     <ITEM
@@ -2027,7 +2027,7 @@
       CHANMODE 0
       GUID {F9EFBCF3-1C21-492F-B653-6E7ABF05539A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2053,7 +2053,7 @@
       CHANMODE 0
       GUID {E3B50219-88A4-4440-802D-44F5D9E369BD}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2079,17 +2079,17 @@
       CHANMODE 0
       GUID {AC16ACC5-F0B9-4D06-9BD6-08BB2C4050CC}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004-glued.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004-glued.wav"
       >
       TAKE SEL
-      NAME "Record 2026-04-27 at 05h29m29s_Track1 copy 004-glued copy 002.wav"
+      NAME "Record 2026-04-27 at 05h29m29s_Track1 copy 004-glued copy 001.wav"
       TAKEVOLPAN 0 1 -1
       SOFFS 0
       PLAYRATE 1 1 0 -1 0 0.0025
       CHANMODE 0
-      GUID {41A2F7F3-DC55-4FE3-A8A8-A997A8D1AEB1}
+      GUID {6B887DFF-14E4-4575-A3DA-B55C36080DAE}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004-glued copy 002.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004-glued copy 001.wav"
       >
     >
     <ITEM
@@ -2112,7 +2112,7 @@
       CHANMODE 0
       GUID {F6B33788-6775-4C8B-A18D-0AF6A859BD2C}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2138,7 +2138,7 @@
       CHANMODE 0
       GUID {CED54C71-9DDF-4D0D-A3E3-016073A1BC68}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2164,7 +2164,7 @@
       CHANMODE 0
       GUID {B77A1622-BAEB-42AE-8498-E3C483503C14}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2177,7 +2177,7 @@
       CHANMODE 0
       GUID {FB78A458-137C-4423-9E17-410E3A9187E2}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004.wav"
       >
     >
     <ITEM
@@ -2200,7 +2200,7 @@
       CHANMODE 0
       GUID {95506CA1-23AB-4695-9EB4-24BDC9A5EB0D}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2213,7 +2213,7 @@
       CHANMODE 0
       GUID {4EA7C295-B074-4189-B702-4D12557B3B14}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 004.wav"
       >
     >
     <ITEM
@@ -2236,7 +2236,7 @@
       CHANMODE 0
       GUID {C63EB9F4-4606-4B47-B39E-B3DE16258DE4}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2262,7 +2262,7 @@
       CHANMODE 0
       GUID {F559ABDB-99BB-4BF0-8FA5-83EDEAC4F13C}
       <SOURCE VORBIS
-        FILE "Audio Files\20260427_INDG3XXX_ReaperELAN_QUESTION-002.ogg"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\20260427_INDG3XXX_ReaperELAN_QUESTION-002.ogg"
       >
       <EXT
         ORIGINAL_FILENAME D:\[Fork]\20260113_INDG3XXX_ReaperELAN\_OUTPUTS\_QUESTION\QUESTION-2\20260427_INDG3XXX_ReaperELAN_QUESTION-002.ogg
@@ -2288,7 +2288,7 @@
       CHANMODE 0
       GUID {A85BC992-9C65-497F-A80B-737F03330B75}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2314,7 +2314,7 @@
       CHANMODE 0
       GUID {4B8E3FBA-7DFD-4822-95AB-699335308CF1}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2340,7 +2340,7 @@
       CHANMODE 0
       GUID {9ED9346B-5BA2-4E1C-A154-38FEFE610A30}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2366,7 +2366,7 @@
       CHANMODE 0
       GUID {0C909EBF-FF60-4C54-85DD-703B0A298D3E}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2392,7 +2392,7 @@
       CHANMODE 0
       GUID {959D3B1C-539F-4DA5-887C-E5A6D3347BD4}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2418,7 +2418,7 @@
       CHANMODE 0
       GUID {D3A5EA3D-9929-43D6-AF36-32AC3187584D}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2444,7 +2444,7 @@
       CHANMODE 0
       GUID {448AD904-582C-479C-BA47-BA6BACC97CFF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2470,7 +2470,7 @@
       CHANMODE 0
       GUID {0C6535EA-7712-4D3D-89FA-C8F5ECE51BFA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2496,7 +2496,7 @@
       CHANMODE 0
       GUID {279FEE7E-C671-452E-97EB-21A6943AFCDA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2509,7 +2509,7 @@
       CHANMODE 0
       GUID {CAEEFF74-86FE-437D-B629-F6B3044F6887}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 005.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 005.wav"
       >
     >
     <ITEM
@@ -2532,7 +2532,7 @@
       CHANMODE 0
       GUID {FE3BC127-56F2-491A-8DA0-1A83D39B0C50}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2545,7 +2545,7 @@
       CHANMODE 0
       GUID {9077E47C-12E4-438D-84C4-31F3B5FD80DE}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 005.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 005.wav"
       >
     >
     <ITEM
@@ -2568,7 +2568,7 @@
       CHANMODE 0
       GUID {2A5CACED-8A3A-47CF-AB17-A423F45263A6}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2594,7 +2594,7 @@
       CHANMODE 0
       GUID {EB6517A0-0890-4938-A531-3076EB1CF721}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2620,7 +2620,7 @@
       CHANMODE 0
       GUID {3799D9A9-CDFE-4DBA-ABFF-7D475579CBEB}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2646,7 +2646,7 @@
       CHANMODE 0
       GUID {78E214A2-FEF7-45BD-A7EF-F31F181E8793}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2659,7 +2659,7 @@
       CHANMODE 0
       GUID {29CA23BD-8676-4D3B-BA60-97C4F585CFCF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 006.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 006.wav"
       >
     >
     <ITEM
@@ -2682,7 +2682,7 @@
       CHANMODE 0
       GUID {3E30EDD4-DD3A-4EF9-957D-B212B4EB605A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2695,7 +2695,7 @@
       CHANMODE 0
       GUID {BAF54EF9-CE32-417E-B92B-5782CEBA3FB6}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 006.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 006.wav"
       >
     >
     <ITEM
@@ -2718,7 +2718,7 @@
       CHANMODE 0
       GUID {31D55C1E-55D3-4144-954A-C602854E9D5F}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2744,7 +2744,7 @@
       CHANMODE 0
       GUID {7EF0E2EE-F00B-4CFB-99DB-A9B297831785}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2770,7 +2770,7 @@
       CHANMODE 0
       GUID {E0B0484A-A665-46AF-B495-66D89643D629}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2796,7 +2796,7 @@
       CHANMODE 0
       GUID {D1C00121-0508-4794-833C-05CB080F1CB1}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2809,7 +2809,7 @@
       CHANMODE 0
       GUID {799525FC-0E10-420E-8FC0-8CC3477A1ED0}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 007.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 007.wav"
       >
     >
     <ITEM
@@ -2832,7 +2832,7 @@
       CHANMODE 0
       GUID {65BE1EE3-E808-4B02-9736-E9A2D8EEB5FF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2845,7 +2845,7 @@
       CHANMODE 0
       GUID {C4C36175-3C68-4088-960D-804E6F047C15}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 007.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1 copy 007.wav"
       >
     >
     <ITEM
@@ -2868,7 +2868,7 @@
       CHANMODE 0
       GUID {EE990A9F-DB87-4FF4-8EE2-485FFDD6B373}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2894,7 +2894,7 @@
       CHANMODE 0
       GUID {A6AF2C7E-71AF-43A5-94D1-862F740D09DF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2920,7 +2920,7 @@
       CHANMODE 0
       GUID {2239E098-3E8C-401E-A76B-2AD1BA867992}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2946,7 +2946,7 @@
       CHANMODE 0
       GUID {1645EEEB-8347-41AD-AB4F-00FDC848E440}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2972,7 +2972,7 @@
       CHANMODE 0
       GUID {EEF3FE57-EC91-4709-B8C9-57BF6977D3B3}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -2998,7 +2998,7 @@
       CHANMODE 0
       GUID {6389ABCB-7671-431C-8C49-F2EE09246989}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3024,7 +3024,7 @@
       CHANMODE 0
       GUID {92878AA7-48D6-467D-A885-D77C11740EFD}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3050,7 +3050,7 @@
       CHANMODE 0
       GUID {DF414A54-566E-472C-8F00-1CBB57B29212}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3076,7 +3076,7 @@
       CHANMODE 0
       GUID {39D5A55F-2093-462B-ABE9-AADC4B7B9FBA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3102,7 +3102,7 @@
       CHANMODE 0
       GUID {F9ED839E-16C0-4900-B1E6-8B3339C305D3}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3128,7 +3128,7 @@
       CHANMODE 0
       GUID {CC33CAA8-F2F0-4FB2-8C86-58D6434F8ED5}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3154,7 +3154,7 @@
       CHANMODE 0
       GUID {FB88235A-E9C1-4D27-81C9-AF67B6D30B93}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3180,7 +3180,7 @@
       CHANMODE 0
       GUID {EE208484-6256-45F8-9658-AA7AEC797A30}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3206,7 +3206,7 @@
       CHANMODE 0
       GUID {BC490DC7-452A-45DF-B1E3-8127EECDD098}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3232,7 +3232,7 @@
       CHANMODE 0
       GUID {C42FF952-3566-484F-B542-558C7B8FFCDA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3258,7 +3258,7 @@
       CHANMODE 0
       GUID {A492654E-8C71-4E66-A4C6-E2520BB9B42A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3284,7 +3284,7 @@
       CHANMODE 0
       GUID {03D2C55F-61EC-42B5-A9B3-36F502660014}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3310,7 +3310,7 @@
       CHANMODE 0
       GUID {E8B52504-ACA7-4822-A13B-18B94AAB24CB}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3336,7 +3336,7 @@
       CHANMODE 0
       GUID {EC3103CF-6D1B-4392-80B9-CC0B0143FEDA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3362,7 +3362,7 @@
       CHANMODE 0
       GUID {BE12153B-D4DC-4F79-856F-51862E81F0DF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3388,7 +3388,7 @@
       CHANMODE 0
       GUID {D49E9C4E-0F10-44C1-9BE7-2D420E48BBED}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3414,7 +3414,7 @@
       CHANMODE 0
       GUID {EFEF23BB-5CFE-471F-BD8D-959EECC4456B}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3440,7 +3440,7 @@
       CHANMODE 0
       GUID {D0539AA1-8B88-4297-B5CE-6AEAC85B41AE}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3466,7 +3466,7 @@
       CHANMODE 0
       GUID {4916FEAF-6211-4992-9F36-E558083A5F34}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3492,7 +3492,7 @@
       CHANMODE 0
       GUID {FB1EBEB7-3763-4A40-BBED-23153842927A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3518,7 +3518,7 @@
       CHANMODE 0
       GUID {F0966855-7285-474C-9794-35AB872A7A27}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3544,7 +3544,7 @@
       CHANMODE 0
       GUID {F8FA42B3-5E1C-4B51-8DED-49927E19CD57}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3570,7 +3570,7 @@
       CHANMODE 0
       GUID {61CC41AC-FAF7-442E-A300-ABDBDD14AFD0}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3596,7 +3596,7 @@
       CHANMODE 0
       GUID {6BB5448E-B42A-4F24-B79D-21886605669D}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3622,7 +3622,7 @@
       CHANMODE 0
       GUID {1DC1C377-C9C3-4BED-87E6-8E6989C35934}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3648,7 +3648,7 @@
       CHANMODE 0
       GUID {09B2B75E-BE11-438A-8997-58B0492D8EFA}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3674,7 +3674,7 @@
       CHANMODE 0
       GUID {C202B7EC-C88C-4AAA-BDAC-935840F7D559}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3700,7 +3700,7 @@
       CHANMODE 0
       GUID {9CEAF6B7-2626-4380-97F0-F2A0C8682255}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3726,7 +3726,7 @@
       CHANMODE 0
       GUID {69B09254-5A37-482A-99E2-4CF03C326B74}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3752,7 +3752,7 @@
       CHANMODE 0
       GUID {5C6D1B13-CA9C-4F71-B691-D28FA70026BD}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3778,7 +3778,7 @@
       CHANMODE 0
       GUID {C57B259E-CAB7-463F-A31D-5847CF11BFF7}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3804,7 +3804,7 @@
       CHANMODE 0
       GUID {622AD7EF-3AA3-4174-9B76-4269840EEF1A}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3830,7 +3830,7 @@
       CHANMODE 0
       GUID {437A6862-DCEC-4AB1-B3C6-9EF5E02E25E7}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3856,7 +3856,7 @@
       CHANMODE 0
       GUID {3A02A3A8-5A47-48A1-834E-56D7D6D84BE2}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3882,7 +3882,7 @@
       CHANMODE 0
       GUID {2A08E9F2-9AFB-432D-A75F-D0DD75F6276F}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3908,7 +3908,7 @@
       CHANMODE 0
       GUID {080A1C8E-9F94-4185-89EF-F27910DD4EAE}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3934,7 +3934,7 @@
       CHANMODE 0
       GUID {D32287B6-A416-44E0-A408-DF970BA306C5}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3960,7 +3960,7 @@
       CHANMODE 0
       GUID {183819B2-BC35-43D0-AD94-8108BB7F3FD9}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -3986,7 +3986,7 @@
       CHANMODE 0
       GUID {AE1F4B1A-6D39-4714-8B15-6CE248F67070}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4012,7 +4012,7 @@
       CHANMODE 0
       GUID {B54BAECE-EDE4-4767-8DA3-13A0C75F7AA7}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4038,7 +4038,7 @@
       CHANMODE 0
       GUID {992AF0DE-056C-44A5-ADD9-3D3175B145BB}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4064,7 +4064,7 @@
       CHANMODE 0
       GUID {51DC56B9-D7AE-42D8-B949-8FF6BB0E18DF}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4090,7 +4090,7 @@
       CHANMODE 0
       GUID {4BCF1D69-B28F-4DD4-9665-765460137777}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4116,7 +4116,7 @@
       CHANMODE 0
       GUID {53124F0E-E3C5-434E-8D20-7FE090F0F07F}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4142,7 +4142,7 @@
       CHANMODE 0
       GUID {58AC8AE8-B49C-45FE-A5E0-8458A77B9382}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4168,7 +4168,7 @@
       CHANMODE 0
       GUID {8F176130-A96C-494F-9345-BE2415005483}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4194,7 +4194,7 @@
       CHANMODE 0
       GUID {866392A3-2037-4A0C-A12D-797EA00AAB5C}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4220,7 +4220,7 @@
       CHANMODE 0
       GUID {D37CEFAC-AE8B-4691-B5B8-583B2ADD1450}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4246,7 +4246,7 @@
       CHANMODE 0
       GUID {B7066A57-93FF-48B2-BAA4-7831E2686181}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4272,7 +4272,7 @@
       CHANMODE 0
       GUID {D6CD8AB9-0188-455F-AFC1-F8A92B984B4B}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4298,7 +4298,7 @@
       CHANMODE 0
       GUID {F72A9BB3-5F54-48E9-9A8D-1D48EEF763D8}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4324,7 +4324,7 @@
       CHANMODE 0
       GUID {20008801-C3FC-4B9A-B800-81E895BB7AB1}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4350,7 +4350,7 @@
       CHANMODE 0
       GUID {9A863FDD-B531-4C13-A43B-FA1834C92587}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4376,7 +4376,7 @@
       CHANMODE 0
       GUID {2806A8BE-BB32-4AE3-9E67-E265C2AE18B0}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4402,7 +4402,7 @@
       CHANMODE 0
       GUID {4F54ABE3-BFF6-42C9-ADC3-7C08D9F58BBE}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
@@ -4428,7 +4428,7 @@
       CHANMODE 0
       GUID {22189393-8648-4DEA-B9D7-D704F1619088}
       <SOURCE WAVE
-        FILE "Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
+        FILE "D:\[Fork]\20260113_INDG3XXX_ReaperELAN\Reaper Project\20260427_INDG3XXX_ReaperELAN\Audio Files\Record 2026-04-27 at 05h29m29s_Track1.wav"
       >
       <EXT
         ORIGINAL_FILENAME "C:\Users\vitam\Documents\Voicemeeter\Record 2026-04-27 at 05h29m29s_Track1.wav"
