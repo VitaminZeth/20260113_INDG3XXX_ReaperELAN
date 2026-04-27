@@ -1,0 +1,45 @@
+
+
+
+
+possibly use EEL script seperately for the main updateSources loop thru all project items. might be way faster. use ProjExtState to pass vars to the EEL, and once done delete vars immediately. Use NamedCommandLookup()
+benchmark this vs pure Lua, might not be worth it
+
+
+
+sort out state storage for unglued items so that looping/reversing/length/pitch/vol etc can be preserved on reglue
+add a key to the notes of the container glue_group_state:glue_group:id eg glue_group_state:3:1 which references a state chunk stored in the projExtState 3:1:state
+each glue group can store as many states as it needs eg glue group 3 can have 3:1, 3:2, 3:3 and so on, each created from a seperate unglueing of an instance of group 3
+when reglueing check the container notes for the string that points to the original state, then apply that state to the glued item before updating to the new wav src, and then delete that key from the projExtState
+
+
+extstate data not being cleared/reset on Undo
+extstate data not being cleared on new project
+
+
+tidy up code
+comment code
+document
+
+
+
+DONE? maybe move away from notes and rely entirely on name. make an empty take in the container empty items. use that for naming. wastes a bit more chunk space but more consistent and uniform
+for the containers, had  to create an empty take and set it to an empty PCM src so its not MIDI
+now the reGlue>doGlue creates an empty item that matches the containers size and position, absorbs that into the glue, then updates the original containers size and position to fit the new glued item, and stores that in the ProjExtState data
+
+NA? get container media item notes working, ULT SWS extension for lua is broken when it comes to setting notes (getting works) - switched to just using names
+
+
+
+DONE? seperate out the checkForGlueGroup and checkForGlueGroupContainer. make check for container return the group, an item in the group, and the container. make checkForGlueGroup only scan a single item, and return the group
+
+DONE delete old srcs on reglue
+
+DONE? (test more) sort out removing groups from other groups dependents keys if they are no longer nested 
+
+
+DONE? (possibly improve, test more) possibly figure out a waitlist for updateDependents so items that have multiple nested glue groups dont keep getting re-rendered for each one, instead waiting for items with only one (or less) nested glue groups to go first
+trick is to leave the unglued items of the group unglued until ALL its nested glue group items have been updateSource'd, THEN reglue it
+maybe need a 'discovery' recursive runthru first, that just relies on the stored dependents/dependencies projExt data and populates an update_table
+
+

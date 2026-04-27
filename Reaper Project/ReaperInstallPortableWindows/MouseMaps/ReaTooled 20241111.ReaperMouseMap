@@ -1,0 +1,193 @@
+[MM_CTX_AREASEL]
+mm_0=0 m
+mm_1=1 m
+mm_2=0 m
+mm_3=29 m
+mm_4=3 m
+mm_5=4 m
+mm_7=4 m
+mm_8=8 m
+mm_9=8 m
+mm_10=17 m
+mm_12=15 m
+
+[MM_CTX_AREASEL_CLK]
+mm_0=_12121a86c1aa473ea19380b4252f3539
+
+[MM_CTX_ARRANGE_B]
+mm_0=32 m
+mm_1=28 m
+mm_2=26 m
+mm_4=24 m
+mm_5=25 m
+
+[MM_CTX_ARRANGE_C]
+mm_0=14 m
+mm_1=0 m
+
+[MM_CTX_ARRANGE_D]
+mm_0=11 m
+mm_1=4 m
+mm_2=10 m
+mm_4=13 m
+mm_8=13 m
+
+[MM_CTX_ARRANGE_RMOUSE]
+mm_1=28 m
+mm_2=26 m
+mm_4=11 m
+mm_5=30 m
+mm_8=10 m
+mm_9=12 m
+mm_12=11 m
+mm_13=13 m
+
+[MM_CTX_CROSSFADE]
+mm_2=13 m
+mm_8=9 m
+
+[MM_CTX_CROSSFADE_CLK]
+mm_4=_RSd2b39a5b9e4f6b7e5ad859dcde56fc020942dc4b
+
+[MM_CTX_ENVCP_DBLCLK]
+mm_14=41975 c
+
+[MM_CTX_ENVLANE]
+mm_1=-1 m
+mm_2=1 m
+mm_8=4 m
+
+[MM_CTX_ENVLANE_DBLCLK]
+mm_0=1 m
+
+[MM_CTX_ENVPT]
+mm_1=6 m
+mm_2=5 m
+mm_3=10 m
+mm_6=-1 m
+mm_8=13 m
+
+[MM_CTX_ENVPT_DBLCLK]
+mm_0=40697 c
+
+[MM_CTX_ENVSEG]
+mm_0=7 m
+mm_1=5 m
+mm_2=2 m
+mm_3=8 m
+mm_6=9 m
+mm_8=10 m
+
+[MM_CTX_ENVSEG_DBLCLK]
+mm_0=2 m
+
+[MM_CTX_ITEM]
+mm_0=66 m
+mm_1=28 m
+mm_2=0 m
+mm_4=11 m
+mm_9=20 m
+mm_13=11 m
+
+[MM_CTX_ITEM_CLK]
+mm_1=10 m
+mm_4=15 m
+mm_8=42391 c
+mm_9=18 m
+
+[MM_CTX_ITEM_DBLCLK]
+mm_0=2 m
+mm_1=40290 c
+mm_2=42577 c
+mm_5=40653 c
+mm_6=7 m
+mm_9=_6ca6a69cb0a3488f8bc4ceee437307b7
+mm_13=_468b46ab8e3d4145b3af6c337ef2ac96
+mm_15=_047b1ae44c6a4c398916caefec363247
+
+[MM_CTX_ITEMEDGE]
+mm_12=6 m
+mm_14=19 m
+
+[MM_CTX_ITEMEDGE_DBLCLK]
+mm_14=_RS1e7f1c3923b62df40e5723b2e4c645e48a372f9a
+
+[MM_CTX_ITEMFADE]
+mm_2=13 m
+mm_4=13 m
+mm_8=5 m
+
+[MM_CTX_ITEMLOWER]
+mm_0=13 m
+mm_1=58 m
+mm_2=51 m
+mm_3=50 m
+mm_4=2 m
+mm_5=56 m
+mm_6=7 m
+mm_7=39 m
+mm_8=32 m
+mm_9=57 m
+mm_12=36 m
+mm_13=55 m
+
+[MM_CTX_ITEMLOWER_CLK]
+mm_0=_RS428db9286d6f978287e14df7cf9227628394585d
+mm_1=17 m
+mm_2=4 m
+mm_4=15 m
+mm_8=42391 c
+mm_9=18 m
+
+[MM_CTX_ITEMLOWER_DBLCLK]
+mm_0=6 m
+
+[MM_CTX_MCP_DBLCLK]
+mm_14=41975 c
+
+[MM_CTX_MIDI_CCEVT]
+mm_6=10 m
+mm_8=10 m
+
+[MM_CTX_MIDI_CCLANE]
+mm_3=-1 m
+
+[MM_CTX_MIDI_CCSEG]
+mm_6=1 m
+
+[MM_CTX_MIDI_NOTE]
+mm_2=9 m
+mm_4=7 m
+mm_6=27 m
+mm_14=25 m
+
+[MM_CTX_MIDI_NOTE_CLK]
+mm_0=1 m
+mm_4=2 m
+
+[MM_CTX_POOLEDENV]
+mm_1=11 m
+mm_2=2 m
+mm_3=-1 m
+mm_4=5 m
+mm_5=6 m
+
+[MM_CTX_RULER]
+mm_2=4 m
+mm_3=-1 m
+
+[MM_CTX_TCP_DBLCLK]
+mm_14=41975 c
+
+[MM_CTX_TRACK]
+mm_0=10 m
+mm_1=13 m
+mm_2=16 m
+mm_8=14 m
+
+[MM_CTX_TRACK_CLK]
+mm_4=8 m
+
+[MM_CTX_TRACK_DBLCLK]
+mm_0=_7213514264a644ab80be5e95aeaaa20a
+

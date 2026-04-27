@@ -1,0 +1,46 @@
+function do()
+(
+	// select all items in group
+	Main_OnCommand(40034, 0);
+
+	cursorInit = GetCursorPosition();
+
+	//move cursor to end of items
+	Main_OnCommand(41174, 0);
+	end = GetCursorPosition();
+
+
+	//move to the start of item
+	Main_OnCommand(41173, 0);
+	cursor = GetCursorPosition();
+
+
+	while(
+		//move cursor right 1 grid unit
+		Main_OnCommand(40647, 0);
+		//slice
+		Main_OnCommand(40012, 0);
+		//update cursor pos
+		cursor = GetCursorPosition();
+		//check if we need to stop looping
+		cursor < end;
+	);
+
+	//stop
+	Main_OnCommand(1016, 0);
+	MoveEditCursor(cursorInit-cursor, 0);
+);
+
+
+Undo_BeginBlock();
+PreventUIRefresh(1);
+
+
+
+do();
+
+
+
+UpdateTimeline();
+PreventUIRefresh(-1);
+Undo_EndBlock("Slices from Grid", -1);

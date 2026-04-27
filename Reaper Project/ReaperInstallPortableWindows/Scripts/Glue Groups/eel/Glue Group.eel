@@ -1,0 +1,424 @@
+
+function getSetObjectState(obj, state, minimal) local (fastStr, set)
+(
+	fastStr = extension_api("SNM_CreateFastString", state);
+	set = strlen(state) > 0 ? 1 : 0;
+	
+	extension_api("SNM_GetSetObjectState", obj, fastStr, set, minimal);
+
+	extension_api("SNM_GetFastString", #state, fastStr);
+	extension_api("SNM_DeleteFastString", fastStr);
+	#state;
+);
+
+function setToAudioTake(item) local (num_takes, active_take, active_take_number)
+(
+	// make sure everything is deselected
+	deselect();
+	
+	num_takes = GetMediaItemNumTakes(item);
+
+	num_takes > 0 ? (
+		(active_take = GetActiveTake(item)) ? (
+
+			take_source = GetMediaItemTake_Source(active_take);
+
+			GetMediaSourceType(take_source, #take_type);
+			
+			match("MIDI", #take_type) ? (
+
+				// store ref to the original active take for unglueing
+				active_take_number = GetMediaItemTakeInfo_Value(active_take, "IP_TAKENUMBER");
+				// convert the active MIDI item to an audio take
+				SetMediaItemSelected(item, 1);
+				Main_OnCommand(40209, 0);
+
+				SetActiveTake(GetTake(item, num_takes));
+				active_take = GetActiveTake(item);
+				#take_name = "glue_group_render:";
+				#take_name += sprintf(#, "%d", active_take_number);
+				GetSetMediaItemTakeInfo_String(active_take, "P_NAME", #take_name, 1);
+				SetMediaItemSelected(item, 0);
+
+				cleanNullTakes(item);
+			);
+		);
+	);
+);
+
+function restoreOriginalTake(item) local (num_takes, active_take, take_name, take_number)
+(
+	// make sure everything is deselected
+	deselect();
+
+	num_takes = GetMediaItemNumTakes(item);
+	
+	num_takes > 0 ? (
+		(active_take = GetActiveTake(item)) ? (
+
+			take_name = GetTakeName(active_take)
+			
+			match("glue_group_render:%d", take_name, take_number) ? (
+				// delete this take
+				SetMediaItemSelected(item, 1);
+				Main_OnCommand(40129, 0);
+				// reselect original active take
+				take_number ? (
+					original_take = GetTake(item, take_number);	
+					SetActiveTake(original_take);
+				);
+
+				SetMediaItemSelected(item, 0);
+
+				cleanNullTakes(item);
+			);
+		);
+	);
+);
+
+function cleanNullTakes(item, state, force)
+(
+	#state = strlen(state) > 0 ? state : getSetObjectState(item, "", 0);
+
+	match("TAKE NULL", state) || force ? (
+		#state = ("TAKE NULL", "");
+		getSetObjectState(item, state, 0);
+	);
+);
+
+function setItemGlueGroup(item, glue_group, not_container) local(key, take)
+(
+	key = not_container ? "glue_group:" : "glue_group_container:";
+
+	#notes = "";
+	#notes += key;
+	#notes += sprintf(#, "%d", glue_group);
+
+	ShowConsoleMsg(#notes);
+	ShowConsoleMsg("\n");
+
+	extension_api("ULT_SetMediaItemNote", item, #notes);
+
+	(take = GetActiveTake(item)) ? GetSetMediaItemTakeInfo_String(take, "P_NAME", #notes, 1);
+);
+
+
+function getGlueGroupFromItem(item) local (take)
+(
+	// use the SWS ULT extension to get the notes
+	extension_api("ULT_GetMediaItemNote", #notes, item);
+
+	// if theres no notes, it might be in the name of the active take
+	strlen(#notes) < 1 ? (
+		(take = GetActiveTake(item)) ? GetSetMediaItemTakeInfo_String(take, "P_NAME", #notes, 0);
+	);
+
+	// check for the glue group container string and store the int in 'glue_group'
+	match("*glue_group*?:%d*", #notes, glue_group);
+
+	// return the glue group, or 0 if not found
+	glue_group;
+);
+
+function checkForGlueGroup() local(i)
+(
+	this.glue_group = 0;
+
+	i = 0;
+	while(i < num_items && this.glue_group == 0)
+	(
+		this.item = GetSelectedMediaItem(0, i);
+		this.glue_group = getGlueGroupFromItem(this.item);
+		i += 1;
+	);
+);
+
+
+
+
+function doGlue(source_track, source_item, glue_group, existing_container) local(i, item, key)
+(
+	ShowConsoleMsg("\ndoGlue");
+	
+	// make a new glue_group id from the group id if this is a new group,
+	glue_group == 0 ? glue_group = GetMediaItemInfo_Value(source_item, "I_GROUPID");
+
+	#stored_states = "";
+	
+	i = 0;
+	loop(num_items,
+		item = GetSelectedMediaItem(0, i);
+		items[i] = item;
+		#stored_states += getSetObjectState(item, "", 0);
+		#stored_states += "|||";
+		i += 1;
+	);
+
+	ShowConsoleMsg(#stored_states);
+
+	// store the states in the project
+	key = sprintf(#, "%d", glue_group);
+	SetProjExtState(0, "GLUE_GROUPS", key, #stored_states);
+
+	GetProjExtState(0, "GLUE_GROUPS", "GROUPS", #groups);
+	#key = "|";
+	#key += key;
+	#key += "|";
+
+	match(#key, #groups) == 0 ? (
+		#groups += #key;
+		SetProjExtState(0, "GLUE_GROUPS", "GROUPS", #groups);
+	)
+	
+
+	/*
+	for i in range(num_items):
+		utils.setToAudioTake( original_items[i] )
+
+	for i in range(num_items):
+		SetMediaItemSelected(original_items[i], True)
+
+	// if we are passing in a container (eg a reglue from a container)
+	if existing_container:
+		// duplicate container so its still there after glue
+		container = utils.duplicateItems([existing_container], -2, False)[0]
+	else:
+		// store reference to a new container
+		container = AddMediaItemToTrack(source_track)
+		// assign glue group
+		utils.setItemGlueGroup(container, glue_group)
+	
+	// glue selected items
+	Main_OnCommand(41588, 0)
+	// store ref to new glued item
+	glued_item = GetSelectedMediaItem(0, 0);
+	// store a reference to this glue group in the glued item
+	utils.setItemGlueGroup(glued_item, glue_group, False)
+
+	// make sure the container is big enough
+	container_length = GetMediaItemInfo_Value(container, "D_LENGTH")
+	new_length = GetMediaItemInfo_Value(glued_item, "D_LENGTH")
+	if(container_length < new_length):
+		SetMediaItemInfo_Value(container, "D_LENGTH", new_length)
+
+	freezeString = "\n<FREEZE 1\n"+utils.getSetObjectState(container)+freezeString+">\n"
+
+
+	track_state = utils.getSetObjectState(source_track)
+	track_state = track_state[:-2]
+
+	track_state += freezeString + ">"
+
+	utils.getSetObjectState(source_track, track_state)
+
+	DeleteTrackMediaItem(source_track, container)
+
+	utils.log(utils.getSetObjectState(source_track))
+
+	return glued_item
+	*/
+);
+
+
+function reGlue(source_track, source_item, glue_group, container) local(i)
+(
+	//
+	i = 0;
+	loop(num_items,
+		setItemGlueGroup(GetSelectedMediaItem(0, i), glue_group, 0);
+		i += 1;
+	);
+	/*// get the original state from the container
+	original_state = False
+	container_state = utils.getSetObjectState(container)
+	regexp = r"glue_group_original_state:((\n\|[^\n\r]*)*)"
+	ex = re.compile(regexp, re.M)
+	match = ex.search(container_state)
+	if match: 
+		original_state = match.group(1).replace("\n|", "\n")
+
+	if original_state:
+		// clear the original state from the container
+		regexp = r"(\n\| *)*\n\|glue_group_original_state:(\n\|[^\n\r]*)*"
+		state = re.sub(regexp, "", container_state, flags=re.M)
+		utils.getSetObjectState(container, state)
+	else:
+		pos = GetMediaItemInfo_Value( GetSelectedMediaItem(0, 0), "D_POSITION")
+
+	// work out the old glue track from the glue_group id
+	glue_track = utils.getTrackFromGlueGroup(glue_group)
+	// delete the old glue track
+	DeleteTrack(glue_track)
+	
+	// make sure source item is selected
+	SetMediaItemSelected(source_item, True)
+	// select whole group if its in one
+	Main_OnCommand(40034, 0)
+
+	// run doGlue, but this time with a glue_group and container
+	glued_item = doGlue(source_track, source_item, glue_group, container)
+
+	// store updated src
+	new_src = utils.getItemWavSrc(glued_item)
+
+	// move glued item to source track
+	MoveMediaItemToTrack(glued_item, source_track)
+	// setup item
+	if original_state:
+		utils.getSetObjectState(glued_item, original_state)
+	elif pos:
+		SetMediaItemInfo_Value(glued_item, "D_POSITION", pos)
+
+	// update sources of all instances of this glue group
+	updateSources(
+		new_src,
+		glue_group
+	)
+
+	return glued_item
+	*/
+);
+
+
+/*
+// only called by the updateSources function when any glue groups that were just updated are nested in other glue groups/tracks
+def doGlueTrackReGlue(glue_track):
+	// get glue_group
+	glue_group = utils.getGlueGroupFromTrack(glue_track)
+	// deselect all
+	utils.deselect()
+	// select glue track
+	SetOnlyTrackSelected(glue_track)
+
+	// make glue track visible
+	SetMediaTrackInfo_Value(glue_track, "B_SHOWINTCP", True)
+	TrackList_AdjustWindows(True)
+
+	// select all items in track
+	num_items = CountTrackMediaItems(glue_track)
+	for i in range(num_items):
+		item = GetTrackMediaItem(glue_track, i)
+		SetMediaItemSelected(item, True)
+
+	// duplicate
+	utils.duplicateItems()
+	// glue duplicate
+	Main_OnCommand(41588, 0)
+	// select new glued item
+	glued_item = GetSelectedMediaItem(0, 0);
+	// get its source
+	new_src = utils.getItemWavSrc(glued_item);
+
+	// update the source files based on the newly created glued file
+	updateSources(
+		new_src,
+		glue_group
+	)
+
+	// delete glued item from track 
+	DeleteTrackMediaItem(glue_track, glued_item)
+
+	// make glue track invisible
+	SetMediaTrackInfo_Value(glue_track, "B_SHOWINTCP", False)
+
+
+
+def updateSources(new_src, glue_group):
+	// count all items
+	num_items = CountMediaItems(0)
+
+	glue_group_track_string = "glue_group_track:"
+	glue_group_string = "glue_group:"+str(glue_group)+":"
+
+	dirtiedTracks = {}
+	// loop through and update wav srcs
+	for i in range(num_items):
+
+		// first catch your Media Item
+		item = GetMediaItem(0, i)
+
+		// get take name and see if it matches the currently updated glue group
+		take_name = utils.getSetItemName(item)
+		if not take_name: continue
+
+		if(glue_group_string in take_name):
+			
+			current_src = utils.getItemWavSrc(item)
+
+			if(current_src != new_src):
+				// BR method
+				// get the take
+				take = GetActiveTake(item)
+				// update the src
+				BR_SetTakeSourceFromFile2(take, new_src, False, True)
+				// peakRebuildNeeded = True
+				
+				// are we updating a src on another hidden glue track? if so store a reference to it in the dirtiedTracks dict
+				track = GetMediaItem_Track(item)
+				(track_name, track, flagsOut) = GetTrackState(track, 0)
+				if glue_group_track_string in track_name:
+					if track_name not in dirtiedTracks:
+						dirtiedTracks[track_name] = track
+
+	// now check dirtied glue tracks
+	for i in dirtiedTracks:
+		doGlueTrackReGlue(dirtiedTracks[i])
+
+*/
+
+function glueGroup()
+(
+
+	PreventUIRefresh(1);
+
+	// select whole group if its in one
+	Main_OnCommand(40034, 0);
+
+	//if we are dealing with more than one item, proceed
+	num_items = CountSelectedMediaItems(0);
+	num_items > 1 ? (
+
+		Undo_BeginBlock();
+
+		// group items anyway in case theres new items added
+		Main_OnCommand(40032, 0);
+
+		// store a reference to the original item
+		source_item = GetSelectedMediaItem(0, 0);
+
+		// store a pointer to the original track
+		source_track = GetMediaItemTrack(source_item);
+
+		// is this a reglueing of a previously glued item?
+		checker.checkForGlueGroup();
+
+		checker.glue_group ? (
+			reGlue(source_track, source_item, checker.glue_group, checker.item);
+		) : (
+			doGlue(source_track, source_item, 0, 0);
+		);
+
+
+		// clean up
+		UpdateTimeline();
+		UpdateArrange();
+		TrackList_AdjustWindows(1);
+
+		// zoom in then out
+		// Main_OnCommand(1011, 0);
+		// Main_OnCommand(1012, 0);
+
+		Undo_EndBlock("Glue Group", -1);
+
+	);
+
+	PreventUIRefresh(-1);
+
+);
+
+
+
+
+// do the actual glue
+glueGroup();
+
